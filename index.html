@@ -1,0 +1,475 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KJS STORE | Digital Solutions</title>
+
+    <style>
+        :root {
+            --primary-color: #ffffff;
+            --accent-color: #007bff;
+            --bg-overlay: rgba(0, 0, 0, 0.7);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+           margin: 0;
+           font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+           color: white;
+           line-height: 1.6;
+           overflow-x: hidden;
+        }
+
+        /* HEADER */
+        header {
+            text-align: center;
+            padding: 50px 20px 30px;
+            max-width: 700px;
+            margin: auto;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        header h1 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* MENU CONTAINER */
+        .container {
+            max-width: 500px;
+            margin: 20px auto 50px;
+            padding: 0 20px;
+        }
+
+        .menu-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* BUTTON STYLE */
+        .btn-menu {
+            width: 100%;
+            padding: 16px 20px;
+            background: var(--primary-color);
+            color: #000;
+            border: none;
+            border-radius: 15px;
+            font-size: 15px;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            text-align: center;
+        }
+
+        .btn-menu:hover {
+            transform: translateY(-3px);
+            background: #f0f0f0;
+            box-shadow: 0 6px 20px rgba(255,255,255,0.2);
+        }
+
+        .btn-menu:active {
+            transform: scale(0.97);
+        }
+
+        /* PRODUCT DETAIL CARD */
+        .product-card {
+            display: none;
+            background: var(--bg-overlay);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 30px;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 18px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .product-info {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .product-info h2 {
+            margin-top: 0;
+            font-size: 20px;
+            color: #58a6ff;
+        }
+
+        .promo-text {
+            font-size: 14px;
+            white-space: pre-line;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        /* BACK BUTTON */
+        .back-btn {
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: white;
+            color: black;
+        }
+
+        /* UTILS */
+        .badge {
+            background: #ff3e3e;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-size: 10px;
+            margin-left: 10px;
+        }
+        
+        /* BACKGROUND FIXED UNTUK HP */
+        .bg-fixed {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background-image: url("assets/bg/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    transform: translateZ(0);
+    will-change: transform;
+
+    z-index: -1;
+}
+    </style>
+</head>
+
+<body>
+
+<div class="bg-fixed"></div>
+
+<header id="header-area">
+    <h1>KJS STORE</h1>
+    <p>𝗦𝗖𝗥𝗢𝗟 𝗞𝗘 𝗕𝗔𝗪𝗔𝗛 𝗨𝗡𝗧𝗨𝗞 𝗟𝗜𝗔𝗧 𝗟𝗜𝗦𝗧 𝗣𝗥𝗢𝗗𝗨𝗞 👇</p>
+</header>
+
+<div class="container">
+    
+    <div id="menu-area" class="menu-grid">
+
+<button class="btn-menu" onclick="showProduct('p1')">
+    <span>🛍️ BOT AKSES TERNAK</span>
+    <span class="badge">HOT</span>
+</button>
+
+<button class="btn-menu" onclick="showProduct('p2')">
+    <span>🛍️ BOT WHATSAPP / TELEGRAM</span>
+</button>
+
+<button class="btn-menu" onclick="showProduct('p3')">
+    <span>🛍️ SCRIPT TUNNELING</span>
+</button>
+
+<button class="btn-menu" onclick="showProduct('p4')">
+    <span>🛍️ LAYANAN PREMIUM 4</span>
+</button>
+
+<button class="btn-menu" onclick="showProduct('p5')">
+    <span>🛍️ LAYANAN PREMIUM 5</span>
+</button>
+
+<button class="btn-menu" onclick="showProduct('p6')">
+    <span>🛍️ LAYANAN PREMIUM 6</span>
+</button>
+
+<button class="btn-menu" onclick="showProduct('p7')">
+    <span>🛍️ LAYANAN PREMIUM 7</span>
+</button>
+
+<button class="btn-menu" onclick="showProduct('p8')">
+    <span>🛍️ LAYANAN PREMIUM 8</span>
+</button>
+
+<button class="btn-menu" onclick="showProduct('p9')">
+    <span>🛍️ LAYANAN PREMIUM 9</span>
+</button>
+
+<button class="btn-menu" onclick="showProduct('p10')">
+    <span>🛍️ LAYANAN PREMIUM 10</span>
+</button>
+
+<button class="btn-menu" onclick="showProduct('p11')">
+    <span>🛍️ LAYANAN PREMIUM 11</span>
+</button>
+
+<button class="btn-menu" onclick="showProduct('p12')">
+    <span>🛍️ LAYANAN PREMIUM 12</span>
+</button>
+
+<button class="btn-menu" onclick="showProduct('p13')">
+    <span>🛍️ LAYANAN PREMIUM 13</span>
+</button>
+
+<button class="btn-menu" onclick="showProduct('p14')">
+    <span>🛍️ LAYANAN PREMIUM 14</span>
+</button>
+
+<button class="btn-menu" onclick="showProduct('p15')">
+    <span>🛍️ LAYANAN PREMIUM 15</span>
+</button>
+
+</div>
+
+    <div id="p1" class="product-card">
+    <img loading="lazy" src="assets/products/bot-ternak.png" alt="Bot Ternak">
+    <div class="product-info">
+        <h2>🔥 BOT AKSES TERNAK (1 PAKET)</h2>
+        <div class="promo-text">
+Tinggal pakai • 100% Auto • Tanpa ribet!
+✅ Sistem FULL OTOMATIS
+✅ Support & FREE pemasangan
+✅ Akses FULL 1 PAKET (4 BOT)
+
+🤖 ISI PAKET:
+• BOT OSS
+• BOT LAPAK ASIK
+• BOT CEK DPT
+• KALKULATOR KPJ RANDOM
+
+💰 HARGA SEWA:
+1 Bulan : 400.000
+2 Bulan : 700.000
+PERMANENT : 1.600.000
+        </div>
+        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
+    </div>
+</div>
+
+<div id="p2" class="product-card">
+    <img loading="eager" src="assets/products/bot-wa.png" alt="Bot WA">
+    <div class="product-info">
+        <h2>🤖 OPEN BOT STORE</h2>
+        <div class="promo-text">
+Sewa script bot WhatsApp & Telegram profesional.
+• Custom Fitur
+• Anti Delay
+• Uptime 24/7
+        </div>
+        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
+    </div>
+</div>
+
+<div id="p3" class="product-card">
+    <img loading="eager" src="assets/products/tunneling.jpg" alt="Tunneling">
+    <div class="product-info">
+        <h2>🚀 OPEN SEWA SC TUNNELING</h2>
+        <div class="promo-text">
+Server aktif 24 jam nonstop.
+• Support pemula
+• Auto Script Install
+• Harga mulai 10K
+        </div>
+        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
+    </div>
+</div>
+
+<!-- PRODUK 4 - 15 -->
+
+<div id="p4" class="product-card">
+    <img loading="eager" src="assets/products/produk4.jpg">
+    <div class="product-info">
+        <h2>🔥 PRODUK 4</h2>
+        <div class="promo-text">
+Deskripsi promo produk 4.
+        </div>
+        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
+    </div>
+</div>
+
+<div id="p5" class="product-card">
+    <img loading="eager" src="assets/products/produk4.jpg">
+    <div class="product-info">
+        <h2>🔥 PRODUK 5</h2>
+        <div class="promo-text">
+Deskripsi promo produk 5.
+        </div>
+        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
+    </div>
+</div>
+
+<div id="p6" class="product-card">
+    <img loading="eager" src="assets/products/produk4.jpg">
+    <div class="product-info">
+        <h2>🔥 PRODUK 6</h2>
+        <div class="promo-text">
+Deskripsi promo produk 6.
+        </div>
+        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
+    </div>
+</div>
+
+<div id="p7" class="product-card">
+    <img loading="eager" src="assets/products/produk4.jpg">
+    <div class="product-info">
+        <h2>🔥 PRODUK 7</h2>
+        <div class="promo-text">
+Deskripsi promo produk 7.
+        </div>
+        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
+    </div>
+</div>
+
+<div id="p8" class="product-card">
+    <img loading="eager" src="assets/products/produk4.jpg">
+    <div class="product-info">
+        <h2>🔥 PRODUK 8</h2>
+        <div class="promo-text">
+Deskripsi promo produk 8.
+        </div>
+        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
+    </div>
+</div>
+
+<div id="p9" class="product-card">
+    <img loading="eager" src="assets/products/produk4.jpg">
+    <div class="product-info">
+        <h2>🔥 PRODUK 9</h2>
+        <div class="promo-text">
+Deskripsi promo produk 9.
+        </div>
+        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
+    </div>
+</div>
+
+<div id="p10" class="product-card">
+    <img loading="eager" src="assets/products/produk4.jpg">
+    <div class="product-info">
+        <h2>🔥 PRODUK 10</h2>
+        <div class="promo-text">
+Deskripsi promo produk 10.
+        </div>
+        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
+    </div>
+</div>
+
+<div id="p11" class="product-card">
+    <img loading="eager" src="assets/products/produk4.jpg">
+    <div class="product-info">
+        <h2>🔥 PRODUK 11</h2>
+        <div class="promo-text">
+Deskripsi promo produk 11.
+        </div>
+        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
+    </div>
+</div>
+
+<div id="p12" class="product-card">
+    <img loading="eager" src="assets/products/produk4.jpg">
+    <div class="product-info">
+        <h2>🔥 PRODUK 12</h2>
+        <div class="promo-text">
+Deskripsi promo produk 12.
+        </div>
+        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
+    </div>
+</div>
+
+<div id="p13" class="product-card">
+    <img loading="eager" src="assets/products/produk4.jpg">
+    <div class="product-info">
+        <h2>🔥 PRODUK 13</h2>
+        <div class="promo-text">
+Deskripsi promo produk 13.
+        </div>
+        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
+    </div>
+</div>
+
+<div id="p14" class="product-card">
+    <img loading="eager" src="assets/products/produk4.jpg">
+    <div class="product-info">
+        <h2>🔥 PRODUK 14</h2>
+        <div class="promo-text">
+Deskripsi promo produk 14.
+        </div>
+        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
+    </div>
+</div>
+
+<div id="p15" class="product-card">
+    <img loading="eager" src="assets/products/produk4.jpg">
+    <div class="product-info">
+        <h2>🔥 PRODUK 15</h2>
+        <div class="promo-text">
+Deskripsi promo produk 15.
+        </div>
+        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
+    </div>
+</div>
+
+<script>
+    function showProduct(id) {
+        // Sembunyikan Header dan Menu
+        document.getElementById("header-area").style.display = "none";
+        document.getElementById("menu-area").style.display = "none";
+        
+        // Sembunyikan semua produk dulu untuk memastikan clean state
+        const products = document.querySelectorAll('.product-card');
+        products.forEach(p => p.style.display = 'none');
+        
+        // Tampilkan produk yang dipilih
+        const target = document.getElementById(id);
+        if(target) {
+            target.style.display = "block";
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        } else {
+            alert("Konten produk belum tersedia.");
+            showMenu();
+        }
+    }
+
+    function showMenu() {
+        // Sembunyikan semua produk
+        const products = document.querySelectorAll('.product-card');
+        products.forEach(p => p.style.display = 'none');
+        
+        // Tampilkan Header dan Menu
+        document.getElementById("header-area").style.display = "block";
+        document.getElementById("menu-area").style.display = "flex";
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+</script>
+
+</body>
+</html>
