@@ -132,20 +132,21 @@
     box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.7);
   }
 
-  /* GAMBAR: ukuran proporsional, tidak terlalu besar, tidak terlalu kecil */
+  /* GAMBAR: bisa diklik */
   .image-wrapper {
     position: relative;
     background: #0a0f1c;
-    padding: 12px; /* kasih padding biar gambar tidak mepet */
+    padding: 16px;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
   
   .card-premium img {
     width: 100%;
-    max-width: 280px; /* batas maksimal biar ga kegedean */
+    max-width: 260px;
     height: auto;
     display: block;
     margin: 0 auto;
@@ -153,6 +154,11 @@
     background: #0f1422;
     transition: transform 0.3s ease;
     border-radius: 16px;
+    pointer-events: none; /* biar klik ke wrapper */
+  }
+  
+  .image-wrapper:hover img {
+    transform: scale(1.02);
   }
   
   .img-badge {
@@ -167,6 +173,7 @@
     border-radius: 40px;
     box-shadow: 0 2px 8px black;
     z-index: 2;
+    pointer-events: none;
   }
 
   .content-card {
@@ -185,7 +192,7 @@
     color: transparent;
   }
   
-  /* HARGA STYLE - ukuran sedang, tidak terlalu mencolok */
+  /* HARGA STYLE */
   .price {
     font-size: 1rem;
     font-weight: 700;
@@ -279,7 +286,7 @@
     color: black;
   }
 
-  /* ========== MODAL ========== */
+  /* ========== MODAL INFO ========== */
   .modal {
     display: none;
     position: fixed;
@@ -409,6 +416,52 @@
     background: rgba(250, 204, 21, 0.1);
   }
 
+  /* ========== LIGHTBOX MODAL GAMBAR ========== */
+  .lightbox-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .lightbox-content {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 16px;
+    box-shadow: 0 0 50px rgba(250, 204, 21, 0.3);
+    border: 2px solid rgba(250, 204, 21, 0.5);
+  }
+  
+  .close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: #facc15;
+    cursor: pointer;
+    transition: 0.2s;
+    background: rgba(0,0,0,0.5);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .close-lightbox:hover {
+    background: rgba(250, 204, 21, 0.2);
+    transform: scale(1.1);
+  }
+
   .footer-premium {
     margin-top: 48px;
     background: rgba(9, 14, 26, 0.8);
@@ -462,7 +515,7 @@
     .modal-body-scroll { padding: 16px 20px; }
     .modal-footer { padding: 12px 20px 20px 20px; }
     .card-premium img {
-      max-width: 200px;
+      max-width: 180px;
     }
   }
 </style>
@@ -503,7 +556,7 @@
   </div>
 </div>
 
-<!-- MODAL INFO -->
+<!-- MODAL INFO PRODUK -->
 <div id="infoModal" class="modal">
   <div class="modal-content">
     <span class="close-modal">&times;</span>
@@ -520,11 +573,17 @@
   </div>
 </div>
 
+<!-- LIGHTBOX MODAL GAMBAR -->
+<div id="lightboxModal" class="lightbox-modal">
+  <span class="close-lightbox">&times;</span>
+  <img id="lightboxImg" class="lightbox-content" alt="Preview">
+</div>
+
 <script>
   // KONFIGURASI
   const YOUR_WHATSAPP_NUMBER = "6285943111681";
   
-  // DATA PRODUK DENGAN HARGA (sudah disesuaikan ukuran harga tidak terlalu besar)
+  // DATA PRODUK
   const products = [
     {
       id: 1,
@@ -644,6 +703,19 @@
     return `<div style="white-space: normal;">${formatted}</div>`;
   }
 
+  // Fungsi untuk buka lightbox gambar
+  function openLightbox(imgSrc) {
+    const lightbox = document.getElementById('lightboxModal');
+    const lightboxImg = document.getElementById('lightboxImg');
+    lightboxImg.src = imgSrc;
+    lightbox.style.display = 'flex';
+  }
+
+  function closeLightbox() {
+    const lightbox = document.getElementById('lightboxModal');
+    lightbox.style.display = 'none';
+  }
+
   function renderProducts() {
     const grid = document.getElementById('productGrid');
     grid.innerHTML = '';
@@ -651,7 +723,7 @@
       const card = document.createElement('div');
       card.className = 'card-premium';
       card.innerHTML = `
-        <div class="image-wrapper">
+        <div class="image-wrapper" data-img="${prod.gambar}">
           <img src="${prod.gambar}" alt="${prod.nama}" onerror="this.src='https://placehold.co/400x400?text=${encodeURIComponent(prod.nama)}'">
           <div class="img-badge">${prod.badge}</div>
         </div>
@@ -669,6 +741,16 @@
       grid.appendChild(card);
     });
 
+    // Event klik gambar untuk lightbox
+    document.querySelectorAll('.image-wrapper').forEach(wrapper => {
+      wrapper.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const imgSrc = wrapper.getAttribute('data-img');
+        if(imgSrc) openLightbox(imgSrc);
+      });
+    });
+
+    // Info button
     document.querySelectorAll('.info-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const id = parseInt(btn.getAttribute('data-id'));
@@ -683,6 +765,7 @@
       });
     });
 
+    // Order button
     document.querySelectorAll('.order-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const namaProduk = btn.getAttribute('data-nama');
@@ -694,6 +777,7 @@
       });
     });
 
+    // Tutorial button
     document.querySelectorAll('.tutorial-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -706,7 +790,7 @@
     });
   }
 
-  // Modal handlers
+  // Modal info handlers
   const modal = document.getElementById('infoModal');
   const closeModal = document.querySelector('.close-modal');
   
@@ -730,6 +814,16 @@
     });
   }
 
+  // Lightbox handlers
+  const lightbox = document.getElementById('lightboxModal');
+  const closeLightboxBtn = document.querySelector('.close-lightbox');
+  
+  closeLightboxBtn.onclick = closeLightbox;
+  lightbox.onclick = (e) => {
+    if(e.target === lightbox) closeLightbox();
+  };
+
+  // Footer WA
   const waFooterBtn = document.getElementById('waFooterBtn');
   if(waFooterBtn) {
     waFooterBtn.addEventListener('click', (e) => {
