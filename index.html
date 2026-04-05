@@ -356,9 +356,8 @@
 
 <header class="header-premium">
   <div class="brand">
-    <!-- LOGO BULAT PAKAI PNG -->
-    <img src="assets/logokjs.png" alt="KJSSTORE Logo" class="store-logo"
-onerror="this.src='https://placehold.co/400x400?text=Logo'">
+    <!-- LOGO TOKO dari assets/logokjs.png -->
+    <img src="assets/logokjs.png" alt="KJSSTORE Logo" class="store-logo" onerror="this.src='https://placehold.co/400x400?text=KJS'">
     <div class="brand-text">
       <span class="store-name">KJSSTORE</span>
       <div class="badge-verified"><i class="fas fa-shield-alt"></i> KING OWNER</div>
@@ -405,9 +404,9 @@ onerror="this.src='https://placehold.co/400x400?text=Logo'">
   const YOUR_WHATSAPP_NUMBER = "6281234567890"; // <-- GANTI DENGAN NOMOR WA ANDA!
   
   // ================ DATA PRODUK (8 PRODUK) ================
-  // Untuk gambar: gunakan "logo.png" (letakkan di folder yang sama dengan file HTML)
-  // Jika ingin logo berbeda tiap produk, ganti path-nya misal "logo1.png", "logo2.png", dst.
-  // Untuk FITUR: isi sendiri sesuai keinginan Anda di properti "fitur"
+  // PATH LOGO SEKARANG menggunakan folder assets/
+  // Format: "assets/nama_file.png"
+  // Silakan ganti nama file sesuai dengan file logo produk Anda
   const products = [
     {
       id: 1,
@@ -415,7 +414,7 @@ onerror="this.src='https://placehold.co/400x400?text=Logo'">
       bintang: 4,
       download: 268,
       badge: "🔥 POPULAR",
-      gambar: "logo.png",  // semua pakai logo.png di local folder
+      gambar: "assets/produk1.png",
       fitur: "⭐ Fitur AutoFormatter ⭐\n\n✅ Format USB/SD Card 1 Klik\n✅ Support exFAT, FAT32, NTFS\n✅ Fix corrupt drive ringan\n✅ Mode Low Level Format\n\n💡 Dapat digunakan untuk flashdisk bermasalah."
     },
     {
@@ -424,7 +423,7 @@ onerror="this.src='https://placehold.co/400x400?text=Logo'">
       bintang: 4,
       download: 610,
       badge: "⚡ BEST SELLER",
-      gambar: "logo.png",
+      gambar: "assets/produk2.png",
       fitur: "⚡ Fitur Garuda Pro ⚡\n\n✅ Optimasi Windows All Version\n✅ One Click Cleaner & RAM Booster\n✅ Tweaks Network (ping stabil)\n✅ Game Booster + Power Plan\n\n🔧 Cocok untuk gaming & editing."
     },
     {
@@ -433,7 +432,7 @@ onerror="this.src='https://placehold.co/400x400?text=Logo'">
       bintang: 5,
       download: 1200,
       badge: "✨ NEW",
-      gambar: "logo.png",
+      gambar: "assets/produk3.png",
       fitur: "🚀 Xtreme Optimizer 🚀\n\n✅ AI-Based Performance Tuner\n✅ Hapus bloatware otomatis\n✅ Increase FPS hingga 30%\n✅ Battery Saver untuk laptop\n\n📌 Rekomendasi untuk PC kentang."
     },
     {
@@ -442,7 +441,7 @@ onerror="this.src='https://placehold.co/400x400?text=Logo'">
       bintang: 4,
       download: 945,
       badge: "🧠 AI POWERED",
-      gambar: "logo.png",
+      gambar: "assets/produk4.png",
       fitur: "🤖 NeoBoost AI 🤖\n\n✅ Smart Memory Cleaner\n✅ Prediksi resource hog\n✅ Auto Defrag SSD/HDD\n✅ One Click System Restore\n\n✨ Teknologi machine learning."
     },
     {
@@ -451,7 +450,7 @@ onerror="this.src='https://placehold.co/400x400?text=Logo'">
       bintang: 4,
       download: 540,
       badge: "⚡ LIGHTNING",
-      gambar: "logo.png",
+      gambar: "assets/produk5.png",
       fitur: "⚡ FlashCore Toolkit ⚡\n\n✅ 40+ Utility Tools\n✅ Registry Cleaner Pro\n✅ Duplicate File Finder\n✅ Bootable USB Creator\n\n🛠️ All in one system toolkit."
     },
     {
@@ -460,7 +459,7 @@ onerror="this.src='https://placehold.co/400x400?text=Logo'">
       bintang: 5,
       download: 2100,
       badge: "🎮 GAMING",
-      gambar: "logo.png",
+      gambar: "assets/produk6.png",
       fitur: "🎮 Vexana Pro Mod 🎮\n\n✅ Unlock Game Potential\n✅ Graphics Enhancer (ML, PUBG, FF)\n✅ Anti Lag + Ping Stabilizer\n✅ Macro recorder\n\n🔥 Wajib buat gamer competitive."
     },
     {
@@ -469,7 +468,7 @@ onerror="this.src='https://placehold.co/400x400?text=Logo'">
       bintang: 4,
       download: 788,
       badge: "🕶️ PRO",
-      gambar: "logo.png",
+      gambar: "assets/produk7.png",
       fitur: "🕶️ DarkScript Suite 🕶️\n\n✅ Automation Script (Python/JS)\n✅ Batch File Converter\n✅ Advanced Clipboard Manager\n✅ Dark Mode for All Apps\n\n👨‍💻 Untuk developer & power user."
     },
     {
@@ -478,7 +477,7 @@ onerror="this.src='https://placehold.co/400x400?text=Logo'">
       bintang: 5,
       download: 1800,
       badge: "🏆 ULTIMATE",
-      gambar: "logo.png",
+      gambar: "assets/produk8.png",
       fitur: "🏆 Zenith AIO Tool 🏆\n\n✅ 100+ Tools in One\n✅ Windows Activator + Office\n✅ Driver Booster Offline\n✅ Data Recovery + Backup\n\n💎 Paling komplit, all fitur lengkap."
     }
   ];
@@ -532,24 +531,23 @@ onerror="this.src='https://placehold.co/400x400?text=Logo'">
       });
     });
 
-    // Event listener untuk ORDER VIA WA (ganti semua tombol download jadi order wa)
+    // Event listener untuk ORDER VIA WA
     document.querySelectorAll('.order-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const namaProduk = btn.getAttribute('data-nama');
-        const message = `Halo Kak Saya ingin ORDER produk ${namaProduk} dari KJSSTORE. Mohon info harga dan ketersediaan. Terima kasih.`;
+        const message = `Halo Kak, saya ingin ORDER produk ${namaProduk} dari KJSSTORE. Mohon info harga dan ketersediaan. Terima kasih.`;
         const encodedMsg = encodeURIComponent(message);
         const waUrl = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodedMsg}`;
         window.open(waUrl, '_blank');
       });
     });
 
-    // Event untuk TUTORIAL (masih placeholder, nanti bisa ganti link)
+    // Event untuk TUTORIAL
     document.querySelectorAll('.tutorial-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         const nama = btn.getAttribute('data-nama');
         alert(`🔧 Tutorial untuk ${nama} akan segera tersedia. Hubungi owner via WhatsApp untuk panduan lengkap.`);
-        // Bisa juga diarahkan ke link YouTube: window.open("https://youtube.com/...");
       });
     });
   }
@@ -560,7 +558,7 @@ onerror="this.src='https://placehold.co/400x400?text=Logo'">
   closeModal.onclick = () => modal.style.display = 'none';
   window.onclick = (e) => { if(e.target === modal) modal.style.display = 'none'; };
 
-  // Footer WA juga langsung ke nomor yang sama
+  // Footer WA
   document.getElementById('waFooterBtn').addEventListener('click', (e) => {
     e.preventDefault();
     const msg = "Halo min, saya mau cek info daftar harga reseller dan wilayah. Terima kasih.";
