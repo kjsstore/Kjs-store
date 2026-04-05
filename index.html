@@ -32,7 +32,6 @@
     border-radius: 8px;
   }
 
-  /* header premium */
   .header-premium {
     background: rgba(17, 24, 39, 0.75);
     backdrop-filter: blur(12px);
@@ -54,7 +53,6 @@
     gap: 12px;
   }
   
-  /* LOGO BULAT */
   .store-logo {
     width: 48px;
     height: 48px;
@@ -134,41 +132,28 @@
     box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.7);
   }
 
-  /* PERBAIKAN: GAMBAR FULL TAMPIL TANPA CROP */
   .image-wrapper {
     position: relative;
-    background: #0a0f1c;
-    padding: 0;
-    overflow: hidden;
+    background: radial-gradient(circle at 30% 20%, #0f1422, #010101);
+    padding: 12px;
   }
-  
   .card-premium img {
     width: 100%;
-    display: block;
+    aspect-ratio: 1 / 1;
     object-fit: contain;
-    background: #0a0f1c;
+    border-radius: 20px;
     transition: transform 0.3s ease;
+    background: #0a0f1c;
+    padding: 8px;
   }
-  
-  /* Ukuran dinamis: biar gambarnya proporsional */
-  .card-premium img {
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-  }
-  
-  /* Tapi kalau gambar Anda sudah pas (poster), pakai contain biar full teksnya */
-  /* Saya pakai contain biar semua teks di gambar terbaca */
-  .card-premium img {
-    aspect-ratio: auto;
-    object-fit: contain;
-    min-height: 200px;
-    background: #0f1422;
+  .card-premium:hover img {
+    transform: scale(1.02);
   }
 
   .img-badge {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 20px;
+    right: 20px;
     background: #facc15;
     color: #0a0f1c;
     font-weight: bold;
@@ -267,7 +252,6 @@
     color: black;
   }
 
-  /* MODAL STYLE */
   .modal {
     display: none;
     position: fixed;
@@ -290,6 +274,8 @@
     border: 1px solid #facc15;
     box-shadow: 0 25px 50px -12px black;
     position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
   }
   .modal-header {
     font-size: 1.5rem;
@@ -402,22 +388,21 @@
   </div>
 </div>
 
-<!-- MODAL INFO -->
 <div id="infoModal" class="modal">
   <div class="modal-content">
     <span class="close-modal">&times;</span>
     <div class="modal-header" id="modalTitle">Nama Produk</div>
-    <div class="modal-body" id="modalBody">Fitur-fitur produk akan ditampilkan di sini.</div>
+    <div class="modal-body" id="modalBody"></div>
   </div>
 </div>
 
 <script>
   // ================ KONFIGURASI ================
-  // GANTI DENGAN NOMOR WHATSAPP ANDA
-  const YOUR_WHATSAPP_NUMBER = "6285943111681"; // <-- SUDAH DIISI DARI GAMBAR ANDA
+  // GANTI DENGAN NOMOR WHATSAPP ANDA (pakai kode negara, contoh 62 untuk Indonesia)
+  // Nomor dari gambar: 085943111681
+  const YOUR_WHATSAPP_NUMBER = "6285943111681"; // ✅ SUDAH DIUPDATE DARI GAMBAR ANDA
   
   // ================ DATA PRODUK (8 PRODUK) ================
-  // PATH GAMBAR: assets/produk1.png, assets/produk2.png, dst.
   const products = [
     {
       id: 1,
@@ -426,92 +411,81 @@
       download: "1.2k+",
       badge: "🔥 VVIP",
       gambar: "assets/produk1.png",
-      fitur: "⭐ FITUR AUTO FORMATTER ⭐\n\n✅ FORMATTER V1 - Proses input data lebih efisien\n✅ FORMATTER V2 - Fungsi lebih efisien\n✅ RUANG DATER V3 - Proses input lebih cepat\n✅ NEMORY DATER V4 - Input data efisien\n✅ INPUT LASIS VVIP - Proses otomatis\n✅ CEK DATA KPJ - Sistem verifikasi\n\n📌 VERIFIED SYSTEM | 1000+ USER\n✨ Request bebas • Proses otomatis\n⚡ Hemat waktu kerja • Tinggal input → jadi"
+      fitur: "🔥 AUTO FORMATTER VVIP 🔥\n\n✨ FORMAT DATA JADI 1 KLIK LANGSUNG JADI! ✨\nCapek format manual? Ribet & makan waktu?\nSekarang cukup 1 klik semua beres! ⚡\n\n💡 Keunggulan:\n✅ Proses super cepat & otomatis\n✅ Bisa request format sesuai kebutuhan\n✅ Tinggal input → langsung jadi\n✅ Cocok untuk kerja & jualan\n\n📦 FITUR UNGGULAN:\n🔹 V1 Format khusus (disimpan rapi)\n🔹 V2 Format siap share / jual ke grup\n🔹 V3 Penyimpanan hasil dari V1\n🔹 V4 Input 1 data jadi 3 lembar SIAK\n🔹 V5 Akses LASIK VVIP 🔥\n\n💯 Sistem sudah terverifikasi & digunakan banyak user\n\n🔥 KENAPA HARUS PAKAI INI?\n✔ Hemat waktu kerja\n✔ Minim kesalahan\n✔ Praktis & fleksibel\n✔ Bisa untuk kebutuhan pribadi & bisnis\n\n📲 ORDER SEKARANG!\n💬 Fast respon 24 jam\n⚡ Siap bantu sampai bisa"
     },
     {
       id: 2,
       nama: "Garuda Pro",
       bintang: 4,
-      download: 610,
+      download: "610",
       badge: "⚡ BEST SELLER",
       gambar: "assets/produk2.png",
-      fitur: "⚡ FITUR GARUDA PRO ⚡\n\n✅ Optimasi Windows All Version\n✅ One Click Cleaner & RAM Booster\n✅ Tweaks Network (ping stabil)\n✅ Game Booster + Power Plan\n✅ Anti Lag System\n✅ Driver Updater Otomatis\n\n🔧 Cocok untuk gaming & editing."
+      fitur: "🔥 GARUDA PRO – AUTO PILOT SCRAPER 🔥\n\n⚡ Full Otomatis Tanpa Ribet!\n\n🚀 FITUR TERBARU:\n✅ Cek Sensoran\n✅ Cek Email JMO yang Lupa\n✅ Cek Lasik Manual\n✅ Cek Registrasi Akun\n✅ Auto Regis ke JMO (Coming Soon)\n\n💎 KEUNGGULAN:\n✔ Sekali beli, tanpa biaya bulanan\n✔ Tanpa top up / isi saldo\n✔ Akses unlimited tanpa batas\n\n⚠️ PERHATIAN:\nPembeli wajib benar-benar paham & siap dengan ketentuan.\nBarang yang sudah dibeli TIDAK ADA GARANSI REFUND.\n\n🔥 Slot terbatas – siapa cepat dia dapat!\n\nKJSSTORE"
     },
     {
       id: 3,
-      nama: "Xtreme Optimizer",
+      nama: "Kalkulator Kpj",
       bintang: 5,
-      download: 1200,
+      download: "1.2k+",
       badge: "✨ NEW",
       gambar: "assets/produk3.png",
-      fitur: "🚀 XTREME OPTIMIZER 🚀\n\n✅ AI-Based Performance Tuner\n✅ Hapus bloatware otomatis\n✅ Increase FPS hingga 30%\n✅ Battery Saver untuk laptop\n✅ RAM Cleaner Pro\n✅ SSD TRIM Optimizer\n\n📌 Rekomendasi untuk PC kentang."
+      fitur: "🚀 OPEN REGISTRASI KPJ GENERATOR PRO V5 🚀\n\n✨ Solusi Cepat & Praktis Generate Data Otomatis! ✨\n\n🔥 FITUR UNGGULAN:\n✔ Generator Anakan (Auto Generate Massal)\n✔ Mode UP & DOWN (Naik / Turun Otomatis)\n✔ Sistem Acak (Random Generator)\n✔ Tracking / Jejak Data\n✔ Generate Indukan & Anakan Sekaligus\n✔ Export ke Excel\n✔ Salin Cepat (Max 9999 Data)\n✔ Save & Hapus Data Instan\n\n💎 KEUNGGULAN:\n⚡ Proses Super Cepat & Ringan (Android Lite)\n⚡ Tampilan Simple & Profesional\n⚡ Support Generate Hingga Puluhan Ribu Data\n⚡ Minim Error & Stabil Digunakan\n⚡ Cocok Untuk Kebutuhan Skala Besar\n\n⚠️ PERINGATAN PENTING:\nGunakan tools ini dengan bijak!\nSegala bentuk penyalahgunaan bukan tanggung jawab developer.\n\n🔥 OPEN AKSES / REGISTRASI SEKARANG! 🔥\n💼 Slot terbatas — siapa cepat dia dapat!\n📲 Minat? Langsung chat admin sekarang juga!"
     },
     {
       id: 4,
       nama: "NeoBoost AI",
       bintang: 4,
-      download: 945,
+      download: "945",
       badge: "🧠 AI POWERED",
       gambar: "assets/produk4.png",
-      fitur: "🤖 NEOBOOST AI 🤖\n\n✅ Smart Memory Cleaner\n✅ Prediksi resource hog\n✅ Auto Defrag SSD/HDD\n✅ One Click System Restore\n✅ AI Based Power Management\n✅ Real-time Performance Monitor\n\n✨ Teknologi machine learning."
+      fitur: "🤖 NeoBoost AI 🤖\n\n✅ Smart Memory Cleaner\n✅ Prediksi resource hog\n✅ Auto Defrag SSD/HDD\n✅ One Click System Restore\n✅ AI Based Performance Optimization\n✅ Real-time System Monitor\n\n✨ Teknologi machine learning terbaru\n\n💡 Cocok untuk PC dengan spesifikasi rendah hingga menengah"
     },
     {
       id: 5,
       nama: "FlashCore Toolkit",
       bintang: 4,
-      download: 540,
+      download: "540",
       badge: "⚡ LIGHTNING",
       gambar: "assets/produk5.png",
-      fitur: "⚡ FLASHCORE TOOLKIT ⚡\n\n✅ 40+ Utility Tools\n✅ Registry Cleaner Pro\n✅ Duplicate File Finder\n✅ Bootable USB Creator\n✅ Disk Partition Manager\n✅ Data Recovery Tool\n\n🛠️ All in one system toolkit."
+      fitur: "⚡ FlashCore Toolkit ⚡\n\n✅ 40+ Utility Tools dalam 1 paket\n✅ Registry Cleaner Pro\n✅ Duplicate File Finder\n✅ Bootable USB Creator\n✅ Disk Partition Manager\n✅ Junk File Cleaner\n✅ Privacy Protector\n\n🛠️ All in one system toolkit untuk Windows\n\n💎 Ringan & cepat, tidak membebani sistem"
     },
     {
       id: 6,
       nama: "Vexana Pro Mod",
       bintang: 5,
-      download: 2100,
+      download: "2.1k+",
       badge: "🎮 GAMING",
       gambar: "assets/produk6.png",
-      fitur: "🎮 VEXANA PRO MOD 🎮\n\n✅ Unlock Game Potential\n✅ Graphics Enhancer (ML, PUBG, FF)\n✅ Anti Lag + Ping Stabilizer\n✅ Macro recorder\n✅ Sensitivity Booster\n✅ No Root Required\n\n🔥 Wajib buat gamer competitive."
+      fitur: "🎮 VEXANA PRO MOD 🎮\n\n✅ Unlock Game Potential\n✅ Graphics Enhancer (ML, PUBG, FF)\n✅ Anti Lag + Ping Stabilizer\n✅ Macro recorder\n✅ Sensitivity Booster\n✅ No Root Required\n✅ Anti Ban System\n\n🔥 Wajib buat gamer competitive!\n\n📌 Support semua game Mobile Legends, PUBG Mobile, Free Fire, COD Mobile"
     },
     {
       id: 7,
       nama: "DarkScript Suite",
       bintang: 4,
-      download: 788,
+      download: "788",
       badge: "🕶️ PRO",
       gambar: "assets/produk7.png",
-      fitur: "🕶️ DARKSCRIPT SUITE 🕶️\n\n✅ Automation Script (Python/JS)\n✅ Batch File Converter\n✅ Advanced Clipboard Manager\n✅ Dark Mode for All Apps\n✅ Code Optimizer\n✅ Syntax Highlighter\n\n👨‍💻 Untuk developer & power user."
+      fitur: "🕶️ DarkScript Suite 🕶️\n\n✅ Automation Script (Python/JS)\n✅ Batch File Converter\n✅ Advanced Clipboard Manager\n✅ Dark Mode for All Apps\n✅ Code Optimizer\n✅ Syntax Highlighter\n✅ Multi-language Support\n\n👨‍💻 Untuk developer & power user\n\n💡 Tingkatkan produktivitas coding Anda!"
     },
     {
       id: 8,
       nama: "Zenith AIO Tool",
       bintang: 5,
-      download: 1800,
+      download: "1.8k+",
       badge: "🏆 ULTIMATE",
       gambar: "assets/produk8.png",
-      fitur: "🏆 ZENITH AIO TOOL 🏆\n\n✅ 100+ Tools in One\n✅ Windows Activator + Office\n✅ Driver Booster Offline\n✅ Data Recovery + Backup\n✅ System Cleaner Pro\n✅ Malware Scanner\n\n💎 Paling komplit, all fitur lengkap."
+      fitur: "🏆 ZENITH AIO TOOL 🏆\n\n✅ 100+ Tools in One Package\n✅ Windows Activator + Office\n✅ Driver Booster Offline\n✅ Data Recovery + Backup\n✅ System Cleaner Pro\n✅ Malware Scanner\n✅ Privacy Protector\n✅ Windows Tweaker\n\n💎 PALING KOMPLIT! Semua fitur lengkap dalam satu aplikasi\n\n🔥 Solusi untuk semua kebutuhan PC Anda!"
     }
   ];
 
-  // Fungsi membuat bintang
   function renderStars(rating) {
     let full = Math.floor(rating);
-    let half = rating % 1 !== 0;
     let stars = '';
     for(let i=0; i<full; i++) stars += '★';
-    if(half) stars += '½';
     while(stars.length < 5) stars += '☆';
     return stars;
   }
 
-  // Format download count
-  function formatDownload(count) {
-    if(typeof count === 'string') return count;
-    if(count >= 1000) return (count/1000).toFixed(1) + 'k';
-    return count;
-  }
-
-  // Fungsi generate produk ke grid
   function renderProducts() {
     const grid = document.getElementById('productGrid');
     grid.innerHTML = '';
@@ -520,12 +494,12 @@
       card.className = 'card-premium';
       card.innerHTML = `
         <div class="image-wrapper">
-          <img src="${prod.gambar}" alt="${prod.nama}" onerror="this.src='https://placehold.co/600x800?text=${encodeURIComponent(prod.nama)}'">
+          <img src="${prod.gambar}" alt="${prod.nama}" onerror="this.src='https://placehold.co/400x400?text=${encodeURIComponent(prod.nama)}'">
           <div class="img-badge">${prod.badge}</div>
         </div>
         <div class="content-card">
           <div class="title">${prod.nama}</div>
-          <div class="card-rating"><span class="stars">${renderStars(prod.bintang)}</span> <span class="download-count"><i class="fas fa-download"></i> ${formatDownload(prod.download)}</span></div>
+          <div class="card-rating"><span class="stars">${renderStars(prod.bintang)}</span> <span class="download-count"><i class="fas fa-download"></i> ${prod.download}</span></div>
           <div class="btn-group">
             <button class="btn-premium info-btn" data-id="${prod.id}"><i class="fas fa-info-circle"></i> INFO</button>
             <button class="btn-premium btn-wa order-btn" data-nama="${prod.nama}"><i class="fab fa-whatsapp"></i> ORDER VIA WA</button>
@@ -536,7 +510,6 @@
       grid.appendChild(card);
     });
 
-    // Event untuk tombol INFO
     document.querySelectorAll('.info-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const id = parseInt(btn.getAttribute('data-id'));
@@ -549,7 +522,6 @@
       });
     });
 
-    // Event untuk ORDER VIA WA
     document.querySelectorAll('.order-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const namaProduk = btn.getAttribute('data-nama');
@@ -560,30 +532,29 @@
       });
     });
 
-    // Event untuk TUTORIAL
     document.querySelectorAll('.tutorial-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         const nama = btn.getAttribute('data-nama');
-        alert(`🔧 Tutorial untuk ${nama} akan segera tersedia. Hubungi owner via WhatsApp untuk panduan lengkap.\n\nWhatsApp: +${YOUR_WHATSAPP_NUMBER}`);
+        const message = `Halo Kak, saya minta TUTORIAL untuk produk ${nama} dari KJSSTORE. Terima kasih.`;
+        const encodedMsg = encodeURIComponent(message);
+        const waUrl = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodedMsg}`;
+        window.open(waUrl, '_blank');
       });
     });
   }
 
-  // Modal close handler
   const modal = document.getElementById('infoModal');
   const closeModal = document.querySelector('.close-modal');
   closeModal.onclick = () => modal.style.display = 'none';
   window.onclick = (e) => { if(e.target === modal) modal.style.display = 'none'; };
 
-  // Footer WA
   document.getElementById('waFooterBtn').addEventListener('click', (e) => {
     e.preventDefault();
     const msg = "Halo min, saya mau cek info daftar harga reseller dan wilayah. Terima kasih.";
     window.open(`https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
   });
 
-  // Inisialisasi
   renderProducts();
 </script>
 </body>
