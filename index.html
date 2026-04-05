@@ -132,28 +132,33 @@
     box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.7);
   }
 
+  /* GAMBAR: ukuran proporsional, tidak terlalu besar, tidak terlalu kecil */
   .image-wrapper {
     position: relative;
-    background: radial-gradient(circle at 30% 20%, #0f1422, #010101);
-    padding: 12px;
+    background: #0a0f1c;
+    padding: 12px; /* kasih padding biar gambar tidak mepet */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+  
   .card-premium img {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    max-width: 280px; /* batas maksimal biar ga kegedean */
+    height: auto;
+    display: block;
+    margin: 0 auto;
     object-fit: contain;
-    border-radius: 20px;
+    background: #0f1422;
     transition: transform 0.3s ease;
-    background: #0a0f1c;
-    padding: 8px;
+    border-radius: 16px;
   }
-  .card-premium:hover img {
-    transform: scale(1.02);
-  }
-
+  
   .img-badge {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 12px;
+    right: 12px;
     background: #facc15;
     color: #0a0f1c;
     font-weight: bold;
@@ -180,18 +185,18 @@
     color: transparent;
   }
   
-  /* HARGA STYLE */
+  /* HARGA STYLE - ukuran sedang, tidak terlalu mencolok */
   .price {
-    font-size: 1.1rem;
-    font-weight: 800;
+    font-size: 1rem;
+    font-weight: 700;
     color: #facc15;
-    margin: 8px 0 4px 0;
+    margin: 6px 0 4px 0;
     display: flex;
     align-items: center;
     gap: 5px;
   }
   .price i {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #06b6d4;
   }
   .price span {
@@ -205,7 +210,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: #cbd5e6;
     margin-bottom: 12px;
   }
@@ -217,7 +222,7 @@
     background: #0f172a;
     padding: 2px 8px;
     border-radius: 30px;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
   }
 
   .btn-group {
@@ -231,7 +236,7 @@
     text-align: center;
     padding: 8px 5px;
     border-radius: 40px;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     text-decoration: none;
     transition: all 0.2s;
@@ -245,7 +250,7 @@
     gap: 5px;
   }
   .btn-premium i {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
   }
   .btn-premium:hover {
     background: #06b6d4;
@@ -315,7 +320,7 @@
   }
   
   .modal-header {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 800;
     padding: 20px 24px 12px 24px;
     color: #facc15;
@@ -327,7 +332,7 @@
   }
   
   .modal-header i {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
   
   .modal-body-scroll {
@@ -336,7 +341,7 @@
     padding: 20px 24px;
     color: #e2e8f0;
     line-height: 1.7;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
   
   .modal-body-scroll::-webkit-scrollbar {
@@ -414,7 +419,7 @@
     text-align: center;
   }
   .wilayah-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
     background: linear-gradient(120deg, #facc15, #ffb347);
     -webkit-background-clip: text;
@@ -427,10 +432,11 @@
     align-items: center;
     gap: 12px;
     background: #1e293b;
-    padding: 12px 28px;
+    padding: 10px 24px;
     border-radius: 60px;
     text-decoration: none;
     font-weight: 700;
+    font-size: 0.9rem;
     color: #facc15;
     border: 1px solid #facc15;
     transition: 0.2s;
@@ -455,6 +461,9 @@
     .modal-header { font-size: 1.1rem; padding: 16px 20px 8px 20px; }
     .modal-body-scroll { padding: 16px 20px; }
     .modal-footer { padding: 12px 20px 20px 20px; }
+    .card-premium img {
+      max-width: 200px;
+    }
   }
 </style>
 </head>
@@ -479,13 +488,13 @@
 
   <div class="footer-premium">
     <div class="wilayah-title"><i class="fas fa-globe-asia"></i> DAFTAR ALL WILAYAH (harga reseller)</div>
-    <div style="display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; margin: 15px 0 10px;">
-      <span style="background:#0f172a; padding:6px 14px; border-radius:40px;"><i class="fas fa-map-marker-alt"></i> Jabodetabek</span>
-      <span style="background:#0f172a; padding:6px 14px; border-radius:40px;"><i class="fas fa-map-marker-alt"></i> Jawa Tengah</span>
-      <span style="background:#0f172a; padding:6px 14px; border-radius:40px;"><i class="fas fa-map-marker-alt"></i> Jawa Timur</span>
-      <span style="background:#0f172a; padding:6px 14px; border-radius:40px;"><i class="fas fa-map-marker-alt"></i> Sumatera</span>
-      <span style="background:#0f172a; padding:6px 14px; border-radius:40px;"><i class="fas fa-map-marker-alt"></i> Kalimantan</span>
-      <span style="background:#0f172a; padding:6px 14px; border-radius:40px;"><i class="fas fa-map-marker-alt"></i> Sulawesi</span>
+    <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 15px 0 10px;">
+      <span style="background:#0f172a; padding:5px 12px; border-radius:40px; font-size:0.75rem;"><i class="fas fa-map-marker-alt"></i> Jabodetabek</span>
+      <span style="background:#0f172a; padding:5px 12px; border-radius:40px; font-size:0.75rem;"><i class="fas fa-map-marker-alt"></i> Jawa Tengah</span>
+      <span style="background:#0f172a; padding:5px 12px; border-radius:40px; font-size:0.75rem;"><i class="fas fa-map-marker-alt"></i> Jawa Timur</span>
+      <span style="background:#0f172a; padding:5px 12px; border-radius:40px; font-size:0.75rem;"><i class="fas fa-map-marker-alt"></i> Sumatera</span>
+      <span style="background:#0f172a; padding:5px 12px; border-radius:40px; font-size:0.75rem;"><i class="fas fa-map-marker-alt"></i> Kalimantan</span>
+      <span style="background:#0f172a; padding:5px 12px; border-radius:40px; font-size:0.75rem;"><i class="fas fa-map-marker-alt"></i> Sulawesi</span>
     </div>
     <a href="#" class="btn-cta" id="waFooterBtn"><i class="fab fa-whatsapp"></i> CEK INFO HARGA RESELLER <i class="fas fa-arrow-right"></i></a>
     <div style="margin-top: 20px; font-size: 0.7rem; opacity: 0.7; padding-top: 16px;">
@@ -512,10 +521,10 @@
 </div>
 
 <script>
-  // ================ KONFIGURASI ================
+  // KONFIGURASI
   const YOUR_WHATSAPP_NUMBER = "6285943111681";
   
-  // ================ DATA PRODUK DENGAN HARGA ================
+  // DATA PRODUK DENGAN HARGA (sudah disesuaikan ukuran harga tidak terlalu besar)
   const products = [
     {
       id: 1,
@@ -524,8 +533,8 @@
       download: "300",
       badge: "🔥 HOT",
       gambar: "assets/produk1.png",
-      harga: "Rp 500.000",
-      fitur: "🔥 AUTO FORMATTER VVIP 🔥\n\n✨ FORMAT DATA JADI 1 KLIK LANGSUNG JADI! ✨\nCapek format manual? Ribet & makan waktu?\nSekarang cukup 1 klik semua beres! ⚡\n\n💡 Keunggulan:\n✅ Proses super cepat & otomatis\n✅ Bisa request format sesuai kebutuhan\n✅ Tinggal input → langsung jadi\n✅ Cocok untuk kerja & jualan\n\n📦 FITUR UNGGULAN:\n🔹 V1 Format khusus (disimpan rapi)\n🔹 V2 Format siap share / jual ke grup\n🔹 V3 Penyimpanan hasil dari V1\n🔹 V4 Input 1 data jadi 3 lembar SIAK\n🔹 V5 Akses LASIK VVIP 🔥\n\n💯 Sistem sudah terverifikasi & digunakan banyak user\n\n🔥 KENAPA HARUS PAKAI INI?\n✔ Hemat waktu kerja\n✔ Minim kesalahan\n✔ Praktis & fleksibel\n✔ Bisa untuk kebutuhan pribadi & bisnis\n\n💰 HARGA: Rp 500.000\n\n📲 ORDER SEKARANG!\n💬 Fast respon 24 jam\n⚡ Siap bantu sampai bisa"
+      harga: "Rp 500rb",
+      fitur: "🔥 AUTO FORMATTER VVIP 🔥\n\n✨ FORMAT DATA JADI 1 KLIK LANGSUNG JADI! ✨\nCapek format manual? Ribet & makan waktu?\nSekarang cukup 1 klik semua beres! ⚡\n\n💡 Keunggulan:\n✅ Proses super cepat & otomatis\n✅ Bisa request format sesuai kebutuhan\n✅ Tinggal input → langsung jadi\n✅ Cocok untuk kerja & jualan\n\n📦 FITUR UNGGULAN:\n🔹 V1 Format khusus (disimpan rapi)\n🔹 V2 Format siap share / jual ke grup\n🔹 V3 Penyimpanan hasil dari V1\n🔹 V4 Input 1 data jadi 3 lembar SIAK\n🔹 V5 Akses LASIK VVIP 🔥\n\n💯 Sistem sudah terverifikasi & digunakan banyak user\n\n🔥 KENAPA HARUS PAKAI INI?\n✔ Hemat waktu kerja\n✔ Minim kesalahan\n✔ Praktis & fleksibel\n✔ Bisa untuk kebutuhan pribadi & bisnis\n\n💰 HARGA: Rp 500rb\n\n📲 ORDER SEKARANG!\n💬 Fast respon 24 jam\n⚡ Siap bantu sampai bisa"
     },
     {
       id: 2,
@@ -534,8 +543,8 @@
       download: "610",
       badge: "🔥 HOT",
       gambar: "assets/produk2.png",
-      harga: "Rp 3.500.000",
-      fitur: "🔥 GARUDA PRO – AUTO PILOT SCRAPER 🔥\n\n⚡ Full Otomatis Tanpa Ribet!\n\n🚀 FITUR TERBARU:\n✅ Cek Sensoran\n✅ Cek Email JMO yang Lupa\n✅ Cek Lasik Manual\n✅ Cek Registrasi Akun\n✅ Auto Regis ke JMO (Coming Soon)\n\n💎 KEUNGGULAN:\n✔ Sekali beli, tanpa biaya bulanan\n✔ Tanpa top up / isi saldo\n✔ Akses unlimited tanpa batas\n\n⚠️ PERHATIAN:\nPembeli wajib benar-benar paham & siap dengan ketentuan.\nBarang yang sudah dibeli TIDAK ADA GARANSI REFUND.\n\n💰 HARGA: Rp 3.500.000\n\n🔥 Slot terbatas – siapa cepat dia dapat!\n\nKJSSTORE"
+      harga: "Rp 3,5jt",
+      fitur: "🔥 GARUDA PRO – AUTO PILOT SCRAPER 🔥\n\n⚡ Full Otomatis Tanpa Ribet!\n\n🚀 FITUR TERBARU:\n✅ Cek Sensoran\n✅ Cek Email JMO yang Lupa\n✅ Cek Lasik Manual\n✅ Cek Registrasi Akun\n✅ Auto Regis ke JMO (Coming Soon)\n\n💎 KEUNGGULAN:\n✔ Sekali beli, tanpa biaya bulanan\n✔ Tanpa top up / isi saldo\n✔ Akses unlimited tanpa batas\n\n⚠️ PERHATIAN:\nPembeli wajib benar-benar paham & siap dengan ketentuan.\nBarang yang sudah dibeli TIDAK ADA GARANSI REFUND.\n\n💰 HARGA: Rp 3,5jt\n\n🔥 Slot terbatas – siapa cepat dia dapat!\n\nKJSSTORE"
     },
     {
       id: 3,
@@ -544,8 +553,8 @@
       download: "200",
       badge: "🔥 HOT",
       gambar: "assets/produk3.png",
-      harga: "Rp 750.000",
-      fitur: "🚀 OPEN REGISTRASI KPJ GENERATOR PRO V5 🚀\n\n✨ Solusi Cepat & Praktis Generate Data Otomatis! ✨\n\n🔥 FITUR UNGGULAN:\n✔ Generator Anakan (Auto Generate Massal)\n✔ Mode UP & DOWN (Naik / Turun Otomatis)\n✔ Sistem Acak (Random Generator)\n✔ Tracking / Jejak Data\n✔ Generate Indukan & Anakan Sekaligus\n✔ Export ke Excel\n✔ Salin Cepat (Max 9999 Data)\n✔ Save & Hapus Data Instan\n\n💎 KEUNGGULAN:\n⚡ Proses Super Cepat & Ringan (Android Lite)\n⚡ Tampilan Simple & Profesional\n⚡ Support Generate Hingga Puluhan Ribu Data\n⚡ Minim Error & Stabil Digunakan\n⚡ Cocok Untuk Kebutuhan Skala Besar\n\n⚠️ PERINGATAN PENTING:\nGunakan tools ini dengan bijak!\nSegala bentuk penyalahgunaan bukan tanggung jawab developer.\n\n💰 HARGA: Rp 750.000\n\n🔥 OPEN AKSES / REGISTRASI SEKARANG! 🔥\n💼 Slot terbatas — siapa cepat dia dapat!\n📲 Minat? Langsung chat admin sekarang juga!"
+      harga: "Rp 750rb",
+      fitur: "🚀 OPEN REGISTRASI KPJ GENERATOR PRO V5 🚀\n\n✨ Solusi Cepat & Praktis Generate Data Otomatis! ✨\n\n🔥 FITUR UNGGULAN:\n✔ Generator Anakan (Auto Generate Massal)\n✔ Mode UP & DOWN (Naik / Turun Otomatis)\n✔ Sistem Acak (Random Generator)\n✔ Tracking / Jejak Data\n✔ Generate Indukan & Anakan Sekaligus\n✔ Export ke Excel\n✔ Salin Cepat (Max 9999 Data)\n✔ Save & Hapus Data Instan\n\n💎 KEUNGGULAN:\n⚡ Proses Super Cepat & Ringan (Android Lite)\n⚡ Tampilan Simple & Profesional\n⚡ Support Generate Hingga Puluhan Ribu Data\n⚡ Minim Error & Stabil Digunakan\n⚡ Cocok Untuk Kebutuhan Skala Besar\n\n⚠️ PERINGATAN PENTING:\nGunakan tools ini dengan bijak!\nSegala bentuk penyalahgunaan bukan tanggung jawab developer.\n\n💰 HARGA: Rp 750rb\n\n🔥 OPEN AKSES / REGISTRASI SEKARANG! 🔥\n💼 Slot terbatas — siapa cepat dia dapat!\n📲 Minat? Langsung chat admin sekarang juga!"
     },
     {
       id: 4,
@@ -554,8 +563,8 @@
       download: "331",
       badge: "🔥 HOT",
       gambar: "assets/produk4.png",
-      harga: "Rp 1.200.000",
-      fitur: "🚀 KERA SAKTI – SUPPORT TIM LAPANGAN BPJS 🚀\n\n📌 Aplikasi penunjang kerja blusukan & pendataan peserta agar lebih cepat, rapi, dan efisien.\n\n✨ FITUR ANDALAN:\n✅ Input & kelola data peserta lebih terstruktur\n✅ Generate tampilan KTP & KPJ instan (preview cepat)\n✅ Modul Faktur & administrasi\n✅ Siap jadi format (multi server)\n✅ Edit & penyesuaian data langsung di lapangan\n✅ Ganti background foto (support AI)\n\n⚡ COCOK UNTUK:\n✔ Tim lapangan / marketing\n✔ Pendataan peserta BPJS Ketenagakerjaan\n✔ Validasi & pengecekan data cepat\n✔ Kebutuhan administrasi lapangan\n\n💼 KELEBIHAN:\n✔ Praktis & mudah digunakan\n✔ Hemat waktu kerja\n✔ Tampilan profesional\n✔ All-in-One dalam satu aplikasi\n\n💰 HARGA: Rp 1.200.000\n\n🟢 Status: AKTIF & SIAP DIGUNAKAN\n📩 Hubungi sekarang untuk akses & info lengkap!"
+      harga: "Rp 1,2jt",
+      fitur: "🚀 KERA SAKTI – SUPPORT TIM LAPANGAN BPJS 🚀\n\n📌 Aplikasi penunjang kerja blusukan & pendataan peserta agar lebih cepat, rapi, dan efisien.\n\n✨ FITUR ANDALAN:\n✅ Input & kelola data peserta lebih terstruktur\n✅ Generate tampilan KTP & KPJ instan (preview cepat)\n✅ Modul Faktur & administrasi\n✅ Siap jadi format (multi server)\n✅ Edit & penyesuaian data langsung di lapangan\n✅ Ganti background foto (support AI)\n\n⚡ COCOK UNTUK:\n✔ Tim lapangan / marketing\n✔ Pendataan peserta BPJS Ketenagakerjaan\n✔ Validasi & pengecekan data cepat\n✔ Kebutuhan administrasi lapangan\n\n💼 KELEBIHAN:\n✔ Praktis & mudah digunakan\n✔ Hemat waktu kerja\n✔ Tampilan profesional\n✔ All-in-One dalam satu aplikasi\n\n💰 HARGA: Rp 1,2jt\n\n🟢 Status: AKTIF & SIAP DIGUNAKAN\n📩 Hubungi sekarang untuk akses & info lengkap!"
     },
     {
       id: 5,
@@ -564,8 +573,8 @@
       download: "540",
       badge: "⚡ LIGHTNING",
       gambar: "assets/produk5.png",
-      harga: "Rp 350.000",
-      fitur: "⚡ FlashCore Toolkit ⚡\n\n✅ 40+ Utility Tools dalam 1 paket\n✅ Registry Cleaner Pro\n✅ Duplicate File Finder\n✅ Bootable USB Creator\n✅ Disk Partition Manager\n✅ Junk File Cleaner\n✅ Privacy Protector\n\n🛠️ All in one system toolkit untuk Windows\n\n💎 Ringan & cepat, tidak membebani sistem\n\n💰 HARGA: Rp 350.000"
+      harga: "Rp 350rb",
+      fitur: "⚡ FlashCore Toolkit ⚡\n\n✅ 40+ Utility Tools dalam 1 paket\n✅ Registry Cleaner Pro\n✅ Duplicate File Finder\n✅ Bootable USB Creator\n✅ Disk Partition Manager\n✅ Junk File Cleaner\n✅ Privacy Protector\n\n🛠️ All in one system toolkit untuk Windows\n\n💎 Ringan & cepat, tidak membebani sistem\n\n💰 HARGA: Rp 350rb"
     },
     {
       id: 6,
@@ -574,8 +583,8 @@
       download: "2.1k+",
       badge: "🎮 GAMING",
       gambar: "assets/produk6.png",
-      harga: "Rp 250.000",
-      fitur: "🎮 VEXANA PRO MOD 🎮\n\n✅ Unlock Game Potential\n✅ Graphics Enhancer (ML, PUBG, FF)\n✅ Anti Lag + Ping Stabilizer\n✅ Macro recorder\n✅ Sensitivity Booster\n✅ No Root Required\n✅ Anti Ban System\n\n🔥 Wajib buat gamer competitive!\n\n📌 Support semua game Mobile Legends, PUBG Mobile, Free Fire, COD Mobile\n\n💰 HARGA: Rp 250.000"
+      harga: "Rp 250rb",
+      fitur: "🎮 VEXANA PRO MOD 🎮\n\n✅ Unlock Game Potential\n✅ Graphics Enhancer (ML, PUBG, FF)\n✅ Anti Lag + Ping Stabilizer\n✅ Macro recorder\n✅ Sensitivity Booster\n✅ No Root Required\n✅ Anti Ban System\n\n🔥 Wajib buat gamer competitive!\n\n📌 Support semua game Mobile Legends, PUBG Mobile, Free Fire, COD Mobile\n\n💰 HARGA: Rp 250rb"
     },
     {
       id: 7,
@@ -584,8 +593,8 @@
       download: "788",
       badge: "🕶️ PRO",
       gambar: "assets/produk7.png",
-      harga: "Rp 500.000",
-      fitur: "🕶️ DarkScript Suite 🕶️\n\n✅ Automation Script (Python/JS)\n✅ Batch File Converter\n✅ Advanced Clipboard Manager\n✅ Dark Mode for All Apps\n✅ Code Optimizer\n✅ Syntax Highlighter\n✅ Multi-language Support\n\n👨‍💻 Untuk developer & power user\n\n💡 Tingkatkan produktivitas coding Anda!\n\n💰 HARGA: Rp 500.000"
+      harga: "Rp 500rb",
+      fitur: "🕶️ DarkScript Suite 🕶️\n\n✅ Automation Script (Python/JS)\n✅ Batch File Converter\n✅ Advanced Clipboard Manager\n✅ Dark Mode for All Apps\n✅ Code Optimizer\n✅ Syntax Highlighter\n✅ Multi-language Support\n\n👨‍💻 Untuk developer & power user\n\n💡 Tingkatkan produktivitas coding Anda!\n\n💰 HARGA: Rp 500rb"
     },
     {
       id: 8,
@@ -594,8 +603,8 @@
       download: "1.8k+",
       badge: "🏆 ULTIMATE",
       gambar: "assets/produk8.png",
-      harga: "Rp 850.000",
-      fitur: "🏆 ZENITH AIO TOOL 🏆\n\n✅ 100+ Tools in One Package\n✅ Windows Activator + Office\n✅ Driver Booster Offline\n✅ Data Recovery + Backup\n✅ System Cleaner Pro\n✅ Malware Scanner\n✅ Privacy Protector\n✅ Windows Tweaker\n\n💎 PALING KOMPLIT! Semua fitur lengkap dalam satu aplikasi\n\n🔥 Solusi untuk semua kebutuhan PC Anda!\n\n💰 HARGA: Rp 850.000"
+      harga: "Rp 850rb",
+      fitur: "🏆 ZENITH AIO TOOL 🏆\n\n✅ 100+ Tools in One Package\n✅ Windows Activator + Office\n✅ Driver Booster Offline\n✅ Data Recovery + Backup\n✅ System Cleaner Pro\n✅ Malware Scanner\n✅ Privacy Protector\n✅ Windows Tweaker\n\n💎 PALING KOMPLIT! Semua fitur lengkap dalam satu aplikasi\n\n🔥 Solusi untuk semua kebutuhan PC Anda!\n\n💰 HARGA: Rp 850rb"
     }
   ];
 
@@ -616,10 +625,6 @@
     if(typeof count === 'string') return count;
     if(count >= 1000) return (count/1000).toFixed(1) + 'k';
     return count;
-  }
-
-  function formatRupiah(harga) {
-    return harga;
   }
 
   function formatModalText(text) {
@@ -647,7 +652,7 @@
       card.className = 'card-premium';
       card.innerHTML = `
         <div class="image-wrapper">
-          <img src="${prod.gambar}" alt="${prod.nama}" onerror="this.src='https://placehold.co/600x800?text=${encodeURIComponent(prod.nama)}'">
+          <img src="${prod.gambar}" alt="${prod.nama}" onerror="this.src='https://placehold.co/400x400?text=${encodeURIComponent(prod.nama)}'">
           <div class="img-badge">${prod.badge}</div>
         </div>
         <div class="content-card">
@@ -656,7 +661,7 @@
           <div class="card-rating"><span class="stars">${renderStars(prod.bintang)}</span> <span class="download-count"><i class="fas fa-download"></i> ${formatDownload(prod.download)}</span></div>
           <div class="btn-group">
             <button class="btn-premium info-btn" data-id="${prod.id}"><i class="fas fa-info-circle"></i> INFO</button>
-            <button class="btn-premium btn-wa order-btn" data-nama="${prod.nama}" data-harga="${prod.harga}"><i class="fab fa-whatsapp"></i> ORDER VIA WA</button>
+            <button class="btn-premium btn-wa order-btn" data-nama="${prod.nama}" data-harga="${prod.harga}"><i class="fab fa-whatsapp"></i> ORDER</button>
             <a href="#" class="btn-premium btn-primary-glow tutorial-btn" data-nama="${prod.nama}"><i class="fas fa-play-circle"></i> TUTORIAL</a>
           </div>
         </div>
