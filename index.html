@@ -132,41 +132,28 @@
     box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.7);
   }
 
-  /* PERBAIKAN: GAMBAR FULL TAMPIL TANPA CROP */
   .image-wrapper {
     position: relative;
-    background: #0a0f1c;
-    padding: 0;
-    overflow: hidden;
+    background: radial-gradient(circle at 30% 20%, #0f1422, #010101);
+    padding: 12px;
   }
-  
   .card-premium img {
     width: 100%;
-    display: block;
+    aspect-ratio: 1 / 1;
     object-fit: contain;
-    background: #0a0f1c;
+    border-radius: 20px;
     transition: transform 0.3s ease;
+    background: #0a0f1c;
+    padding: 8px;
   }
-  
-  /* Ukuran dinamis: biar gambarnya proporsional */
-  .card-premium img {
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-  }
-  
-  /* Tapi kalau gambar Anda sudah pas (poster), pakai contain biar full teksnya */
-  /* Saya pakai contain biar semua teks di gambar terbaca */
-  .card-premium img {
-    aspect-ratio: auto;
-    object-fit: contain;
-    min-height: 200px;
-    background: #0f1422;
+  .card-premium:hover img {
+    transform: scale(1.02);
   }
 
   .img-badge {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 20px;
+    right: 20px;
     background: #facc15;
     color: #0a0f1c;
     font-weight: bold;
@@ -192,6 +179,28 @@
     background-clip: text;
     color: transparent;
   }
+  
+  /* HARGA STYLE */
+  .price {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #facc15;
+    margin: 8px 0 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .price i {
+    font-size: 0.9rem;
+    color: #06b6d4;
+  }
+  .price span {
+    background: linear-gradient(135deg, #facc15, #ffb347);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
   .card-rating {
     display: flex;
     align-items: center;
@@ -265,7 +274,7 @@
     color: black;
   }
 
-  /* ========== MODAL YANG DIPERBAIKI ========== */
+  /* ========== MODAL ========== */
   .modal {
     display: none;
     position: fixed;
@@ -321,7 +330,6 @@
     font-size: 1.5rem;
   }
   
-  /* SCROLL AREA - INI YANG PENTING */
   .modal-body-scroll {
     flex: 1;
     overflow-y: auto;
@@ -331,7 +339,6 @@
     font-size: 0.9rem;
   }
   
-  /* Custom scroll untuk modal body */
   .modal-body-scroll::-webkit-scrollbar {
     width: 4px;
   }
@@ -487,7 +494,7 @@
   </div>
 </div>
 
-<!-- MODAL INFO DENGAN SCROLL -->
+<!-- MODAL INFO -->
 <div id="infoModal" class="modal">
   <div class="modal-content">
     <span class="close-modal">&times;</span>
@@ -495,9 +502,7 @@
       <i class="fas fa-info-circle"></i>
       <span id="modalTitle">Nama Produk</span>
     </div>
-    <div class="modal-body-scroll" id="modalBody">
-      <!-- Konten akan diisi JavaScript -->
-    </div>
+    <div class="modal-body-scroll" id="modalBody"></div>
     <div class="modal-footer">
       <button class="modal-wa-btn" id="modalOrderBtn">
         <i class="fab fa-whatsapp"></i> ORDER PRODUK INI VIA WA
@@ -510,67 +515,47 @@
   // ================ KONFIGURASI ================
   const YOUR_WHATSAPP_NUMBER = "6285943111681";
   
-  // ================ DATA PRODUK ================
+  // ================ DATA PRODUK DENGAN HARGA ================
   const products = [
     {
       id: 1,
       nama: "AutoFormatter",
       bintang: 5,
       download: "300",
-      badge: "🔥 VVIP",
+      badge: "🔥 HOT",
       gambar: "assets/produk1.png",
-      fitur: "🔥 AUTO FORMATTER VVIP 🔥\n\n✨ FORMAT DATA JADI 1 KLIK LANGSUNG JADI! ✨\nCapek format manual? Ribet & makan waktu?\nSekarang cukup 1 klik semua beres! ⚡\n\n💡 Keunggulan:\n✅ Proses super cepat & otomatis\n✅ Bisa request format sesuai kebutuhan\n✅ Tinggal input → langsung jadi\n✅ Cocok untuk kerja & jualan\n\n📦 FITUR UNGGULAN:\n🔹 V1 Format khusus (disimpan rapi)\n🔹 V2 Format siap share / jual ke grup\n🔹 V3 Penyimpanan hasil dari V1\n🔹 V4 Input 1 data jadi 3 lembar SIAK\n🔹 V5 Akses LASIK VVIP 🔥\n\n💯 Sistem sudah terverifikasi & digunakan banyak user\n\n🔥 KENAPA HARUS PAKAI INI?\n✔ Hemat waktu kerja\n✔ Minim kesalahan\n✔ Praktis & fleksibel\n✔ Bisa untuk kebutuhan pribadi & bisnis\n\n📲 ORDER SEKARANG!\n💬 Fast respon 24 jam\n⚡ Siap bantu sampai bisa"
+      harga: "Rp 500.000",
+      fitur: "🔥 AUTO FORMATTER VVIP 🔥\n\n✨ FORMAT DATA JADI 1 KLIK LANGSUNG JADI! ✨\nCapek format manual? Ribet & makan waktu?\nSekarang cukup 1 klik semua beres! ⚡\n\n💡 Keunggulan:\n✅ Proses super cepat & otomatis\n✅ Bisa request format sesuai kebutuhan\n✅ Tinggal input → langsung jadi\n✅ Cocok untuk kerja & jualan\n\n📦 FITUR UNGGULAN:\n🔹 V1 Format khusus (disimpan rapi)\n🔹 V2 Format siap share / jual ke grup\n🔹 V3 Penyimpanan hasil dari V1\n🔹 V4 Input 1 data jadi 3 lembar SIAK\n🔹 V5 Akses LASIK VVIP 🔥\n\n💯 Sistem sudah terverifikasi & digunakan banyak user\n\n🔥 KENAPA HARUS PAKAI INI?\n✔ Hemat waktu kerja\n✔ Minim kesalahan\n✔ Praktis & fleksibel\n✔ Bisa untuk kebutuhan pribadi & bisnis\n\n💰 HARGA: Rp 500.000\n\n📲 ORDER SEKARANG!\n💬 Fast respon 24 jam\n⚡ Siap bantu sampai bisa"
     },
     {
       id: 2,
       nama: "Garuda Pro",
       bintang: 4,
       download: "610",
-      badge: "⚡ BEST SELLER",
+      badge: "🔥 HOT",
       gambar: "assets/produk2.png",
-      fitur: "🔥 GARUDA PRO – AUTO PILOT SCRAPER 🔥\n\n⚡ Full Otomatis Tanpa Ribet!\n\n🚀 FITUR TERBARU:\n✅ Cek Sensoran\n✅ Cek Email JMO yang Lupa\n✅ Cek Lasik Manual\n✅ Cek Registrasi Akun\n✅ Auto Regis ke JMO (Coming Soon)\n\n💎 KEUNGGULAN:\n✔ Sekali beli, tanpa biaya bulanan\n✔ Tanpa top up / isi saldo\n✔ Akses unlimited tanpa batas\n\n⚠️ PERHATIAN:\nPembeli wajib benar-benar paham & siap dengan ketentuan.\nBarang yang sudah dibeli TIDAK ADA GARANSI REFUND.\n\n🔥 Slot terbatas – siapa cepat dia dapat!\n\nKJSSTORE"
+      harga: "Rp 3.500.000",
+      fitur: "🔥 GARUDA PRO – AUTO PILOT SCRAPER 🔥\n\n⚡ Full Otomatis Tanpa Ribet!\n\n🚀 FITUR TERBARU:\n✅ Cek Sensoran\n✅ Cek Email JMO yang Lupa\n✅ Cek Lasik Manual\n✅ Cek Registrasi Akun\n✅ Auto Regis ke JMO (Coming Soon)\n\n💎 KEUNGGULAN:\n✔ Sekali beli, tanpa biaya bulanan\n✔ Tanpa top up / isi saldo\n✔ Akses unlimited tanpa batas\n\n⚠️ PERHATIAN:\nPembeli wajib benar-benar paham & siap dengan ketentuan.\nBarang yang sudah dibeli TIDAK ADA GARANSI REFUND.\n\n💰 HARGA: Rp 3.500.000\n\n🔥 Slot terbatas – siapa cepat dia dapat!\n\nKJSSTORE"
     },
     {
       id: 3,
       nama: "Kalkulator Kpj",
       bintang: 5,
       download: "200",
-      badge: "✨ NEW",
+      badge: "🔥 HOT",
       gambar: "assets/produk3.png",
-      fitur: "🚀 OPEN REGISTRASI KPJ GENERATOR PRO V5 🚀\n\n✨ Solusi Cepat & Praktis Generate Data Otomatis! ✨\n\n🔥 FITUR UNGGULAN:\n✔ Generator Anakan (Auto Generate Massal)\n✔ Mode UP & DOWN (Naik / Turun Otomatis)\n✔ Sistem Acak (Random Generator)\n✔ Tracking / Jejak Data\n✔ Generate Indukan & Anakan Sekaligus\n✔ Export ke Excel\n✔ Salin Cepat (Max 9999 Data)\n✔ Save & Hapus Data Instan\n\n💎 KEUNGGULAN:\n⚡ Proses Super Cepat & Ringan (Android Lite)\n⚡ Tampilan Simple & Profesional\n⚡ Support Generate Hingga Puluhan Ribu Data\n⚡ Minim Error & Stabil Digunakan\n⚡ Cocok Untuk Kebutuhan Skala Besar\n\n⚠️ PERINGATAN PENTING:\nGunakan tools ini dengan bijak!\nSegala bentuk penyalahgunaan bukan tanggung jawab developer.\n\n🔥 OPEN AKSES / REGISTRASI SEKARANG! 🔥\n💼 Slot terbatas — siapa cepat dia dapat!\n📲 Minat? Langsung chat admin sekarang juga!"
+      harga: "Rp 750.000",
+      fitur: "🚀 OPEN REGISTRASI KPJ GENERATOR PRO V5 🚀\n\n✨ Solusi Cepat & Praktis Generate Data Otomatis! ✨\n\n🔥 FITUR UNGGULAN:\n✔ Generator Anakan (Auto Generate Massal)\n✔ Mode UP & DOWN (Naik / Turun Otomatis)\n✔ Sistem Acak (Random Generator)\n✔ Tracking / Jejak Data\n✔ Generate Indukan & Anakan Sekaligus\n✔ Export ke Excel\n✔ Salin Cepat (Max 9999 Data)\n✔ Save & Hapus Data Instan\n\n💎 KEUNGGULAN:\n⚡ Proses Super Cepat & Ringan (Android Lite)\n⚡ Tampilan Simple & Profesional\n⚡ Support Generate Hingga Puluhan Ribu Data\n⚡ Minim Error & Stabil Digunakan\n⚡ Cocok Untuk Kebutuhan Skala Besar\n\n⚠️ PERINGATAN PENTING:\nGunakan tools ini dengan bijak!\nSegala bentuk penyalahgunaan bukan tanggung jawab developer.\n\n💰 HARGA: Rp 750.000\n\n🔥 OPEN AKSES / REGISTRASI SEKARANG! 🔥\n💼 Slot terbatas — siapa cepat dia dapat!\n📲 Minat? Langsung chat admin sekarang juga!"
     },
     {
       id: 4,
-nama: "KeraSakti",
-bintang: 4,
-download: "331",
-badge: "🧠 System",
-gambar: "assets/produk4.png",
-fitur: "🚀 KERA SAKTI – SUPPORT TIM LAPANGAN BPJS\n\n" +
-       "📌 Aplikasi penunjang kerja blusukan & pendataan peserta agar lebih cepat, rapi, dan efisien.\n\n" +
-
-       "✨ FITUR ANDALAN:\n" +
-       "✅ Input & kelola data peserta lebih terstruktur\n" +
-       "✅ Generate tampilan KTP & KPJ instan (preview cepat)\n" +
-       "✅ Modul Faktur & administrasi\n" +
-       "✅ Siap jadi format (multi server)\n" +
-       "✅ Edit & penyesuaian data langsung di lapangan\n" +
-       "✅ Ganti background foto (support AI)\n\n" +
-
-       "⚡ COCOK UNTUK:\n" +
-       "✔ Tim lapangan / marketing\n" +
-       "✔ Pendataan peserta BPJS Ketenagakerjaan\n" +
-       "✔ Validasi & pengecekan data cepat\n" +
-       "✔ Kebutuhan administrasi lapangan\n\n" +
-
-       "💼 KELEBIHAN:\n" +
-       "✔ Praktis & mudah digunakan\n" +
-       "✔ Hemat waktu kerja\n" +
-       "✔ Tampilan profesional\n" +
-       "✔ All-in-One dalam satu aplikasi\n\n" +
-
-       "🟢 Status: AKTIF & SIAP DIGUNAKAN\n" +
-       "📩 Hubungi sekarang untuk akses & info lengkap!"
+      nama: "KeraSakti",
+      bintang: 4,
+      download: "331",
+      badge: "🔥 HOT",
+      gambar: "assets/produk4.png",
+      harga: "Rp 1.200.000",
+      fitur: "🚀 KERA SAKTI – SUPPORT TIM LAPANGAN BPJS 🚀\n\n📌 Aplikasi penunjang kerja blusukan & pendataan peserta agar lebih cepat, rapi, dan efisien.\n\n✨ FITUR ANDALAN:\n✅ Input & kelola data peserta lebih terstruktur\n✅ Generate tampilan KTP & KPJ instan (preview cepat)\n✅ Modul Faktur & administrasi\n✅ Siap jadi format (multi server)\n✅ Edit & penyesuaian data langsung di lapangan\n✅ Ganti background foto (support AI)\n\n⚡ COCOK UNTUK:\n✔ Tim lapangan / marketing\n✔ Pendataan peserta BPJS Ketenagakerjaan\n✔ Validasi & pengecekan data cepat\n✔ Kebutuhan administrasi lapangan\n\n💼 KELEBIHAN:\n✔ Praktis & mudah digunakan\n✔ Hemat waktu kerja\n✔ Tampilan profesional\n✔ All-in-One dalam satu aplikasi\n\n💰 HARGA: Rp 1.200.000\n\n🟢 Status: AKTIF & SIAP DIGUNAKAN\n📩 Hubungi sekarang untuk akses & info lengkap!"
     },
     {
       id: 5,
@@ -579,7 +564,8 @@ fitur: "🚀 KERA SAKTI – SUPPORT TIM LAPANGAN BPJS\n\n" +
       download: "540",
       badge: "⚡ LIGHTNING",
       gambar: "assets/produk5.png",
-      fitur: "⚡ FlashCore Toolkit ⚡\n\n✅ 40+ Utility Tools dalam 1 paket\n✅ Registry Cleaner Pro\n✅ Duplicate File Finder\n✅ Bootable USB Creator\n✅ Disk Partition Manager\n✅ Junk File Cleaner\n✅ Privacy Protector\n\n🛠️ All in one system toolkit untuk Windows\n\n💎 Ringan & cepat, tidak membebani sistem"
+      harga: "Rp 350.000",
+      fitur: "⚡ FlashCore Toolkit ⚡\n\n✅ 40+ Utility Tools dalam 1 paket\n✅ Registry Cleaner Pro\n✅ Duplicate File Finder\n✅ Bootable USB Creator\n✅ Disk Partition Manager\n✅ Junk File Cleaner\n✅ Privacy Protector\n\n🛠️ All in one system toolkit untuk Windows\n\n💎 Ringan & cepat, tidak membebani sistem\n\n💰 HARGA: Rp 350.000"
     },
     {
       id: 6,
@@ -588,7 +574,8 @@ fitur: "🚀 KERA SAKTI – SUPPORT TIM LAPANGAN BPJS\n\n" +
       download: "2.1k+",
       badge: "🎮 GAMING",
       gambar: "assets/produk6.png",
-      fitur: "🎮 VEXANA PRO MOD 🎮\n\n✅ Unlock Game Potential\n✅ Graphics Enhancer (ML, PUBG, FF)\n✅ Anti Lag + Ping Stabilizer\n✅ Macro recorder\n✅ Sensitivity Booster\n✅ No Root Required\n✅ Anti Ban System\n\n🔥 Wajib buat gamer competitive!\n\n📌 Support semua game Mobile Legends, PUBG Mobile, Free Fire, COD Mobile"
+      harga: "Rp 250.000",
+      fitur: "🎮 VEXANA PRO MOD 🎮\n\n✅ Unlock Game Potential\n✅ Graphics Enhancer (ML, PUBG, FF)\n✅ Anti Lag + Ping Stabilizer\n✅ Macro recorder\n✅ Sensitivity Booster\n✅ No Root Required\n✅ Anti Ban System\n\n🔥 Wajib buat gamer competitive!\n\n📌 Support semua game Mobile Legends, PUBG Mobile, Free Fire, COD Mobile\n\n💰 HARGA: Rp 250.000"
     },
     {
       id: 7,
@@ -597,7 +584,8 @@ fitur: "🚀 KERA SAKTI – SUPPORT TIM LAPANGAN BPJS\n\n" +
       download: "788",
       badge: "🕶️ PRO",
       gambar: "assets/produk7.png",
-      fitur: "🕶️ DarkScript Suite 🕶️\n\n✅ Automation Script (Python/JS)\n✅ Batch File Converter\n✅ Advanced Clipboard Manager\n✅ Dark Mode for All Apps\n✅ Code Optimizer\n✅ Syntax Highlighter\n✅ Multi-language Support\n\n👨‍💻 Untuk developer & power user\n\n💡 Tingkatkan produktivitas coding Anda!"
+      harga: "Rp 500.000",
+      fitur: "🕶️ DarkScript Suite 🕶️\n\n✅ Automation Script (Python/JS)\n✅ Batch File Converter\n✅ Advanced Clipboard Manager\n✅ Dark Mode for All Apps\n✅ Code Optimizer\n✅ Syntax Highlighter\n✅ Multi-language Support\n\n👨‍💻 Untuk developer & power user\n\n💡 Tingkatkan produktivitas coding Anda!\n\n💰 HARGA: Rp 500.000"
     },
     {
       id: 8,
@@ -606,11 +594,13 @@ fitur: "🚀 KERA SAKTI – SUPPORT TIM LAPANGAN BPJS\n\n" +
       download: "1.8k+",
       badge: "🏆 ULTIMATE",
       gambar: "assets/produk8.png",
-      fitur: "🏆 ZENITH AIO TOOL 🏆\n\n✅ 100+ Tools in One Package\n✅ Windows Activator + Office\n✅ Driver Booster Offline\n✅ Data Recovery + Backup\n✅ System Cleaner Pro\n✅ Malware Scanner\n✅ Privacy Protector\n✅ Windows Tweaker\n\n💎 PALING KOMPLIT! Semua fitur lengkap dalam satu aplikasi\n\n🔥 Solusi untuk semua kebutuhan PC Anda!"
+      harga: "Rp 850.000",
+      fitur: "🏆 ZENITH AIO TOOL 🏆\n\n✅ 100+ Tools in One Package\n✅ Windows Activator + Office\n✅ Driver Booster Offline\n✅ Data Recovery + Backup\n✅ System Cleaner Pro\n✅ Malware Scanner\n✅ Privacy Protector\n✅ Windows Tweaker\n\n💎 PALING KOMPLIT! Semua fitur lengkap dalam satu aplikasi\n\n🔥 Solusi untuk semua kebutuhan PC Anda!\n\n💰 HARGA: Rp 850.000"
     }
   ];
 
   let currentProductNama = "";
+  let currentProductHarga = "";
 
   function renderStars(rating) {
     let full = Math.floor(rating);
@@ -628,7 +618,10 @@ fitur: "🚀 KERA SAKTI – SUPPORT TIM LAPANGAN BPJS\n\n" +
     return count;
   }
 
-  // Format teks modal menjadi HTML yang rapi
+  function formatRupiah(harga) {
+    return harga;
+  }
+
   function formatModalText(text) {
     let formatted = text
       .replace(/\n/g, '<br>')
@@ -640,7 +633,8 @@ fitur: "🚀 KERA SAKTI – SUPPORT TIM LAPANGAN BPJS\n\n" +
       .replace(/🚀/g, '<span style="color:#facc15;">🚀</span>')
       .replace(/💎/g, '<span style="color:#06b6d4;">💎</span>')
       .replace(/📦/g, '<span style="color:#06b6d4;">📦</span>')
-      .replace(/🔹/g, '<span style="color:#facc15;">🔹</span>');
+      .replace(/🔹/g, '<span style="color:#facc15;">🔹</span>')
+      .replace(/💰/g, '<span style="color:#facc15;">💰</span>');
     
     return `<div style="white-space: normal;">${formatted}</div>`;
   }
@@ -658,10 +652,11 @@ fitur: "🚀 KERA SAKTI – SUPPORT TIM LAPANGAN BPJS\n\n" +
         </div>
         <div class="content-card">
           <div class="title">${prod.nama}</div>
+          <div class="price"><i class="fas fa-tag"></i> <span>${prod.harga}</span></div>
           <div class="card-rating"><span class="stars">${renderStars(prod.bintang)}</span> <span class="download-count"><i class="fas fa-download"></i> ${formatDownload(prod.download)}</span></div>
           <div class="btn-group">
             <button class="btn-premium info-btn" data-id="${prod.id}"><i class="fas fa-info-circle"></i> INFO</button>
-            <button class="btn-premium btn-wa order-btn" data-nama="${prod.nama}"><i class="fab fa-whatsapp"></i> ORDER VIA WA</button>
+            <button class="btn-premium btn-wa order-btn" data-nama="${prod.nama}" data-harga="${prod.harga}"><i class="fab fa-whatsapp"></i> ORDER VIA WA</button>
             <a href="#" class="btn-premium btn-primary-glow tutorial-btn" data-nama="${prod.nama}"><i class="fas fa-play-circle"></i> TUTORIAL</a>
           </div>
         </div>
@@ -675,6 +670,7 @@ fitur: "🚀 KERA SAKTI – SUPPORT TIM LAPANGAN BPJS\n\n" +
         const product = products.find(p => p.id === id);
         if(product) {
           currentProductNama = product.nama;
+          currentProductHarga = product.harga;
           document.getElementById('modalTitle').innerHTML = `<i class="fas fa-cube"></i> ${product.nama}`;
           document.getElementById('modalBody').innerHTML = formatModalText(product.fitur);
           document.getElementById('infoModal').style.display = 'flex';
@@ -685,7 +681,8 @@ fitur: "🚀 KERA SAKTI – SUPPORT TIM LAPANGAN BPJS\n\n" +
     document.querySelectorAll('.order-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const namaProduk = btn.getAttribute('data-nama');
-        const message = `Halo Kak, saya ingin ORDER produk ${namaProduk} dari KJSSTORE. Mohon info harga dan ketersediaan. Terima kasih.`;
+        const hargaProduk = btn.getAttribute('data-harga');
+        const message = `Halo Kak, saya ingin ORDER produk ${namaProduk} dengan harga ${hargaProduk} dari KJSSTORE. Mohon info ketersediaan dan cara pembayaran. Terima kasih.`;
         const encodedMsg = encodeURIComponent(message);
         const waUrl = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodedMsg}`;
         window.open(waUrl, '_blank');
@@ -716,12 +713,11 @@ fitur: "🚀 KERA SAKTI – SUPPORT TIM LAPANGAN BPJS\n\n" +
     if(e.target === modal) modal.style.display = 'none'; 
   };
   
-  // Tombol order di dalam modal
   const modalOrderBtn = document.getElementById('modalOrderBtn');
   if(modalOrderBtn) {
     modalOrderBtn.addEventListener('click', () => {
       if(currentProductNama) {
-        const message = `Halo Kak, saya ingin ORDER produk ${currentProductNama} dari KJSSTORE. Mohon info harga dan ketersediaan. Terima kasih.`;
+        const message = `Halo Kak, saya ingin ORDER produk ${currentProductNama} dengan harga ${currentProductHarga} dari KJSSTORE. Mohon info ketersediaan dan cara pembayaran. Terima kasih.`;
         const encodedMsg = encodeURIComponent(message);
         const waUrl = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodedMsg}`;
         window.open(waUrl, '_blank');
