@@ -32,7 +32,6 @@
     border-radius: 8px;
   }
 
-  /* header premium */
   .header-premium {
     background: rgba(17, 24, 39, 0.75);
     backdrop-filter: blur(12px);
@@ -54,7 +53,6 @@
     gap: 12px;
   }
   
-  /* LOGO BULAT */
   .store-logo {
     width: 48px;
     height: 48px;
@@ -134,41 +132,28 @@
     box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.7);
   }
 
-  /* PERBAIKAN: GAMBAR FULL TAMPIL TANPA CROP */
   .image-wrapper {
     position: relative;
-    background: #0a0f1c;
-    padding: 0;
-    overflow: hidden;
+    background: radial-gradient(circle at 30% 20%, #0f1422, #010101);
+    padding: 12px;
   }
-  
   .card-premium img {
     width: 100%;
-    display: block;
+    aspect-ratio: 1 / 1;
     object-fit: contain;
-    background: #0a0f1c;
+    border-radius: 20px;
     transition: transform 0.3s ease;
+    background: #0a0f1c;
+    padding: 8px;
   }
-  
-  /* Ukuran dinamis: biar gambarnya proporsional */
-  .card-premium img {
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-  }
-  
-  /* Tapi kalau gambar Anda sudah pas (poster), pakai contain biar full teksnya */
-  /* Saya pakai contain biar semua teks di gambar terbaca */
-  .card-premium img {
-    aspect-ratio: auto;
-    object-fit: contain;
-    min-height: 200px;
-    background: #0f1422;
+  .card-premium:hover img {
+    transform: scale(1.02);
   }
 
   .img-badge {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 20px;
+    right: 20px;
     background: #facc15;
     color: #0a0f1c;
     font-weight: bold;
@@ -267,7 +252,7 @@
     color: black;
   }
 
-  /* MODAL STYLE */
+  /* ========== MODAL YANG DIPERBAIKI ========== */
   .modal {
     display: none;
     position: fixed;
@@ -275,44 +260,149 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
     z-index: 1000;
     justify-content: center;
     align-items: center;
+    padding: 20px;
   }
+  
   .modal-content {
-    background: #111827;
+    background: linear-gradient(145deg, #111827, #0f172a);
     border-radius: 32px;
-    max-width: 500px;
-    width: 90%;
-    padding: 24px;
-    border: 1px solid #facc15;
-    box-shadow: 0 25px 50px -12px black;
-    position: relative;
+    max-width: 550px;
+    width: 100%;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(250, 204, 21, 0.3);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(250, 204, 21, 0.1);
+    animation: modalPop 0.3s ease-out;
   }
+  
+  @keyframes modalPop {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
   .modal-header {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 16px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    padding: 20px 24px 12px 24px;
     color: #facc15;
+    border-bottom: 1px solid rgba(250, 204, 21, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
   }
-  .modal-body {
-    color: #cbd5e6;
-    line-height: 1.6;
-    white-space: pre-wrap;
+  
+  .modal-header i {
+    font-size: 1.5rem;
+  }
+  
+  /* SCROLL AREA - INI YANG PENTING */
+  .modal-body-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 24px;
+    color: #e2e8f0;
+    line-height: 1.7;
     font-size: 0.9rem;
   }
+  
+  /* Styling untuk teks di dalam modal */
+  .modal-body-scroll p {
+    margin-bottom: 12px;
+  }
+  
+  .modal-body-scroll .section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #facc15;
+    margin: 16px 0 8px 0;
+    display: block;
+  }
+  
+  .modal-body-scroll .feature-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .modal-body-scroll .feature-list li {
+    padding: 6px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .modal-body-scroll .feature-list li i {
+    color: #06b6d4;
+    font-size: 0.85rem;
+    margin-top: 3px;
+  }
+  
+  .modal-body-scroll hr {
+    border-color: rgba(250, 204, 21, 0.15);
+    margin: 16px 0;
+  }
+  
   .close-modal {
     position: absolute;
     top: 16px;
     right: 20px;
-    font-size: 24px;
+    font-size: 28px;
     cursor: pointer;
-    color: #facc15;
+    color: #94a3b8;
+    transition: 0.2s;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.3);
+    z-index: 10;
   }
   .close-modal:hover {
+    color: #facc15;
+    background: rgba(250, 204, 21, 0.1);
+  }
+  
+  .modal-footer {
+    padding: 16px 24px 24px 24px;
+    border-top: 1px solid rgba(250, 204, 21, 0.15);
+    flex-shrink: 0;
+  }
+  
+  .modal-wa-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(95deg, #25D366, #128C7E);
+    padding: 12px 20px;
+    border-radius: 60px;
+    text-decoration: none;
     color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: 0.2s;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .modal-wa-btn:hover {
+    transform: scale(1.02);
+    background: linear-gradient(95deg, #20b859, #075e54);
   }
 
   .footer-premium {
@@ -363,6 +453,9 @@
     .btn-premium { width: 100%; }
     .store-name { font-size: 1.3rem; }
     .store-logo { width: 40px; height: 40px; }
+    .modal-header { font-size: 1.1rem; padding: 16px 20px 8px 20px; }
+    .modal-body-scroll { padding: 16px 20px; }
+    .modal-footer { padding: 12px 20px 20px 20px; }
   }
 </style>
 </head>
@@ -402,22 +495,30 @@
   </div>
 </div>
 
-<!-- MODAL INFO -->
+<!-- MODAL INFO YANG DIPERBAIKI DENGAN SCROLL -->
 <div id="infoModal" class="modal">
   <div class="modal-content">
     <span class="close-modal">&times;</span>
-    <div class="modal-header" id="modalTitle">Nama Produk</div>
-    <div class="modal-body" id="modalBody">Fitur-fitur produk akan ditampilkan di sini.</div>
+    <div class="modal-header">
+      <i class="fas fa-info-circle"></i>
+      <span id="modalTitle">Nama Produk</span>
+    </div>
+    <div class="modal-body-scroll" id="modalBody">
+      <!-- Konten akan diisi JavaScript -->
+    </div>
+    <div class="modal-footer">
+      <button class="modal-wa-btn" id="modalOrderBtn">
+        <i class="fab fa-whatsapp"></i> ORDER PRODUK INI VIA WA
+      </button>
+    </div>
   </div>
 </div>
 
 <script>
   // ================ KONFIGURASI ================
-  // GANTI DENGAN NOMOR WHATSAPP ANDA (pakai kode negara, contoh 62 untuk Indonesia)
-  // Nomor dari gambar: 085943111681
-  const YOUR_WHATSAPP_NUMBER = "6285943111681"; // ✅ SUDAH DIUPDATE DARI GAMBAR ANDA
+  const YOUR_WHATSAPP_NUMBER = "6285943111681";
   
-  // ================ DATA PRODUK (8 PRODUK) ================
+  // ================ DATA PRODUK ================
   const products = [
     {
       id: 1,
@@ -493,7 +594,8 @@
     }
   ];
 
-  // Fungsi membuat bintang
+  let currentProductNama = "";
+
   function renderStars(rating) {
     let full = Math.floor(rating);
     let half = rating % 1 !== 0;
@@ -504,14 +606,31 @@
     return stars;
   }
 
-  // Format download count
   function formatDownload(count) {
     if(typeof count === 'string') return count;
     if(count >= 1000) return (count/1000).toFixed(1) + 'k';
     return count;
   }
 
-  // Fungsi generate produk ke grid
+  // Format teks modal menjadi HTML yang rapi
+  function formatModalText(text) {
+    // Ganti newline dengan <br> dan format bullet points
+    let formatted = text
+      .replace(/\n/g, '<br>')
+      .replace(/✅/g, '<span style="color:#06b6d4;">✅</span>')
+      .replace(/✔/g, '<span style="color:#facc15;">✔</span>')
+      .replace(/⚠️/g, '<span style="color:#f97316;">⚠️</span>')
+      .replace(/🔥/g, '<span style="color:#facc15;">🔥</span>')
+      .replace(/✨/g, '<span style="color:#facc15;">✨</span>')
+      .replace(/🚀/g, '<span style="color:#facc15;">🚀</span>')
+      .replace(/💎/g, '<span style="color:#06b6d4;">💎</span>')
+      .replace(/📦/g, '<span style="color:#06b6d4;">📦</span>')
+      .replace(/🔹/g, '<span style="color:#facc15;">🔹</span>');
+    
+    // Wrap dalam div dengan class untuk styling
+    return `<div style="white-space: normal;">${formatted}</div>`;
+  }
+
   function renderProducts() {
     const grid = document.getElementById('productGrid');
     grid.innerHTML = '';
@@ -536,20 +655,19 @@
       grid.appendChild(card);
     });
 
-    // Event untuk tombol INFO
     document.querySelectorAll('.info-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const id = parseInt(btn.getAttribute('data-id'));
         const product = products.find(p => p.id === id);
         if(product) {
-          document.getElementById('modalTitle').innerText = `📋 INFO - ${product.nama}`;
-          document.getElementById('modalBody').innerText = product.fitur;
+          currentProductNama = product.nama;
+          document.getElementById('modalTitle').innerHTML = `<i class="fas fa-cube"></i> ${product.nama}`;
+          document.getElementById('modalBody').innerHTML = formatModalText(product.fitur);
           document.getElementById('infoModal').style.display = 'flex';
         }
       });
     });
 
-    // Event untuk ORDER VIA WA
     document.querySelectorAll('.order-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const namaProduk = btn.getAttribute('data-nama');
@@ -560,30 +678,46 @@
       });
     });
 
-    // Event untuk TUTORIAL
     document.querySelectorAll('.tutorial-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         const nama = btn.getAttribute('data-nama');
-        alert(`🔧 Tutorial untuk ${nama} akan segera tersedia. Hubungi owner via WhatsApp untuk panduan lengkap.\n\nWhatsApp: +${YOUR_WHATSAPP_NUMBER}`);
+        const message = `Halo Kak, saya minta TUTORIAL untuk produk ${nama} dari KJSSTORE. Terima kasih.`;
+        const encodedMsg = encodeURIComponent(message);
+        const waUrl = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodedMsg}`;
+        window.open(waUrl, '_blank');
       });
     });
   }
 
-  // Modal close handler
+  // Modal handlers
   const modal = document.getElementById('infoModal');
   const closeModal = document.querySelector('.close-modal');
-  closeModal.onclick = () => modal.style.display = 'none';
-  window.onclick = (e) => { if(e.target === modal) modal.style.display = 'none'; };
+  
+  closeModal.onclick = () => {
+    modal.style.display = 'none';
+  };
+  
+  window.onclick = (e) => { 
+    if(e.target === modal) modal.style.display = 'none'; 
+  };
+  
+  // Tombol order di dalam modal
+  document.getElementById('modalOrderBtn').addEventListener('click', () => {
+    if(currentProductNama) {
+      const message = `Halo Kak, saya ingin ORDER produk ${currentProductNama} dari KJSSTORE. Mohon info harga dan ketersediaan. Terima kasih.`;
+      const encodedMsg = encodeURIComponent(message);
+      const waUrl = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodedMsg}`;
+      window.open(waUrl, '_blank');
+    }
+  });
 
-  // Footer WA
   document.getElementById('waFooterBtn').addEventListener('click', (e) => {
     e.preventDefault();
     const msg = "Halo min, saya mau cek info daftar harga reseller dan wilayah. Terima kasih.";
     window.open(`https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
   });
 
-  // Inisialisasi
   renderProducts();
 </script>
 </body>
