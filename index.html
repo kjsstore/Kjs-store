@@ -32,7 +32,6 @@
     border-radius: 8px;
   }
 
-  /* header premium */
   .header-premium {
     background: rgba(17, 24, 39, 0.75);
     backdrop-filter: blur(12px);
@@ -54,7 +53,6 @@
     gap: 12px;
   }
   
-  /* LOGO BULAT */
   .store-logo {
     width: 48px;
     height: 48px;
@@ -134,41 +132,28 @@
     box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.7);
   }
 
-  /* PERBAIKAN: GAMBAR FULL TAMPIL TANPA CROP */
   .image-wrapper {
     position: relative;
-    background: #0a0f1c;
-    padding: 0;
-    overflow: hidden;
+    background: radial-gradient(circle at 30% 20%, #0f1422, #010101);
+    padding: 12px;
   }
-  
   .card-premium img {
     width: 100%;
-    display: block;
+    aspect-ratio: 1 / 1;
     object-fit: contain;
-    background: #0a0f1c;
+    border-radius: 20px;
     transition: transform 0.3s ease;
+    background: #0a0f1c;
+    padding: 8px;
   }
-  
-  /* Ukuran dinamis: biar gambarnya proporsional */
-  .card-premium img {
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-  }
-  
-  /* Tapi kalau gambar Anda sudah pas (poster), pakai contain biar full teksnya */
-  /* Saya pakai contain biar semua teks di gambar terbaca */
-  .card-premium img {
-    aspect-ratio: auto;
-    object-fit: contain;
-    min-height: 200px;
-    background: #0f1422;
+  .card-premium:hover img {
+    transform: scale(1.02);
   }
 
   .img-badge {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 20px;
+    right: 20px;
     background: #facc15;
     color: #0a0f1c;
     font-weight: bold;
@@ -267,7 +252,7 @@
     color: black;
   }
 
-  /* MODAL STYLE */
+  /* ========== MODAL YANG DIPERBAIKI ========== */
   .modal {
     display: none;
     position: fixed;
@@ -275,44 +260,128 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
     z-index: 1000;
     justify-content: center;
     align-items: center;
+    padding: 20px;
   }
+  
   .modal-content {
-    background: #111827;
+    background: linear-gradient(145deg, #111827, #0f172a);
     border-radius: 32px;
-    max-width: 500px;
-    width: 90%;
-    padding: 24px;
-    border: 1px solid #facc15;
-    box-shadow: 0 25px 50px -12px black;
-    position: relative;
+    max-width: 550px;
+    width: 100%;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(250, 204, 21, 0.3);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    animation: modalPop 0.3s ease-out;
   }
+  
+  @keyframes modalPop {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
   .modal-header {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 16px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    padding: 20px 24px 12px 24px;
     color: #facc15;
+    border-bottom: 1px solid rgba(250, 204, 21, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
   }
-  .modal-body {
-    color: #cbd5e6;
-    line-height: 1.6;
-    white-space: pre-wrap;
+  
+  .modal-header i {
+    font-size: 1.5rem;
+  }
+  
+  /* SCROLL AREA - INI YANG PENTING */
+  .modal-body-scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 24px;
+    color: #e2e8f0;
+    line-height: 1.7;
     font-size: 0.9rem;
   }
+  
+  /* Custom scroll untuk modal body */
+  .modal-body-scroll::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .modal-body-scroll::-webkit-scrollbar-track {
+    background: #1e293b;
+    border-radius: 10px;
+  }
+  
+  .modal-body-scroll::-webkit-scrollbar-thumb {
+    background: #facc15;
+    border-radius: 10px;
+  }
+  
+  .modal-footer {
+    padding: 16px 24px 24px 24px;
+    border-top: 1px solid rgba(250, 204, 21, 0.15);
+    flex-shrink: 0;
+  }
+  
+  .modal-wa-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(95deg, #25D366, #128C7E);
+    padding: 12px 20px;
+    border-radius: 60px;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: 0.2s;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .modal-wa-btn:hover {
+    transform: scale(1.02);
+    background: linear-gradient(95deg, #20b859, #075e54);
+  }
+  
   .close-modal {
     position: absolute;
     top: 16px;
     right: 20px;
-    font-size: 24px;
+    font-size: 28px;
     cursor: pointer;
-    color: #facc15;
+    color: #94a3b8;
+    transition: 0.2s;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.3);
+    z-index: 10;
   }
   .close-modal:hover {
-    color: white;
+    color: #facc15;
+    background: rgba(250, 204, 21, 0.1);
   }
 
   .footer-premium {
@@ -363,6 +432,9 @@
     .btn-premium { width: 100%; }
     .store-name { font-size: 1.3rem; }
     .store-logo { width: 40px; height: 40px; }
+    .modal-header { font-size: 1.1rem; padding: 16px 20px 8px 20px; }
+    .modal-body-scroll { padding: 16px 20px; }
+    .modal-footer { padding: 12px 20px 20px 20px; }
   }
 </style>
 </head>
@@ -402,7 +474,7 @@
   </div>
 </div>
 
-<!-- MODAL INFO YANG DIPERBAIKI DENGAN SCROLL -->
+<!-- MODAL INFO DENGAN SCROLL -->
 <div id="infoModal" class="modal">
   <div class="modal-content">
     <span class="close-modal">&times;</span>
@@ -521,7 +593,6 @@
 
   // Format teks modal menjadi HTML yang rapi
   function formatModalText(text) {
-    // Ganti newline dengan <br> dan format bullet points
     let formatted = text
       .replace(/\n/g, '<br>')
       .replace(/✅/g, '<span style="color:#06b6d4;">✅</span>')
@@ -534,7 +605,6 @@
       .replace(/📦/g, '<span style="color:#06b6d4;">📦</span>')
       .replace(/🔹/g, '<span style="color:#facc15;">🔹</span>');
     
-    // Wrap dalam div dengan class untuk styling
     return `<div style="white-space: normal;">${formatted}</div>`;
   }
 
@@ -610,20 +680,26 @@
   };
   
   // Tombol order di dalam modal
-  document.getElementById('modalOrderBtn').addEventListener('click', () => {
-    if(currentProductNama) {
-      const message = `Halo Kak, saya ingin ORDER produk ${currentProductNama} dari KJSSTORE. Mohon info harga dan ketersediaan. Terima kasih.`;
-      const encodedMsg = encodeURIComponent(message);
-      const waUrl = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodedMsg}`;
-      window.open(waUrl, '_blank');
-    }
-  });
+  const modalOrderBtn = document.getElementById('modalOrderBtn');
+  if(modalOrderBtn) {
+    modalOrderBtn.addEventListener('click', () => {
+      if(currentProductNama) {
+        const message = `Halo Kak, saya ingin ORDER produk ${currentProductNama} dari KJSSTORE. Mohon info harga dan ketersediaan. Terima kasih.`;
+        const encodedMsg = encodeURIComponent(message);
+        const waUrl = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodedMsg}`;
+        window.open(waUrl, '_blank');
+      }
+    });
+  }
 
-  document.getElementById('waFooterBtn').addEventListener('click', (e) => {
-    e.preventDefault();
-    const msg = "Halo min, saya mau cek info daftar harga reseller dan wilayah. Terima kasih.";
-    window.open(`https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
-  });
+  const waFooterBtn = document.getElementById('waFooterBtn');
+  if(waFooterBtn) {
+    waFooterBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const msg = "Halo min, saya mau cek info daftar harga reseller dan wilayah. Terima kasih.";
+      window.open(`https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+    });
+  }
 
   renderProducts();
 </script>
