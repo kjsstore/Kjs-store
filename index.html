@@ -1,472 +1,573 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KJS STORE | Digital Solutions</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>KJS STORE | PREMIUM DASHBOARD</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    <style>
-        :root {
-            --primary-color: #ffffff;
-            --accent-color: #007bff;
-            --bg-overlay: rgba(0, 0, 0, 0.7);
-            --glass-bg: rgba(255, 255, 255, 0.1);
-        }
+  body {
+    background: radial-gradient(circle at 10% 20%, #0a0f1c, #03060c);
+    font-family: 'Inter', sans-serif;
+    color: #edf2ff;
+    line-height: 1.4;
+    padding: 0 0 32px 0;
+  }
 
-        body {
-           margin: 0;
-           font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-           color: white;
-           line-height: 1.6;
-           overflow-x: hidden;
-        }
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #111827;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #facc15;
+    border-radius: 8px;
+  }
 
-        /* HEADER */
-        header {
-            text-align: center;
-            padding: 50px 20px 30px;
-            max-width: 700px;
-            margin: auto;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-        }
+  /* header premium */
+  .header-premium {
+    background: rgba(17, 24, 39, 0.75);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(250, 204, 21, 0.25);
+    padding: 16px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  /* LOGO BULAT */
+  .store-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #0f1422;
+    border: 2px solid #facc15;
+    box-shadow: 0 0 12px rgba(250, 204, 21, 0.3);
+  }
+  
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .store-name {
+    font-size: 1.7rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #FFF5C4, #facc15);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.3px;
+  }
+  
+  .badge-verified {
+    font-size: 0.7rem;
+    background: rgba(250, 204, 21, 0.15);
+    border-radius: 40px;
+    padding: 3px 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    width: fit-content;
+    margin-top: 5px;
+  }
+  
+  .rating-header {
+    background: #1e293b;
+    padding: 6px 14px;
+    border-radius: 60px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .rating-header i {
+    color: #facc15;
+    margin-right: 6px;
+  }
 
-        header h1 {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+  .container-premium {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 24px 20px;
+  }
 
-        /* MENU CONTAINER */
-        .container {
-            max-width: 500px;
-            margin: 20px auto 50px;
-            padding: 0 20px;
-        }
+  .grid-premium {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 18px;
+  }
 
-        .menu-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+  .card-premium {
+    background: rgba(18, 25, 40, 0.75);
+    backdrop-filter: blur(4px);
+    border-radius: 28px;
+    border: 1px solid rgba(250, 204, 21, 0.2);
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    box-shadow: 0 15px 30px -12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+  }
+  .card-premium:hover {
+    transform: translateY(-6px);
+    border-color: rgba(250, 204, 21, 0.6);
+    box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.7);
+  }
 
-        /* BUTTON STYLE */
-        .btn-menu {
-            width: 100%;
-            padding: 16px 20px;
-            background: var(--primary-color);
-            color: #000;
-            border: none;
-            border-radius: 15px;
-            font-size: 15px;
-            font-weight: 600;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            text-align: center;
-        }
+  .image-wrapper {
+    position: relative;
+    background: radial-gradient(circle at 30% 20%, #0f1422, #010101);
+    padding: 12px;
+  }
+  .card-premium img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+    background: #0a0f1c;
+    padding: 8px;
+  }
+  .card-premium:hover img {
+    transform: scale(1.02);
+  }
 
-        .btn-menu:hover {
-            transform: translateY(-3px);
-            background: #f0f0f0;
-            box-shadow: 0 6px 20px rgba(255,255,255,0.2);
-        }
+  .img-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #facc15;
+    color: #0a0f1c;
+    font-weight: bold;
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 40px;
+    box-shadow: 0 2px 8px black;
+  }
 
-        .btn-menu:active {
-            transform: scale(0.97);
-        }
+  .content-card {
+    padding: 16px 14px 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+    background: linear-gradient(135deg, #fff, #e2e8f0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .card-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: #cbd5e6;
+    margin-bottom: 12px;
+  }
+  .stars {
+    color: #facc15;
+    letter-spacing: 2px;
+  }
+  .download-count {
+    background: #0f172a;
+    padding: 2px 8px;
+    border-radius: 30px;
+    font-size: 0.7rem;
+  }
 
-        /* PRODUCT DETAIL CARD */
-        .product-card {
-            display: none;
-            background: var(--bg-overlay);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 24px;
-            padding: 20px;
-            margin-bottom: 30px;
-            animation: fadeIn 0.4s ease-out;
-        }
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .btn-premium {
+    flex: 1;
+    text-align: center;
+    padding: 8px 5px;
+    border-radius: 40px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    background: rgba(30, 41, 59, 0.8);
+    color: #b9e2ff;
+    border: 0.5px solid rgba(6, 182, 212, 0.3);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .btn-premium i {
+    font-size: 0.75rem;
+  }
+  .btn-premium:hover {
+    background: #06b6d4;
+    color: #0a0f1a;
+    border-color: #06b6d4;
+    transform: scale(0.97);
+  }
+  .btn-wa {
+    background: linear-gradient(95deg, #25D366, #128C7E);
+    color: white;
+    border: none;
+    font-weight: 700;
+  }
+  .btn-wa:hover {
+    background: #20b859;
+    color: white;
+  }
+  .btn-primary-glow {
+    background: linear-gradient(95deg, #facc15, #eab308);
+    color: #0a0f1c;
+    border: none;
+    font-weight: 700;
+  }
+  .btn-primary-glow:hover {
+    background: #ffdf5e;
+    color: black;
+  }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .product-card img {
-            width: 100%;
-            height: auto;
-            border-radius: 18px;
-            object-fit: contain;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .product-info {
-            padding: 10px;
-            text-align: center;
-        }
-
-        .product-info h2 {
-            margin-top: 0;
-            font-size: 20px;
-            color: #58a6ff;
-        }
-
-        .promo-text {
-            font-size: 14px;
-            white-space: pre-line;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        /* BACK BUTTON */
-        .back-btn {
-            width: 100%;
-            padding: 15px;
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .back-btn:hover {
-            background: white;
-            color: black;
-        }
-
-        /* UTILS */
-        .badge {
-            background: #ff3e3e;
-            padding: 2px 8px;
-            border-radius: 5px;
-            font-size: 10px;
-            margin-left: 10px;
-        }
-        
-        /* BACKGROUND FIXED UNTUK HP */
-        .bg-fixed {
+  /* MODAL STYLE */
+  .modal {
+    display: none;
     position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-content {
+    background: #111827;
+    border-radius: 32px;
+    max-width: 500px;
+    width: 90%;
+    padding: 24px;
+    border: 1px solid #facc15;
+    box-shadow: 0 25px 50px -12px black;
+    position: relative;
+  }
+  .modal-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #facc15;
+  }
+  .modal-body {
+    color: #cbd5e6;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    font-size: 0.9rem;
+  }
+  .close-modal {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #facc15;
+  }
+  .close-modal:hover {
+    color: white;
+  }
 
-    background-image: url("assets/background.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  .footer-premium {
+    margin-top: 48px;
+    background: rgba(9, 14, 26, 0.8);
+    backdrop-filter: blur(12px);
+    border-radius: 32px;
+    border: 1px solid rgba(250, 204, 21, 0.25);
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .wilayah-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    background: linear-gradient(120deg, #facc15, #ffb347);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 12px;
+  }
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #1e293b;
+    padding: 12px 28px;
+    border-radius: 60px;
+    text-decoration: none;
+    font-weight: 700;
+    color: #facc15;
+    border: 1px solid #facc15;
+    transition: 0.2s;
+    margin-top: 8px;
+  }
+  .btn-cta:hover {
+    background: #facc15;
+    color: #0a0f1c;
+  }
 
-    z-index: -1;
-}
-    </style>
+  @media (min-width: 760px) {
+    .grid-premium { grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  }
+  @media (min-width: 1024px) {
+    .grid-premium { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .btn-group { flex-direction: column; }
+    .btn-premium { width: 100%; }
+    .store-name { font-size: 1.3rem; }
+    .store-logo { width: 40px; height: 40px; }
+  }
+</style>
 </head>
-
 <body>
 
-<div class="bg-fixed"></div>
-
-<header id="header-area">
-    <h1>KJS STORE</h1>
-    <p>𝗦𝗖𝗥𝗢𝗟 𝗞𝗘 𝗕𝗔𝗪𝗔𝗛 𝗨𝗡𝗧𝗨𝗞 𝗟𝗜𝗔𝗧 𝗟𝗜𝗦𝗧 𝗣𝗥𝗢𝗗𝗨𝗞 👇</p>
+<header class="header-premium">
+  <div class="brand">
+    <!-- LOGO BULAT PAKAI PNG -->
+    <img src="logo.png" alt="KJSSTORE Logo" class="store-logo" onerror="this.src='https://placehold.co/400x400?text=Logo'">
+    <div class="brand-text">
+      <span class="store-name">KJSSTORE</span>
+      <div class="badge-verified"><i class="fas fa-shield-alt"></i> KING OWNER</div>
+    </div>
+  </div>
+  <div class="rating-header">
+    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+    <span>4.8 (1.2k+ ulasan) • Fast Response</span>
+  </div>
 </header>
 
-<div class="container">
-    
-    <div id="menu-area" class="menu-grid">
+<div class="container-premium">
+  <div class="grid-premium" id="productGrid"></div>
 
-<button class="btn-menu" onclick="showProduct('p1')">
-    <span>🛍️ BOT AKSES TERNAK</span>
-    <span class="badge">HOT</span>
-</button>
-
-<button class="btn-menu" onclick="showProduct('p2')">
-    <span>🛍️ BOT WHATSAPP / TELEGRAM</span>
-</button>
-
-<button class="btn-menu" onclick="showProduct('p3')">
-    <span>🛍️ SCRIPT TUNNELING</span>
-</button>
-
-<button class="btn-menu" onclick="showProduct('p4')">
-    <span>🛍️ LAYANAN PREMIUM 4</span>
-</button>
-
-<button class="btn-menu" onclick="showProduct('p5')">
-    <span>🛍️ LAYANAN PREMIUM 5</span>
-</button>
-
-<button class="btn-menu" onclick="showProduct('p6')">
-    <span>🛍️ LAYANAN PREMIUM 6</span>
-</button>
-
-<button class="btn-menu" onclick="showProduct('p7')">
-    <span>🛍️ LAYANAN PREMIUM 7</span>
-</button>
-
-<button class="btn-menu" onclick="showProduct('p8')">
-    <span>🛍️ LAYANAN PREMIUM 8</span>
-</button>
-
-<button class="btn-menu" onclick="showProduct('p9')">
-    <span>🛍️ LAYANAN PREMIUM 9</span>
-</button>
-
-<button class="btn-menu" onclick="showProduct('p10')">
-    <span>🛍️ LAYANAN PREMIUM 10</span>
-</button>
-
-<button class="btn-menu" onclick="showProduct('p11')">
-    <span>🛍️ LAYANAN PREMIUM 11</span>
-</button>
-
-<button class="btn-menu" onclick="showProduct('p12')">
-    <span>🛍️ LAYANAN PREMIUM 12</span>
-</button>
-
-<button class="btn-menu" onclick="showProduct('p13')">
-    <span>🛍️ LAYANAN PREMIUM 13</span>
-</button>
-
-<button class="btn-menu" onclick="showProduct('p14')">
-    <span>🛍️ LAYANAN PREMIUM 14</span>
-</button>
-
-<button class="btn-menu" onclick="showProduct('p15')">
-    <span>🛍️ LAYANAN PREMIUM 15</span>
-</button>
-
+  <div class="footer-premium">
+    <div class="wilayah-title"><i class="fas fa-globe-asia"></i> DAFTAR ALL WILAYAH (harga reseller)</div>
+    <div style="display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; margin: 15px 0 10px;">
+      <span style="background:#0f172a; padding:6px 14px; border-radius:40px;"><i class="fas fa-map-marker-alt"></i> Jabodetabek</span>
+      <span style="background:#0f172a; padding:6px 14px; border-radius:40px;"><i class="fas fa-map-marker-alt"></i> Jawa Tengah</span>
+      <span style="background:#0f172a; padding:6px 14px; border-radius:40px;"><i class="fas fa-map-marker-alt"></i> Jawa Timur</span>
+      <span style="background:#0f172a; padding:6px 14px; border-radius:40px;"><i class="fas fa-map-marker-alt"></i> Sumatera</span>
+      <span style="background:#0f172a; padding:6px 14px; border-radius:40px;"><i class="fas fa-map-marker-alt"></i> Kalimantan</span>
+      <span style="background:#0f172a; padding:6px 14px; border-radius:40px;"><i class="fas fa-map-marker-alt"></i> Sulawesi</span>
+    </div>
+    <a href="#" class="btn-cta" id="waFooterBtn"><i class="fab fa-whatsapp"></i> CEK INFO HARGA RESELLER <i class="fas fa-arrow-right"></i></a>
+    <div style="margin-top: 20px; font-size: 0.7rem; opacity: 0.7; padding-top: 16px;">
+      <i class="fas fa-lock"></i> Garansi lifetime update | Support 24/7
+    </div>
+  </div>
 </div>
 
-    <div id="p1" class="product-card">
-    <img loading="lazy" src="assets/products/bot-ternak.png" alt="Bot Ternak">
-    <div class="product-info">
-        <h2>🔥 BOT AKSES TERNAK (1 PAKET)</h2>
-        <div class="promo-text">
-Tinggal pakai • 100% Auto • Tanpa ribet!
-✅ Sistem FULL OTOMATIS
-✅ Support & FREE pemasangan
-✅ Akses FULL 1 PAKET (4 BOT)
-
-🤖 ISI PAKET:
-• BOT OSS
-• BOT LAPAK ASIK
-• BOT CEK DPT
-• KALKULATOR KPJ RANDOM
-
-💰 HARGA SEWA:
-1 Bulan : 400.000
-2 Bulan : 700.000
-PERMANENT : 1.600.000
-        </div>
-        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
-    </div>
-</div>
-
-<div id="p2" class="product-card">
-    <img loading="eager" src="assets/products/bot-wa.png" alt="Bot WA">
-    <div class="product-info">
-        <h2>🤖 OPEN BOT STORE</h2>
-        <div class="promo-text">
-Sewa script bot WhatsApp & Telegram profesional.
-• Custom Fitur
-• Anti Delay
-• Uptime 24/7
-        </div>
-        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
-    </div>
-</div>
-
-<div id="p3" class="product-card">
-    <img loading="eager" src="assets/products/tunneling.jpg" alt="Tunneling">
-    <div class="product-info">
-        <h2>🚀 OPEN SEWA SC TUNNELING</h2>
-        <div class="promo-text">
-Server aktif 24 jam nonstop.
-• Support pemula
-• Auto Script Install
-• Harga mulai 10K
-        </div>
-        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
-    </div>
-</div>
-
-<!-- PRODUK 4 - 15 -->
-
-<div id="p4" class="product-card">
-    <img loading="eager" src="assets/products/produk4.jpg">
-    <div class="product-info">
-        <h2>🔥 PRODUK 4</h2>
-        <div class="promo-text">
-Deskripsi promo produk 4.
-        </div>
-        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
-    </div>
-</div>
-
-<div id="p5" class="product-card">
-    <img loading="eager" src="assets/products/produk4.jpg">
-    <div class="product-info">
-        <h2>🔥 PRODUK 5</h2>
-        <div class="promo-text">
-Deskripsi promo produk 5.
-        </div>
-        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
-    </div>
-</div>
-
-<div id="p6" class="product-card">
-    <img loading="eager" src="assets/products/produk4.jpg">
-    <div class="product-info">
-        <h2>🔥 PRODUK 6</h2>
-        <div class="promo-text">
-Deskripsi promo produk 6.
-        </div>
-        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
-    </div>
-</div>
-
-<div id="p7" class="product-card">
-    <img loading="eager" src="assets/products/produk4.jpg">
-    <div class="product-info">
-        <h2>🔥 PRODUK 7</h2>
-        <div class="promo-text">
-Deskripsi promo produk 7.
-        </div>
-        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
-    </div>
-</div>
-
-<div id="p8" class="product-card">
-    <img loading="eager" src="assets/products/produk4.jpg">
-    <div class="product-info">
-        <h2>🔥 PRODUK 8</h2>
-        <div class="promo-text">
-Deskripsi promo produk 8.
-        </div>
-        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
-    </div>
-</div>
-
-<div id="p9" class="product-card">
-    <img loading="eager" src="assets/products/produk4.jpg">
-    <div class="product-info">
-        <h2>🔥 PRODUK 9</h2>
-        <div class="promo-text">
-Deskripsi promo produk 9.
-        </div>
-        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
-    </div>
-</div>
-
-<div id="p10" class="product-card">
-    <img loading="eager" src="assets/products/produk4.jpg">
-    <div class="product-info">
-        <h2>🔥 PRODUK 10</h2>
-        <div class="promo-text">
-Deskripsi promo produk 10.
-        </div>
-        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
-    </div>
-</div>
-
-<div id="p11" class="product-card">
-    <img loading="eager" src="assets/products/produk4.jpg">
-    <div class="product-info">
-        <h2>🔥 PRODUK 11</h2>
-        <div class="promo-text">
-Deskripsi promo produk 11.
-        </div>
-        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
-    </div>
-</div>
-
-<div id="p12" class="product-card">
-    <img loading="eager" src="assets/products/produk4.jpg">
-    <div class="product-info">
-        <h2>🔥 PRODUK 12</h2>
-        <div class="promo-text">
-Deskripsi promo produk 12.
-        </div>
-        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
-    </div>
-</div>
-
-<div id="p13" class="product-card">
-    <img loading="eager" src="assets/products/produk4.jpg">
-    <div class="product-info">
-        <h2>🔥 PRODUK 13</h2>
-        <div class="promo-text">
-Deskripsi promo produk 13.
-        </div>
-        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
-    </div>
-</div>
-
-<div id="p14" class="product-card">
-    <img loading="eager" src="assets/products/produk4.jpg">
-    <div class="product-info">
-        <h2>🔥 PRODUK 14</h2>
-        <div class="promo-text">
-Deskripsi promo produk 14.
-        </div>
-        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
-    </div>
-</div>
-
-<div id="p15" class="product-card">
-    <img loading="eager" src="assets/products/produk4.jpg">
-    <div class="product-info">
-        <h2>🔥 PRODUK 15</h2>
-        <div class="promo-text">
-Deskripsi promo produk 15.
-        </div>
-        <button class="back-btn" onclick="showMenu()">⬅️ Kembali ke Menu</button>
-    </div>
+<!-- MODAL INFO -->
+<div id="infoModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <div class="modal-header" id="modalTitle">Nama Produk</div>
+    <div class="modal-body" id="modalBody">Fitur-fitur produk akan ditampilkan di sini. Silakan edit deskripsi di bagian data produk (variabel `products` dalam JavaScript).</div>
+  </div>
 </div>
 
 <script>
-    function showProduct(id) {
-        // Sembunyikan Header dan Menu
-        document.getElementById("header-area").style.display = "none";
-        document.getElementById("menu-area").style.display = "none";
-        
-        // Sembunyikan semua produk dulu untuk memastikan clean state
-        const products = document.querySelectorAll('.product-card');
-        products.forEach(p => p.style.display = 'none');
-        
-        // Tampilkan produk yang dipilih
-        const target = document.getElementById(id);
-        if(target) {
-            target.style.display = "block";
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        } else {
-            alert("Konten produk belum tersedia.");
-            showMenu();
+  // ================ KONFIGURASI ================
+  // GANTI DENGAN NOMOR WHATSAPP ANDA (pakai kode negara, contoh 62 untuk Indonesia)
+  const YOUR_WHATSAPP_NUMBER = "6281234567890"; // <-- GANTI DENGAN NOMOR WA ANDA!
+  
+  // ================ DATA PRODUK (8 PRODUK) ================
+  // Untuk gambar: gunakan "logo.png" (letakkan di folder yang sama dengan file HTML)
+  // Jika ingin logo berbeda tiap produk, ganti path-nya misal "logo1.png", "logo2.png", dst.
+  // Untuk FITUR: isi sendiri sesuai keinginan Anda di properti "fitur"
+  const products = [
+    {
+      id: 1,
+      nama: "AutoFormatter",
+      bintang: 4,
+      download: 268,
+      badge: "🔥 POPULAR",
+      gambar: "logo.png",  // semua pakai logo.png di local folder
+      fitur: "⭐ Fitur AutoFormatter ⭐\n\n✅ Format USB/SD Card 1 Klik\n✅ Support exFAT, FAT32, NTFS\n✅ Fix corrupt drive ringan\n✅ Mode Low Level Format\n\n💡 Dapat digunakan untuk flashdisk bermasalah."
+    },
+    {
+      id: 2,
+      nama: "Garuda Pro",
+      bintang: 4,
+      download: 610,
+      badge: "⚡ BEST SELLER",
+      gambar: "logo.png",
+      fitur: "⚡ Fitur Garuda Pro ⚡\n\n✅ Optimasi Windows All Version\n✅ One Click Cleaner & RAM Booster\n✅ Tweaks Network (ping stabil)\n✅ Game Booster + Power Plan\n\n🔧 Cocok untuk gaming & editing."
+    },
+    {
+      id: 3,
+      nama: "Xtreme Optimizer",
+      bintang: 5,
+      download: 1200,
+      badge: "✨ NEW",
+      gambar: "logo.png",
+      fitur: "🚀 Xtreme Optimizer 🚀\n\n✅ AI-Based Performance Tuner\n✅ Hapus bloatware otomatis\n✅ Increase FPS hingga 30%\n✅ Battery Saver untuk laptop\n\n📌 Rekomendasi untuk PC kentang."
+    },
+    {
+      id: 4,
+      nama: "NeoBoost AI",
+      bintang: 4,
+      download: 945,
+      badge: "🧠 AI POWERED",
+      gambar: "logo.png",
+      fitur: "🤖 NeoBoost AI 🤖\n\n✅ Smart Memory Cleaner\n✅ Prediksi resource hog\n✅ Auto Defrag SSD/HDD\n✅ One Click System Restore\n\n✨ Teknologi machine learning."
+    },
+    {
+      id: 5,
+      nama: "FlashCore Toolkit",
+      bintang: 4,
+      download: 540,
+      badge: "⚡ LIGHTNING",
+      gambar: "logo.png",
+      fitur: "⚡ FlashCore Toolkit ⚡\n\n✅ 40+ Utility Tools\n✅ Registry Cleaner Pro\n✅ Duplicate File Finder\n✅ Bootable USB Creator\n\n🛠️ All in one system toolkit."
+    },
+    {
+      id: 6,
+      nama: "Vexana Pro Mod",
+      bintang: 5,
+      download: 2100,
+      badge: "🎮 GAMING",
+      gambar: "logo.png",
+      fitur: "🎮 Vexana Pro Mod 🎮\n\n✅ Unlock Game Potential\n✅ Graphics Enhancer (ML, PUBG, FF)\n✅ Anti Lag + Ping Stabilizer\n✅ Macro recorder\n\n🔥 Wajib buat gamer competitive."
+    },
+    {
+      id: 7,
+      nama: "DarkScript Suite",
+      bintang: 4,
+      download: 788,
+      badge: "🕶️ PRO",
+      gambar: "logo.png",
+      fitur: "🕶️ DarkScript Suite 🕶️\n\n✅ Automation Script (Python/JS)\n✅ Batch File Converter\n✅ Advanced Clipboard Manager\n✅ Dark Mode for All Apps\n\n👨‍💻 Untuk developer & power user."
+    },
+    {
+      id: 8,
+      nama: "Zenith AIO Tool",
+      bintang: 5,
+      download: 1800,
+      badge: "🏆 ULTIMATE",
+      gambar: "logo.png",
+      fitur: "🏆 Zenith AIO Tool 🏆\n\n✅ 100+ Tools in One\n✅ Windows Activator + Office\n✅ Driver Booster Offline\n✅ Data Recovery + Backup\n\n💎 Paling komplit, all fitur lengkap."
+    }
+  ];
+
+  // Fungsi membuat bintang
+  function renderStars(rating) {
+    let full = Math.floor(rating);
+    let half = rating % 1 !== 0;
+    let stars = '';
+    for(let i=0; i<full; i++) stars += '★';
+    if(half) stars += '½';
+    while(stars.length < 5) stars += '☆';
+    return stars;
+  }
+
+  // Fungsi generate produk ke grid
+  function renderProducts() {
+    const grid = document.getElementById('productGrid');
+    grid.innerHTML = '';
+    products.forEach(prod => {
+      const card = document.createElement('div');
+      card.className = 'card-premium';
+      card.innerHTML = `
+        <div class="image-wrapper">
+          <img src="${prod.gambar}" alt="${prod.nama}" onerror="this.src='https://placehold.co/400x400?text=Logo+Not+Found'">
+          <div class="img-badge">${prod.badge}</div>
+        </div>
+        <div class="content-card">
+          <div class="title">${prod.nama}</div>
+          <div class="card-rating"><span class="stars">${renderStars(prod.bintang)}</span> <span class="download-count"><i class="fas fa-download"></i> ${prod.download}</span></div>
+          <div class="btn-group">
+            <button class="btn-premium info-btn" data-id="${prod.id}"><i class="fas fa-info-circle"></i> INFO</button>
+            <button class="btn-premium btn-wa order-btn" data-nama="${prod.nama}"><i class="fab fa-whatsapp"></i> ORDER VIA WA</button>
+            <a href="#" class="btn-premium btn-primary-glow tutorial-btn" data-nama="${prod.nama}"><i class="fas fa-play-circle"></i> TUTORIAL</a>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    // Event listener untuk tombol INFO (buka modal dengan fitur produk)
+    document.querySelectorAll('.info-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = parseInt(btn.getAttribute('data-id'));
+        const product = products.find(p => p.id === id);
+        if(product) {
+          document.getElementById('modalTitle').innerText = `📋 INFO - ${product.nama}`;
+          document.getElementById('modalBody').innerText = product.fitur;
+          document.getElementById('infoModal').style.display = 'flex';
         }
-    }
+      });
+    });
 
-    function showMenu() {
-        // Sembunyikan semua produk
-        const products = document.querySelectorAll('.product-card');
-        products.forEach(p => p.style.display = 'none');
-        
-        // Tampilkan Header dan Menu
-        document.getElementById("header-area").style.display = "block";
-        document.getElementById("menu-area").style.display = "flex";
-        window.scrollTo({top: 0, behavior: 'smooth'});
-    }
+    // Event listener untuk ORDER VIA WA (ganti semua tombol download jadi order wa)
+    document.querySelectorAll('.order-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const namaProduk = btn.getAttribute('data-nama');
+        const message = `Halo Kak Saya ingin ORDER produk ${namaProduk} dari KJSSTORE. Mohon info harga dan ketersediaan. Terima kasih.`;
+        const encodedMsg = encodeURIComponent(message);
+        const waUrl = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodedMsg}`;
+        window.open(waUrl, '_blank');
+      });
+    });
+
+    // Event untuk TUTORIAL (masih placeholder, nanti bisa ganti link)
+    document.querySelectorAll('.tutorial-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const nama = btn.getAttribute('data-nama');
+        alert(`🔧 Tutorial untuk ${nama} akan segera tersedia. Hubungi owner via WhatsApp untuk panduan lengkap.`);
+        // Bisa juga diarahkan ke link YouTube: window.open("https://youtube.com/...");
+      });
+    });
+  }
+
+  // Modal close handler
+  const modal = document.getElementById('infoModal');
+  const closeModal = document.querySelector('.close-modal');
+  closeModal.onclick = () => modal.style.display = 'none';
+  window.onclick = (e) => { if(e.target === modal) modal.style.display = 'none'; };
+
+  // Footer WA juga langsung ke nomor yang sama
+  document.getElementById('waFooterBtn').addEventListener('click', (e) => {
+    e.preventDefault();
+    const msg = "Halo min, saya mau cek info daftar harga reseller dan wilayah. Terima kasih.";
+    window.open(`https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+
+  // Inisialisasi
+  renderProducts();
 </script>
-
 </body>
 </html>
