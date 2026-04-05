@@ -132,28 +132,41 @@
     box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.7);
   }
 
+  /* PERBAIKAN: GAMBAR FULL TAMPIL TANPA CROP */
   .image-wrapper {
     position: relative;
-    background: radial-gradient(circle at 30% 20%, #0f1422, #010101);
-    padding: 12px;
+    background: #0a0f1c;
+    padding: 0;
+    overflow: hidden;
   }
+  
   .card-premium img {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    display: block;
     object-fit: contain;
-    border-radius: 20px;
-    transition: transform 0.3s ease;
     background: #0a0f1c;
-    padding: 8px;
+    transition: transform 0.3s ease;
   }
-  .card-premium:hover img {
-    transform: scale(1.02);
+  
+  /* Ukuran dinamis: biar gambarnya proporsional */
+  .card-premium img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+  
+  /* Tapi kalau gambar Anda sudah pas (poster), pakai contain biar full teksnya */
+  /* Saya pakai contain biar semua teks di gambar terbaca */
+  .card-premium img {
+    aspect-ratio: auto;
+    object-fit: contain;
+    min-height: 200px;
+    background: #0f1422;
   }
 
   .img-badge {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 12px;
+    right: 12px;
     background: #facc15;
     color: #0a0f1c;
     font-weight: bold;
