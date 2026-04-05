@@ -32,6 +32,7 @@
     border-radius: 8px;
   }
 
+  /* header premium */
   .header-premium {
     background: rgba(17, 24, 39, 0.75);
     backdrop-filter: blur(12px);
@@ -53,6 +54,7 @@
     gap: 12px;
   }
   
+  /* LOGO BULAT */
   .store-logo {
     width: 48px;
     height: 48px;
@@ -132,28 +134,41 @@
     box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.7);
   }
 
+  /* PERBAIKAN: GAMBAR FULL TAMPIL TANPA CROP */
   .image-wrapper {
     position: relative;
-    background: radial-gradient(circle at 30% 20%, #0f1422, #010101);
-    padding: 12px;
+    background: #0a0f1c;
+    padding: 0;
+    overflow: hidden;
   }
+  
   .card-premium img {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    display: block;
     object-fit: contain;
-    border-radius: 20px;
-    transition: transform 0.3s ease;
     background: #0a0f1c;
-    padding: 8px;
+    transition: transform 0.3s ease;
   }
-  .card-premium:hover img {
-    transform: scale(1.02);
+  
+  /* Ukuran dinamis: biar gambarnya proporsional */
+  .card-premium img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+  
+  /* Tapi kalau gambar Anda sudah pas (poster), pakai contain biar full teksnya */
+  /* Saya pakai contain biar semua teks di gambar terbaca */
+  .card-premium img {
+    aspect-ratio: auto;
+    object-fit: contain;
+    min-height: 200px;
+    background: #0f1422;
   }
 
   .img-badge {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 12px;
+    right: 12px;
     background: #facc15;
     color: #0a0f1c;
     font-weight: bold;
@@ -252,7 +267,7 @@
     color: black;
   }
 
-  /* ========== MODAL YANG DIPERBAIKI ========== */
+  /* MODAL STYLE */
   .modal {
     display: none;
     position: fixed;
@@ -260,149 +275,44 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(10px);
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(8px);
     z-index: 1000;
     justify-content: center;
     align-items: center;
-    padding: 20px;
   }
-  
   .modal-content {
-    background: linear-gradient(145deg, #111827, #0f172a);
+    background: #111827;
     border-radius: 32px;
-    max-width: 550px;
-    width: 100%;
-    max-height: 85vh;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgba(250, 204, 21, 0.3);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(250, 204, 21, 0.1);
-    animation: modalPop 0.3s ease-out;
+    max-width: 500px;
+    width: 90%;
+    padding: 24px;
+    border: 1px solid #facc15;
+    box-shadow: 0 25px 50px -12px black;
+    position: relative;
   }
-  
-  @keyframes modalPop {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  
   .modal-header {
-    font-size: 1.4rem;
-    font-weight: 800;
-    padding: 20px 24px 12px 24px;
-    color: #facc15;
-    border-bottom: 1px solid rgba(250, 204, 21, 0.2);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
-  }
-  
-  .modal-header i {
     font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #facc15;
   }
-  
-  /* SCROLL AREA - INI YANG PENTING */
-  .modal-body-scroll {
-    flex: 1;
-    overflow-y: auto;
-    padding: 20px 24px;
-    color: #e2e8f0;
-    line-height: 1.7;
+  .modal-body {
+    color: #cbd5e6;
+    line-height: 1.6;
+    white-space: pre-wrap;
     font-size: 0.9rem;
   }
-  
-  /* Styling untuk teks di dalam modal */
-  .modal-body-scroll p {
-    margin-bottom: 12px;
-  }
-  
-  .modal-body-scroll .section-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #facc15;
-    margin: 16px 0 8px 0;
-    display: block;
-  }
-  
-  .modal-body-scroll .feature-list {
-    list-style: none;
-    padding-left: 0;
-  }
-  
-  .modal-body-scroll .feature-list li {
-    padding: 6px 0;
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  
-  .modal-body-scroll .feature-list li i {
-    color: #06b6d4;
-    font-size: 0.85rem;
-    margin-top: 3px;
-  }
-  
-  .modal-body-scroll hr {
-    border-color: rgba(250, 204, 21, 0.15);
-    margin: 16px 0;
-  }
-  
   .close-modal {
     position: absolute;
     top: 16px;
     right: 20px;
-    font-size: 28px;
+    font-size: 24px;
     cursor: pointer;
-    color: #94a3b8;
-    transition: 0.2s;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.3);
-    z-index: 10;
+    color: #facc15;
   }
   .close-modal:hover {
-    color: #facc15;
-    background: rgba(250, 204, 21, 0.1);
-  }
-  
-  .modal-footer {
-    padding: 16px 24px 24px 24px;
-    border-top: 1px solid rgba(250, 204, 21, 0.15);
-    flex-shrink: 0;
-  }
-  
-  .modal-wa-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: linear-gradient(95deg, #25D366, #128C7E);
-    padding: 12px 20px;
-    border-radius: 60px;
-    text-decoration: none;
     color: white;
-    font-weight: 700;
-    font-size: 0.9rem;
-    transition: 0.2s;
-    width: 100%;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .modal-wa-btn:hover {
-    transform: scale(1.02);
-    background: linear-gradient(95deg, #20b859, #075e54);
   }
 
   .footer-premium {
@@ -453,9 +363,6 @@
     .btn-premium { width: 100%; }
     .store-name { font-size: 1.3rem; }
     .store-logo { width: 40px; height: 40px; }
-    .modal-header { font-size: 1.1rem; padding: 16px 20px 8px 20px; }
-    .modal-body-scroll { padding: 16px 20px; }
-    .modal-footer { padding: 12px 20px 20px 20px; }
   }
 </style>
 </head>
