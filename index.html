@@ -1,524 +1,558 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>KJS STORE | PREMIUM DASHBOARD</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    background: radial-gradient(circle at 10% 20%, #0a0f1c, #03060c);
-    font-family: 'Inter', sans-serif;
-    color: #edf2ff;
-    line-height: 1.4;
-    padding: 0 0 32px 0;
-  }
-
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #111827;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #facc15;
-    border-radius: 8px;
-  }
-
-  .header-premium {
-    background: rgba(17, 24, 39, 0.75);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(250, 204, 21, 0.25);
-    padding: 16px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  
-  .brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  
-  .store-logo {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    object-fit: cover;
-    background: #0f1422;
-    border: 2px solid #facc15;
-    box-shadow: 0 0 12px rgba(250, 204, 21, 0.3);
-  }
-  
-  .brand-text {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .store-name {
-    font-size: 1.7rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, #FFF5C4, #facc15);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    letter-spacing: -0.3px;
-  }
-  
-  .badge-verified {
-    font-size: 0.7rem;
-    background: rgba(250, 204, 21, 0.15);
-    border-radius: 40px;
-    padding: 3px 10px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    width: fit-content;
-    margin-top: 5px;
-  }
-  
-  .rating-header {
-    background: #1e293b;
-    padding: 6px 14px;
-    border-radius: 60px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  }
-  .rating-header i {
-    color: #facc15;
-    margin-right: 6px;
-  }
-
-  .container-premium {
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 24px 20px;
-  }
-
-  .grid-premium {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px 18px;
-  }
-
-  .card-premium {
-    background: rgba(18, 25, 40, 0.75);
-    backdrop-filter: blur(4px);
-    border-radius: 28px;
-    border: 1px solid rgba(250, 204, 21, 0.2);
-    overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    box-shadow: 0 15px 30px -12px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-  }
-  .card-premium:hover {
-    transform: translateY(-6px);
-    border-color: rgba(250, 204, 21, 0.6);
-    box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.7);
-  }
-
-  /* GAMBAR: bisa diklik */
-  .image-wrapper {
-    position: relative;
-    background: #0a0f1c;
-    padding: 16px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .card-premium img {
-    width: 100%;
-    max-width: 260px;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    object-fit: contain;
-    background: #0f1422;
-    transition: transform 0.3s ease;
-    border-radius: 16px;
-    pointer-events: none; /* biar klik ke wrapper */
-  }
-  
-  .image-wrapper:hover img {
-    transform: scale(1.02);
-  }
-  
-  .img-badge {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: #facc15;
-    color: #0a0f1c;
-    font-weight: bold;
-    font-size: 0.7rem;
-    padding: 4px 10px;
-    border-radius: 40px;
-    box-shadow: 0 2px 8px black;
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  .content-card {
-    padding: 16px 14px 18px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .title {
-    font-weight: 700;
-    font-size: 1.2rem;
-    margin-bottom: 6px;
-    background: linear-gradient(135deg, #fff, #e2e8f0);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  
-  /* HARGA STYLE */
-  .price {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #facc15;
-    margin: 6px 0 4px 0;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .price i {
-    font-size: 0.8rem;
-    color: #06b6d4;
-  }
-  .price span {
-    background: linear-gradient(135deg, #facc15, #ffb347);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  
-  .card-rating {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.7rem;
-    color: #cbd5e6;
-    margin-bottom: 12px;
-  }
-  .stars {
-    color: #facc15;
-    letter-spacing: 2px;
-  }
-  .download-count {
-    background: #0f172a;
-    padding: 2px 8px;
-    border-radius: 30px;
-    font-size: 0.65rem;
-  }
-
-  .btn-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 12px;
-  }
-  .btn-premium {
-    flex: 1;
-    text-align: center;
-    padding: 8px 5px;
-    border-radius: 40px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s;
-    background: rgba(30, 41, 59, 0.8);
-    color: #b9e2ff;
-    border: 0.5px solid rgba(6, 182, 212, 0.3);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-  }
-  .btn-premium i {
-    font-size: 0.7rem;
-  }
-  .btn-premium:hover {
-    background: #06b6d4;
-    color: #0a0f1a;
-    border-color: #06b6d4;
-    transform: scale(0.97);
-  }
-  .btn-wa {
-    background: linear-gradient(95deg, #25D366, #128C7E);
-    color: white;
-    border: none;
-    font-weight: 700;
-  }
-  .btn-wa:hover {
-    background: #20b859;
-    color: white;
-  }
-  .btn-primary-glow {
-    background: linear-gradient(95deg, #facc15, #eab308);
-    color: #0a0f1c;
-    border: none;
-    font-weight: 700;
-  }
-  .btn-primary-glow:hover {
-    background: #ffdf5e;
-    color: black;
-  }
-
-  /* ========== MODAL INFO ========== */
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .modal-content {
-    background: linear-gradient(145deg, #111827, #0f172a);
-    border-radius: 32px;
-    max-width: 550px;
-    width: 100%;
-    max-height: 85vh;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgba(250, 204, 21, 0.3);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-    animation: modalPop 0.3s ease-out;
-  }
-  
-  @keyframes modalPop {
-    from {
-      opacity: 0;
-      transform: scale(0.95);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>KJS STORE | PREMIUM DASHBOARD</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    to {
-      opacity: 1;
-      transform: scale(1);
+
+    body {
+      background: radial-gradient(circle at 10% 20%, #0a0f1c, #03060c);
+      font-family: 'Inter', sans-serif;
+      color: #edf2ff;
+      line-height: 1.4;
+      padding: 0 0 32px 0;
     }
-  }
-  
-  .modal-header {
-    font-size: 1.3rem;
-    font-weight: 800;
-    padding: 20px 24px 12px 24px;
-    color: #facc15;
-    border-bottom: 1px solid rgba(250, 204, 21, 0.2);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
-  }
-  
-  .modal-header i {
-    font-size: 1.4rem;
-  }
-  
-  .modal-body-scroll {
-    flex: 1;
-    overflow-y: auto;
-    padding: 20px 24px;
-    color: #e2e8f0;
-    line-height: 1.7;
-    font-size: 0.85rem;
-  }
-  
-  .modal-body-scroll::-webkit-scrollbar {
-    width: 4px;
-  }
-  
-  .modal-body-scroll::-webkit-scrollbar-track {
-    background: #1e293b;
-    border-radius: 10px;
-  }
-  
-  .modal-body-scroll::-webkit-scrollbar-thumb {
-    background: #facc15;
-    border-radius: 10px;
-  }
-  
-  .modal-footer {
-    padding: 16px 24px 24px 24px;
-    border-top: 1px solid rgba(250, 204, 21, 0.15);
-    flex-shrink: 0;
-  }
-  
-  .modal-wa-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: linear-gradient(95deg, #25D366, #128C7E);
-    padding: 12px 20px;
-    border-radius: 60px;
-    text-decoration: none;
-    color: white;
-    font-weight: 700;
-    font-size: 0.9rem;
-    transition: 0.2s;
-    width: 100%;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .modal-wa-btn:hover {
-    transform: scale(1.02);
-    background: linear-gradient(95deg, #20b859, #075e54);
-  }
-  
-  .close-modal {
-    position: absolute;
-    top: 16px;
-    right: 20px;
-    font-size: 28px;
-    cursor: pointer;
-    color: #94a3b8;
-    transition: 0.2s;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.3);
-    z-index: 10;
-  }
-  .close-modal:hover {
-    color: #facc15;
-    background: rgba(250, 204, 21, 0.1);
-  }
 
-  /* ========== LIGHTBOX MODAL GAMBAR ========== */
-  .lightbox-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    z-index: 2000;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .lightbox-content {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-    border-radius: 16px;
-    box-shadow: 0 0 50px rgba(250, 204, 21, 0.3);
-    border: 2px solid rgba(250, 204, 21, 0.5);
-  }
-  
-  .close-lightbox {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 40px;
-    color: #facc15;
-    cursor: pointer;
-    transition: 0.2s;
-    background: rgba(0,0,0,0.5);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .close-lightbox:hover {
-    background: rgba(250, 204, 21, 0.2);
-    transform: scale(1.1);
-  }
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #111827;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #facc15;
+      border-radius: 8px;
+    }
 
-  .footer-premium {
-    margin-top: 48px;
-    background: rgba(9, 14, 26, 0.8);
-    backdrop-filter: blur(12px);
-    border-radius: 32px;
-    border: 1px solid rgba(250, 204, 21, 0.25);
-    padding: 24px 20px;
-    text-align: center;
-  }
-  .wilayah-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    background: linear-gradient(120deg, #facc15, #ffb347);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    margin-bottom: 12px;
-  }
-  .btn-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: #1e293b;
-    padding: 10px 24px;
-    border-radius: 60px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: #facc15;
-    border: 1px solid #facc15;
-    transition: 0.2s;
-    margin-top: 8px;
-  }
-  .btn-cta:hover {
-    background: #facc15;
-    color: #0a0f1c;
-  }
+    .header-premium {
+      background: rgba(17, 24, 39, 0.75);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(250, 204, 21, 0.25);
+      padding: 16px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .store-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #0f1422;
+      border: 2px solid #facc15;
+      box-shadow: 0 0 12px rgba(250, 204, 21, 0.3);
+    }
+    
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .store-name {
+      font-size: 1.7rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #FFF5C4, #facc15);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+    
+    .badge-verified {
+      font-size: 0.7rem;
+      background: rgba(250, 204, 21, 0.15);
+      border-radius: 40px;
+      padding: 3px 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: fit-content;
+      margin-top: 5px;
+    }
+    
+    .rating-header {
+      background: #1e293b;
+      padding: 6px 14px;
+      border-radius: 60px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .rating-header i {
+      color: #facc15;
+      margin-right: 6px;
+    }
 
-  @media (min-width: 760px) {
-    .grid-premium { grid-template-columns: repeat(3, 1fr); gap: 28px; }
-  }
-  @media (min-width: 1024px) {
-    .grid-premium { grid-template-columns: repeat(4, 1fr); }
-  }
-  @media (max-width: 480px) {
-    .btn-group { flex-direction: column; }
-    .btn-premium { width: 100%; }
-    .store-name { font-size: 1.3rem; }
-    .store-logo { width: 40px; height: 40px; }
-    .modal-header { font-size: 1.1rem; padding: 16px 20px 8px 20px; }
-    .modal-body-scroll { padding: 16px 20px; }
-    .modal-footer { padding: 12px 20px 20px 20px; }
+    .container-premium {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 24px 20px;
+    }
+
+    .grid-premium {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px 18px;
+    }
+
+    .card-premium {
+      background: rgba(18, 25, 40, 0.75);
+      backdrop-filter: blur(4px);
+      border-radius: 28px;
+      border: 1px solid rgba(250, 204, 21, 0.2);
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      box-shadow: 0 15px 30px -12px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+    }
+    .card-premium:hover {
+      transform: translateY(-6px);
+      border-color: rgba(250, 204, 21, 0.6);
+      box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.7);
+    }
+
+    .image-wrapper {
+      position: relative;
+      background: #0a0f1c;
+      padding: 16px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    
     .card-premium img {
-      max-width: 180px;
+      width: 100%;
+      max-width: 260px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      object-fit: contain;
+      background: #0f1422;
+      transition: transform 0.3s ease;
+      border-radius: 16px;
+      pointer-events: none;
     }
-  }
-</style>
+    
+    .image-wrapper:hover img {
+      transform: scale(1.02);
+    }
+    
+    .img-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #facc15;
+      color: #0a0f1c;
+      font-weight: bold;
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      border-radius: 40px;
+      box-shadow: 0 2px 8px black;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .content-card {
+      padding: 16px 14px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .title {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+      margin-bottom: 6px;
+      background: linear-gradient(135deg, #fff, #e2e8f0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-transform: uppercase;
+    }
+    
+    .price {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #facc15;
+      margin: 6px 0 4px 0;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .price i {
+      font-size: 0.8rem;
+      color: #06b6d4;
+    }
+    .price span {
+      background: linear-gradient(135deg, #facc15, #ffb347);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .card-rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      color: #cbd5e6;
+      margin-bottom: 12px;
+    }
+    .stars {
+      color: #facc15;
+      letter-spacing: 2px;
+    }
+    .download-count {
+      background: #0f172a;
+      padding: 2px 8px;
+      border-radius: 30px;
+      font-size: 0.65rem;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .btn-premium {
+      flex: 1;
+      text-align: center;
+      padding: 8px 5px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      background: rgba(30, 41, 59, 0.8);
+      color: #b9e2ff;
+      border: 0.5px solid rgba(6, 182, 212, 0.3);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    .btn-premium i {
+      font-size: 0.7rem;
+    }
+    .btn-premium:hover {
+      background: #06b6d4;
+      color: #0a0f1a;
+      border-color: #06b6d4;
+      transform: scale(0.97);
+    }
+    .btn-wa {
+      background: linear-gradient(95deg, #25D366, #128C7E);
+      color: white;
+      border: none;
+      font-weight: 700;
+    }
+    .btn-wa:hover {
+      background: #20b859;
+      color: white;
+    }
+    .btn-primary-glow {
+      background: linear-gradient(95deg, #facc15, #eab308);
+      color: #0a0f1c;
+      border: none;
+      font-weight: 700;
+    }
+    .btn-primary-glow:hover {
+      background: #ffdf5e;
+      color: black;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    
+    .modal-content {
+      background: linear-gradient(145deg, #111827, #0f172a);
+      border-radius: 32px;
+      max-width: 550px;
+      width: 100%;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(250, 204, 21, 0.3);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+      animation: modalPop 0.3s ease-out;
+    }
+    
+    @keyframes modalPop {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    
+    .modal-header {
+      font-size: 1.3rem;
+      font-weight: 800;
+      padding: 20px 24px 12px 24px;
+      color: #facc15;
+      border-bottom: 1px solid rgba(250, 204, 21, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    
+    .modal-header i {
+      font-size: 1.4rem;
+    }
+    
+    .modal-body-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+      color: #e2e8f0;
+      line-height: 1.7;
+      font-size: 0.85rem;
+    }
+    
+    .modal-body-scroll::-webkit-scrollbar {
+      width: 4px;
+    }
+    
+    .modal-body-scroll::-webkit-scrollbar-track {
+      background: #1e293b;
+      border-radius: 10px;
+    }
+    
+    .modal-body-scroll::-webkit-scrollbar-thumb {
+      background: #facc15;
+      border-radius: 10px;
+    }
+    
+    .modal-footer {
+      padding: 16px 24px 24px 24px;
+      border-top: 1px solid rgba(250, 204, 21, 0.15);
+      flex-shrink: 0;
+    }
+    
+    .modal-wa-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(95deg, #25D366, #128C7E);
+      padding: 12px 20px;
+      border-radius: 60px;
+      text-decoration: none;
+      color: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: 0.2s;
+      width: 100%;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .modal-wa-btn:hover {
+      transform: scale(1.02);
+      background: linear-gradient(95deg, #20b859, #075e54);
+    }
+    
+    .close-modal {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-size: 28px;
+      cursor: pointer;
+      color: #94a3b8;
+      transition: 0.2s;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+    .close-modal:hover {
+      color: #facc15;
+      background: rgba(250, 204, 21, 0.1);
+    }
+
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 16px;
+      box-shadow: 0 0 50px rgba(250, 204, 21, 0.3);
+      border: 2px solid rgba(250, 204, 21, 0.5);
+    }
+    
+    .close-lightbox {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      color: #facc15;
+      cursor: pointer;
+      transition: 0.2s;
+      background: rgba(0,0,0,0.5);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .close-lightbox:hover {
+      background: rgba(250, 204, 21, 0.2);
+      transform: scale(1.1);
+    }
+
+    .footer-premium {
+      margin-top: 48px;
+      background: rgba(9, 14, 26, 0.6);
+      backdrop-filter: blur(8px);
+      border-radius: 32px;
+      border: 1px solid rgba(250, 204, 21, 0.15);
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    /* Kontak premium - tampilan samar/tipis */
+    .premium-contact {
+      margin-bottom: 16px;
+    }
+    .premium-contact p {
+      font-size: 0.7rem;
+      color: #6b7280;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .contact-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .contact-icons a {
+      color: #6b7280;
+      font-size: 0.75rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .contact-icons a:hover {
+      color: #9ca3af;
+    }
+    .contact-icons i {
+      font-size: 0.85rem;
+    }
+    .note-text {
+      font-size: 0.65rem;
+      color: #4b5563;
+      margin-top: 14px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(250, 204, 21, 0.1);
+    }
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #1e293b;
+      padding: 10px 24px;
+      border-radius: 60px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #facc15;
+      border: 1px solid #facc15;
+      transition: 0.2s;
+      margin: 12px 0 8px;
+    }
+    .btn-cta:hover {
+      background: #facc15;
+      color: #0a0f1c;
+    }
+
+    @media (min-width: 760px) {
+      .grid-premium { grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    }
+    @media (min-width: 1024px) {
+      .grid-premium { grid-template-columns: repeat(4, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .btn-group { flex-direction: column; }
+      .btn-premium { width: 100%; }
+      .store-name { font-size: 1.3rem; }
+      .store-logo { width: 40px; height: 40px; }
+      .modal-header { font-size: 1.1rem; padding: 16px 20px 8px 20px; }
+      .modal-body-scroll { padding: 16px 20px; }
+      .modal-footer { padding: 12px 20px 20px 20px; }
+      .card-premium img {
+        max-width: 180px;
+      }
+      .title {
+        font-size: 0.85rem;
+      }
+      .contact-icons { gap: 12px; }
+      .contact-icons a { font-size: 0.65rem; }
+    }
+  </style>
 </head>
 <body>
 
@@ -540,29 +574,33 @@
   <div class="grid-premium" id="productGrid"></div>
 
   <div class="footer-premium">
-    <div class="wilayah-title"><i class="fas fa-globe-asia"></i> DAFTAR ALL WILAYAH (harga reseller)</div>
-    <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 15px 0 10px;">
-      <span style="background:#0f172a; padding:5px 12px; border-radius:40px; font-size:0.75rem;"><i class="fas fa-map-marker-alt"></i> Jabodetabek</span>
-      <span style="background:#0f172a; padding:5px 12px; border-radius:40px; font-size:0.75rem;"><i class="fas fa-map-marker-alt"></i> Jawa Tengah</span>
-      <span style="background:#0f172a; padding:5px 12px; border-radius:40px; font-size:0.75rem;"><i class="fas fa-map-marker-alt"></i> Jawa Timur</span>
-      <span style="background:#0f172a; padding:5px 12px; border-radius:40px; font-size:0.75rem;"><i class="fas fa-map-marker-alt"></i> Sumatera</span>
-      <span style="background:#0f172a; padding:5px 12px; border-radius:40px; font-size:0.75rem;"><i class="fas fa-map-marker-alt"></i> Kalimantan</span>
-      <span style="background:#0f172a; padding:5px 12px; border-radius:40px; font-size:0.75rem;"><i class="fas fa-map-marker-alt"></i> Sulawesi</span>
+    <!-- Kontak Premium - Tampilan Samar / Tipis -->
+    <div class="premium-contact">
+      <p><i class="fas fa-crown"></i> CONTACT ADMIN </p>
+      <div class="contact-icons">
+        <a href="https://wa.me/6285943111681" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="https://t.me/kjsstore" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
+        <a href="mailto:kjsstore@example.com"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://instagram.com/kjsstore" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="#" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+        <a href="#" target="_blank"><i class="fab fa-snapchat"></i> Snapchat</a>
+      </div>
     </div>
-    <a href="#" class="btn-cta" id="waFooterBtn"><i class="fab fa-whatsapp"></i> CEK INFO HARGA RESELLER <i class="fas fa-arrow-right"></i></a>
-    <div style="margin-top: 20px; font-size: 0.7rem; opacity: 0.7; padding-top: 16px;">
-      <i class="fas fa-lock"></i> Garansi lifetime update | Support 24/7
+    
+    <a href="#" class="btn-cta" id="waFooterBtn"><i class="fab fa-whatsapp"></i> ADMIN KJS <i class="fas fa-arrow-right"></i></a>
+    
+    <div class="note-text">
+      <i class="fas fa-info-circle"></i> Note: Untuk info reseller & kerjasama, silakan hubungi kontak di atas. Support 24/7.
     </div>
   </div>
 </div>
 
-<!-- MODAL INFO PRODUK -->
 <div id="infoModal" class="modal">
   <div class="modal-content">
     <span class="close-modal">&times;</span>
     <div class="modal-header">
       <i class="fas fa-info-circle"></i>
-      <span id="modalTitle">Nama Produk</span>
+      <span id="modalTitle">NAMA PRODUK</span>
     </div>
     <div class="modal-body-scroll" id="modalBody"></div>
     <div class="modal-footer">
@@ -573,21 +611,18 @@
   </div>
 </div>
 
-<!-- LIGHTBOX MODAL GAMBAR -->
 <div id="lightboxModal" class="lightbox-modal">
   <span class="close-lightbox">&times;</span>
   <img id="lightboxImg" class="lightbox-content" alt="Preview">
 </div>
 
 <script>
-  // KONFIGURASI
   const YOUR_WHATSAPP_NUMBER = "6285943111681";
   
-  // DATA PRODUK
   const products = [
     {
       id: 1,
-      nama: "AutoFormatter",
+      nama: "AUTOFORMATTER",
       bintang: 5,
       download: "150",
       badge: "🔥 HOT",
@@ -597,7 +632,7 @@
     },
     {
       id: 2,
-      nama: "Garuda Pro",
+      nama: "GARUDA PRO",
       bintang: 4,
       download: "610",
       badge: "🔥 HOT",
@@ -607,7 +642,7 @@
     },
     {
       id: 3,
-      nama: "Kalkulator Kpj",
+      nama: "KALKULATOR KPJ",
       bintang: 5,
       download: "200",
       badge: "🔥 HOT",
@@ -617,7 +652,7 @@
     },
     {
       id: 4,
-      nama: "KeraSakti",
+      nama: "KERASAKTI",
       bintang: 4,
       download: "331",
       badge: "🔥 HOT",
@@ -627,43 +662,43 @@
     },
     {
       id: 5,
-      nama: "FlashCore Toolkit",
+      nama: "SC TUNNELING",
       bintang: 4,
       download: "540",
-      badge: "⚡ LIGHTNING",
+      badge: "🚀 TUNNEL",
       gambar: "assets/produk5.png",
-      harga: "Rp 350rb",
-      fitur: "⚡ FlashCore Toolkit ⚡\n\n✅ 40+ Utility Tools dalam 1 paket\n✅ Registry Cleaner Pro\n✅ Duplicate File Finder\n✅ Bootable USB Creator\n✅ Disk Partition Manager\n✅ Junk File Cleaner\n✅ Privacy Protector\n\n🛠️ All in one system toolkit untuk Windows\n\n💎 Ringan & cepat, tidak membebani sistem\n\n💰 HARGA: Rp 350rb"
+      harga: "Rp 100rb",
+      fitur: "🚀 OPEN SEWA SC TUNNELING - KJS STORE 🚀\n\n━━━━━━━━━━━━━━━━━━\n💻 SUPPORT SYSTEM\n━━━━━━━━━━━━━━━━━━\n✅ Debian & Ubuntu Server\n⚡ Full Otomatis (Tinggal Pakai)\n🔥 Stabil & Mudah Digunakan\n\n━━━━━━━━━━━━━━━━━━\n⚙️ FITUR UTAMA\n━━━━━━━━━━━━━━━━━━\n✅ SSH / OpenVPN\n✅ XRAY Core\n✅ NGINX & HAProxy\n✅ Bot Telegram\n✅ Backup & Restore\n\n💡 Mudah Digunakan\n💡 Fitur Lengkap\n💡 Stabil 24 Jam\n💡 Support Pemula\n\n━━━━━━━━━━━━━━━━━━\n💰 HARGA SEWA\n━━━━━━━━━━━━━━━━━━\n💸 1 Bulan : 10K\n💸 2 Bulan : 20K\n\n⚡ Server Aktif 24 Jam Nonstop\n\n━━━━━━━━━━━━━━━━━━\n📸 RIVIEW\n━━━━━━━━━━━━━━━━━━\n👉 https://drive.google.com/drive/folders/1nOmO9TIfpFAd_LvQ5gVDQP4uHiOSLN30\n\n━━━━━━━━━━━━━━━━━━\n📩 ORDER SEKARANG\n━━━━━━━━━━━━━━━━━━\n👉 Hubungi Admin\n📲 Via Telegram / WhatsApp\n\n⭐ BY KJS STORE ⭐"
     },
     {
       id: 6,
-      nama: "Vexana Pro Mod",
+      nama: "BOT WA/TELEGRAM",
       bintang: 5,
       download: "2.1k+",
-      badge: "🎮 GAMING",
+      badge: "🤖 BOT",
       gambar: "assets/produk6.png",
-      harga: "Rp 250rb",
-      fitur: "🎮 VEXANA PRO MOD 🎮\n\n✅ Unlock Game Potential\n✅ Graphics Enhancer (ML, PUBG, FF)\n✅ Anti Lag + Ping Stabilizer\n✅ Macro recorder\n✅ Sensitivity Booster\n✅ No Root Required\n✅ Anti Ban System\n\n🔥 Wajib buat gamer competitive!\n\n📌 Support semua game Mobile Legends, PUBG Mobile, Free Fire, COD Mobile\n\n💰 HARGA: Rp 250rb"
+      harga: "Rp 200rb",
+      fitur: "🚀 OPEN BOT STORE - KJS STORE 🚀\n\n━━━━━━━━━━━━━━━━━━\n🤖 LAYANAN BOT\n━━━━━━━━━━━━━━━━━━\n📱 Support WhatsApp & Telegram\n🤖 Sewa Script Bot Siap Pakai\n\n━━━━━━━━━━━━━━━━━━\n🛠️ JASA & DEVELOPMENT\n━━━━━━━━━━━━━━━━━━\n✅ Perbaikan Script Bot Error\n✅ Pasang & Update Fitur Bot\n✅ Pembuatan Website / Project\n✅ Aplikasi & Server Custom\n\n━━━━━━━━━━━━━━━━━━\n🔥 KEUNGGULAN\n━━━━━━━━━━━━━━━━━━\n⚡ Proses Cepat & Profesional\n💻 Support Full Sampai Jalan\n🔒 Aman & Terpercaya\n📈 Cocok untuk Bisnis / Otomasi\n\n━━━━━━━━━━━━━━━━━━\n📩 ORDER SEKARANG\n━━━━━━━━━━━━━━━━━━\n👉 Hubungi Admin\n📲 Via Telegram / WhatsApp\n\n⭐ BY KJS STORE ⭐"
     },
     {
       id: 7,
-      nama: "DarkScript Suite",
+      nama: "JASA DOKUMEN",
       bintang: 4,
       download: "788",
       badge: "🕶️ PRO",
       gambar: "assets/produk7.png",
-      harga: "Rp 500rb",
-      fitur: "🕶️ DarkScript Suite 🕶️\n\n✅ Automation Script (Python/JS)\n✅ Batch File Converter\n✅ Advanced Clipboard Manager\n✅ Dark Mode for All Apps\n✅ Code Optimizer\n✅ Syntax Highlighter\n✅ Multi-language Support\n\n👨‍💻 Untuk developer & power user\n\n💡 Tingkatkan produktivitas coding Anda!\n\n💰 HARGA: Rp 500rb"
+      harga: "JAFRI ADMIN",
+      fitur: "🚀 JASA PEMBUATAN & PENGURUSAN DOKUMEN 🚀\n\n💼 Cepat • Aman • Terpercaya\n\nButuh urus dokumen tapi ribet? Tenang, semua bisa kami bantu! ✅\nProses cepat, tanpa ribet, dan privasi dijamin aman 🔒\n\n━━━━━━━━━━━━━━━━━━\n📌 LAYANAN KAMI\n━━━━━━━━━━━━━━━━━━\n✅ NPWP & Aktivasi NPWP\n✅ Vaksin 1 • 2 • 3\n✅ SKCK\n✅ CV / Daftar Riwayat Hidup\n✅ Surat Sehat / Surat Sakit\n✅ Cek Valid KTP\n✅ Pembuatan Akun BPU\n✅ SIAK\n✅ Slip Gaji\n✅ Lacak KPJ\n✅ Pencairan BPJS\n✅ BPJS Kesehatan\n✅ Gestun All Paylater\n✅ ID Card\n✅ Undangan Pernikahan\n✅ Kartu Kuning / Disnaker\n✅ Ganda Email (1 jadi banyak)\n✅ Nokos All Negara\n\n🎓 Ijazah Tembak OF\n🎓 Ijazah Resmi Paket OF\n📄 Paklaring\n🪪 Edit KTP Buram / Rusak\n💡 Rekening Listrik OF\n\n━━━━━━━━━━━━━━━━━━\n🔥 KEUNGGULAN\n━━━━━━━━━━━━━━━━━━\n⚡ Proses Cepat & Anti Ribet\n🌐 Bisa Online Tanpa Datang\n🔒 Aman & Terpercaya\n📞 Support Sampai Selesai\n\n━━━━━━━━━━━━━━━━━━\n📩 ORDER SEKARANG\n━━━━━━━━━━━━━━━━━━\n📲 WhatsApp: 0854-3111-1681\n💬 Konsultasi GRATIS, tanya-tanya santai boleh!\n\n⭐ BY KJS STORE ⭐"
     },
     {
       id: 8,
-      nama: "Zenith AIO Tool",
+      nama: "LAYANAN BPJS",
       bintang: 5,
       download: "1.8k+",
       badge: "🏆 ULTIMATE",
       gambar: "assets/produk8.png",
-      harga: "Rp 850rb",
-      fitur: "🏆 ZENITH AIO TOOL 🏆\n\n✅ 100+ Tools in One Package\n✅ Windows Activator + Office\n✅ Driver Booster Offline\n✅ Data Recovery + Backup\n✅ System Cleaner Pro\n✅ Malware Scanner\n✅ Privacy Protector\n✅ Windows Tweaker\n\n💎 PALING KOMPLIT! Semua fitur lengkap dalam satu aplikasi\n\n🔥 Solusi untuk semua kebutuhan PC Anda!\n\n💰 HARGA: Rp 850rb"
+      harga: "JAFRI ADMIN",
+      fitur: "🚀 LAYANAN BPJS KETENAGAKERJAAN 🚀\n\n💼 Cepat • Akurat • Terpercaya\n\nButuh cek atau urus data BPJS tanpa ribet? Tenang, semua bisa kami bantu! ⚡\nProses cepat, aman, dan full online 🔒\n\n━━━━━━━━━━━━━━━━━━\n⚙️ FITUR LAYANAN\n━━━━━━━━━━━━━━━━━━\n💰 Cek Saldo BPJS\n📄 Siap 3 Lembar\n✅ Cek Akun Aktif BPJSTK\n📍 Lacak Sensor\n🔍 Lacak Tabel / Valid\n✔️ Validasi Data\n🛡️ Reskun (Restore Akun)\n🔄 Reset Bio\n\n━━━━━━━━━━━━━━━━━━\n🔥 KEUNGGULAN\n━━━━━━━━━━━━━━━━━━\n⚡ Proses Cepat & Real Time\n🔒 Aman & Privasi Terjaga\n📊 Data Akurat & Valid\n💻 Bisa Full Online\n📞 Support Sampai Selesai\n\n━━━━━━━━━━━━━━━━━━\n📌 COCOK UNTUK\n━━━━━━━━━━━━━━━━━━\n✔ Cek Status BPJS\n✔ Persiapan Pencairan\n✔ Validasi Data Kerja\n✔ Kebutuhan Administrasi\n\n━━━━━━━━━━━━━━━━━━\n📩 ORDER SEKARANG\n━━━━━━━━━━━━━━━━━━\n👉 Hubungi Admin\n📲 Via WhatsApp / Telegram\n\n⭐ BY KJS STORE ⭐"
     }
   ];
 
@@ -699,11 +734,9 @@
       .replace(/📦/g, '<span style="color:#06b6d4;">📦</span>')
       .replace(/🔹/g, '<span style="color:#facc15;">🔹</span>')
       .replace(/💰/g, '<span style="color:#facc15;">💰</span>');
-    
     return `<div style="white-space: normal;">${formatted}</div>`;
   }
 
-  // Fungsi untuk buka lightbox gambar
   function openLightbox(imgSrc) {
     const lightbox = document.getElementById('lightboxModal');
     const lightboxImg = document.getElementById('lightboxImg');
@@ -741,7 +774,6 @@
       grid.appendChild(card);
     });
 
-    // Event klik gambar untuk lightbox
     document.querySelectorAll('.image-wrapper').forEach(wrapper => {
       wrapper.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -750,7 +782,6 @@
       });
     });
 
-    // Info button
     document.querySelectorAll('.info-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const id = parseInt(btn.getAttribute('data-id'));
@@ -765,7 +796,6 @@
       });
     });
 
-    // Order button
     document.querySelectorAll('.order-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const namaProduk = btn.getAttribute('data-nama');
@@ -777,7 +807,6 @@
       });
     });
 
-    // Tutorial button
     document.querySelectorAll('.tutorial-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -790,17 +819,10 @@
     });
   }
 
-  // Modal info handlers
   const modal = document.getElementById('infoModal');
   const closeModal = document.querySelector('.close-modal');
-  
-  closeModal.onclick = () => {
-    modal.style.display = 'none';
-  };
-  
-  window.onclick = (e) => { 
-    if(e.target === modal) modal.style.display = 'none'; 
-  };
+  closeModal.onclick = () => { modal.style.display = 'none'; };
+  window.onclick = (e) => { if(e.target === modal) modal.style.display = 'none'; };
   
   const modalOrderBtn = document.getElementById('modalOrderBtn');
   if(modalOrderBtn) {
@@ -814,21 +836,16 @@
     });
   }
 
-  // Lightbox handlers
   const lightbox = document.getElementById('lightboxModal');
   const closeLightboxBtn = document.querySelector('.close-lightbox');
-  
   closeLightboxBtn.onclick = closeLightbox;
-  lightbox.onclick = (e) => {
-    if(e.target === lightbox) closeLightbox();
-  };
+  lightbox.onclick = (e) => { if(e.target === lightbox) closeLightbox(); };
 
-  // Footer WA
   const waFooterBtn = document.getElementById('waFooterBtn');
   if(waFooterBtn) {
     waFooterBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      const msg = "Halo min, saya mau cek info daftar harga reseller dan wilayah. Terima kasih.";
+      const msg = "Halo min, saya mau tanya info produk & layanan KJSSTORE. Terima kasih.";
       window.open(`https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
     });
   }
