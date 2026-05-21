@@ -338,21 +338,22 @@
             }
         }
 
-        /* Area gambar konsisten 1:1 */
+        /* ───────── AREA GAMBAR (mengikuti ukuran alami gambar, tidak terpotong) ───────── */
         .card-image-area {
             position: relative;
             background: #0a0f1c;
-            aspect-ratio: 1 / 1;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             overflow: hidden;
+            padding: 16px 12px;
         }
         .card-image-area img {
-            max-width: 85%;
-            max-height: 85%;
+            width: 100%;
+            height: auto;
+            max-height: 200px;
             object-fit: contain;
             display: block;
             background: transparent;
@@ -860,7 +861,7 @@
                 gap: 14px 10px;
             }
             .marquee-text { font-size: clamp(0.8rem, 2vw, 1.1rem); }
-            .card-image-area { aspect-ratio: 1 / 1; }
+            .card-image-area img { max-height: 180px; }
         }
         @media (max-width: 768px) {
             .product-grid {
@@ -878,6 +879,8 @@
             .card-price { font-size: 0.64rem; }
             .btn-card { font-size: 0.56rem; padding: 4px 0; }
             .section-title { font-size: var(--font-md); }
+            .card-image-area { padding: 14px 10px; }
+            .card-image-area img { max-height: 160px; }
         }
         @media (max-width: 540px) {
             .product-grid {
@@ -893,7 +896,8 @@
             .banner-image { aspect-ratio: 16/9; min-height: 90px; }
             .banner-container { border-radius: var(--radius-sm); margin: 5px 0 12px; }
             .banner-overlay { font-size: 0.5rem; padding: 3px 8px; bottom: 6px; left: 8px; }
-            .card-image-area { aspect-ratio: 1 / 1; }
+            .card-image-area { padding: 12px 8px; }
+            .card-image-area img { max-height: 140px; }
             .card-title { font-size: 0.62rem; }
             .card-price { font-size: 0.6rem; }
             .card-meta { font-size: 0.52rem; gap: 3px; margin-bottom: 5px; }
@@ -923,12 +927,13 @@
             }
             .card-title { font-size: 0.56rem; }
             .card-price { font-size: 0.55rem; }
+            .card-image-area { padding: 10px 6px; }
+            .card-image-area img { max-height: 120px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ═══════════ TOP APP BAR ═══════════ -->
     <header class="app-bar" id="appBar">
         <div class="app-bar-left">
             <img src="assets/logokjs.png" alt="KJS Logo" class="app-logo" onerror="this.src='https://placehold.co/200x200?text=KJS'">
@@ -946,9 +951,7 @@
         </div>
     </header>
 
-    <!-- ═══════════ MAIN CONTENT ═══════════ -->
     <main class="main-content" id="mainContent">
-        <!-- HERO dengan MARQUEE -->
         <div class="hero-section">
             <div class="marquee-container">
                 <div class="marquee-track">
@@ -959,13 +962,11 @@
             <div class="hero-subtitle">Premium Digital Solutions • 24/7 Support</div>
         </div>
 
-        <!-- BANNER -->
         <div class="banner-container" id="bannerContainer">
             <img src="assets/banner.png" alt="Banner KJS" class="banner-image" onerror="this.src='https://placehold.co/1200x500?text=KJS+BANNER'">
             <div class="banner-overlay"><i class="fas fa-crown"></i> Premium Collection</div>
         </div>
 
-        <!-- SECTION HEADER -->
         <div class="section-header">
             <div class="section-title-group">
                 <div class="section-icon"><i class="fas fa-cube"></i></div>
@@ -974,289 +975,132 @@
             <span class="section-count" id="productCount">9 Produk</span>
         </div>
 
-        <!-- PRODUCT GRID -->
         <div class="product-grid" id="productGrid"></div>
     </main>
 
-    <!-- ═══════════ BOTTOM NAVIGATION ═══════════ -->
     <nav class="bottom-nav" id="bottomNav">
-        <button class="nav-item active" data-tab="home" aria-label="Beranda">
-            <i class="fas fa-home"></i>
-            <span>Beranda</span>
-        </button>
-        <button class="nav-item has-notif" data-tab="products" aria-label="Produk">
-            <i class="fas fa-th-large"></i>
-            <span>Produk</span>
-            <span class="nav-badge-dot"></span>
-        </button>
-        <button class="nav-item" data-tab="contact" aria-label="Kontak" id="navContact">
-            <i class="fas fa-headset"></i>
-            <span>Kontak</span>
-        </button>
-        <button class="nav-item" data-tab="info" aria-label="Info" id="navInfo">
-            <i class="fas fa-circle-info"></i>
-            <span>Info</span>
-        </button>
+        <button class="nav-item active" data-tab="home" aria-label="Beranda"><i class="fas fa-home"></i><span>Beranda</span></button>
+        <button class="nav-item has-notif" data-tab="products" aria-label="Produk"><i class="fas fa-th-large"></i><span>Produk</span><span class="nav-badge-dot"></span></button>
+        <button class="nav-item" data-tab="contact" aria-label="Kontak"><i class="fas fa-headset"></i><span>Kontak</span></button>
+        <button class="nav-item" data-tab="info" aria-label="Info"><i class="fas fa-circle-info"></i><span>Info</span></button>
     </nav>
 
-    <!-- ═══════════ MODAL INFO ═══════════ -->
     <div id="infoModal" class="modal-overlay">
         <div class="modal-sheet">
             <div class="modal-handle"></div>
-            <div class="modal-header">
-                <i class="fas fa-info-circle"></i>
-                <span id="modalTitle">NAMA PRODUK</span>
-            </div>
+            <div class="modal-header"><i class="fas fa-info-circle"></i><span id="modalTitle">NAMA PRODUK</span></div>
             <div class="modal-body" id="modalBody"></div>
             <div class="modal-footer">
-                <button class="btn-modal btn-modal-back" id="modalBackBtn">
-                    <i class="fas fa-arrow-left"></i> KEMBALI
-                </button>
-                <button class="btn-modal btn-modal-wa" id="modalOrderBtn">
-                    <i class="fab fa-whatsapp"></i> ORDER VIA WA
-                </button>
+                <button class="btn-modal btn-modal-back" id="modalBackBtn"><i class="fas fa-arrow-left"></i> KEMBALI</button>
+                <button class="btn-modal btn-modal-wa" id="modalOrderBtn"><i class="fab fa-whatsapp"></i> ORDER VIA WA</button>
             </div>
         </div>
     </div>
 
-    <!-- ═══════════ LIGHTBOX ═══════════ -->
     <div id="lightboxModal" class="lightbox-overlay">
         <span class="lightbox-close">&times;</span>
         <img id="lightboxImg" class="lightbox-image" alt="Preview Gambar">
     </div>
 
-    <!-- ═══════════ TOAST / FLOATING NOTIF ═══════════ -->
     <div class="toast-overlay" id="toastOverlay"></div>
     <div class="toast-card" id="toastCard">
         <div class="toast-icon">📚</div>
         <div class="toast-title">Tutorial Premium</div>
-        <div class="toast-message">
-            Mohon maaf, untuk mendapatkan tutorial yang lebih lengkap & premium, pelanggan wajib melakukan pembelian terlebih dahulu.<br><br>
-            Setelah pembelian berhasil, tutorial akan langsung dikirim oleh owner <b style="color:#facc15;">KJS STORE</b>.
-        </div>
+        <div class="toast-message">Mohon maaf, untuk mendapatkan tutorial yang lebih lengkap & premium, pelanggan wajib melakukan pembelian terlebih dahulu.<br><br>Setelah pembelian berhasil, tutorial akan langsung dikirim oleh owner <b style="color:#facc15;">KJS STORE</b>.</div>
         <button class="toast-btn" id="closeToast">Mengerti</button>
     </div>
 
     <script>
         (function() {
-            const YOUR_WHATSAPP_NUMBER = "6283830803474";
-            const ADMIN_WHATSAPP = "6285943111681";
+            const WA_NUMBER = "6283830803474";
+            const ADMIN_WA = "6285943111681";
+            const products = [
+                { id: 1, nama: "AUTOFORMATTER", bintang: 5, download: "150", badge: "🔥 HOT", gambar: "assets/produk1.png", harga: "Rp 350rb", fitur: "🔥 AUTO FORMATTER VVIP 🔥\n\n✨ FORMAT DATA JADI 1 KLIK LANGSUNG JADI! ✨\nCapek format manual? Ribet & makan waktu?\nSekarang cukup 1 klik semua beres! ⚡\n\n💡 Keunggulan:\n✅ Proses super cepat & otomatis\n✅ Bisa request format sesuai kebutuhan\n✅ Tinggal input → langsung jadi\n✅ Cocok untuk kerja & jualan\n\n📦 FITUR UNGGULAN:\n🔹 V1 Format khusus (disimpan rapi)\n🔹 V2 Format siap share / jual ke grup\n🔹 V3 Penyimpanan hasil dari V1\n🔹 V4 Input 1 data jadi 3 lembar SIAK\n🔹 V5 Akses LASIK VVIP 🔥\n\n💯 Sistem sudah terverifikasi & digunakan banyak user\n\n🔥 KENAPA HARUS PAKAI INI?\n✔ Hemat waktu kerja\n✔ Minim kesalahan\n✔ Praktis & fleksibel\n✔ Bisa untuk kebutuhan pribadi & bisnis\n\n💰 HARGA: Rp 350rb\n\n📲 ORDER SEKARANG!\n💬 Fast respon 24 jam\n⚡ Siap bantu sampai bisa" },
+                { id: 2, nama: "BASE TEMPLATE", bintang: 4, download: "610", badge: "🔥 HOT", gambar: "assets/produk2.png", harga: "Rp 350rb", fitur: "Kartu Dokumen Digital adalah solusi praktis untuk membuat kartu identitas digital secara cepat, aman, dan profesional.\n\n🔥 FITUR UTAMA:\n✅ Input data lengkap & manual\n✅ Upload foto sendiri\n✅ Watermark eksklusif\n✅ Export HD kualitas tinggi\n✅ Mobile friendly Android\n✅ Aman & privat\n✅ Support 24/7\n\n📌 Praktis digunakan kapan saja.\n\nKJSSTORE" },
+                { id: 3, nama: "KALKULATOR KPJ", bintang: 5, download: "200", badge: "🔥 HOT", gambar: "assets/produk3.png", harga: "Rp 350rb", fitur: "🚀 KPJ GENERATOR PRO V5 🚀\n\n🔥 FITUR UNGGULAN:\n✔ Generator Anakan (Massal)\n✔ Mode UP & DOWN\n✔ Sistem Acak\n✔ Tracking Data\n✔ Export Excel\n✔ Salin Cepat (9999 Data)\n\n💰 HARGA: Rp 350rb" },
+                { id: 4, nama: "AUTO REGIS JMO", bintang: 4, download: "331", badge: "🔥 FLASH", gambar: "assets/produk4.png", harga: "Cek Info", fitur: "📢 AUTO REGISTRASI JMO 📢\n\n✔ Auto Registrasi Akun\n✔ Cek Status & Data JMO\n✔ Cek Sensor, Email & Lasik\n✔ Kalkulator KPJ & Cek DPT\n\n💰 PAKET:\n👑 UNLIMITED 1 THN: Rp 5.000.000\n🔥 STARTER 7 hari: Rp 600.000\n💎 PRO 30 hari: Rp 2.500.000" },
+                { id: 5, nama: "SC TUNNELING", bintang: 4, download: "540", badge: "🚀 TUNNEL", gambar: "assets/produk5.png", harga: "Rp 100rb", fitur: "🚀 OPEN SEWA SC TUNNELING 🚀\n\n💻 SUPPORT: Debian & Ubuntu\n⚙️ FITUR: SSH, XRAY, NGINX, Bot Telegram, Backup\n💰 HARGA: 10K/bln, 20K/2bln" },
+                { id: 6, nama: "BOT WA/TELEGRAM", bintang: 5, download: "2.1k+", badge: "🤖 BOT", gambar: "assets/produk6.png", harga: "Rp 200rb", fitur: "🚀 OPEN BOT STORE 🚀\n\n🤖 Sewa Script Bot WA & Telegram\n🛠️ Jasa Perbaikan & Development\n✅ Pasang Fitur, Website, Server Custom\n\n💰 HARGA: Rp 200rb" },
+                { id: 7, nama: "JASA DOKUMEN", bintang: 4, download: "788", badge: "🕶️ PRO", gambar: "assets/produk7.png", harga: "JAFRI ADMIN", fitur: "🚀 JASA DOKUMEN 🚀\n\n📌 LAYANAN: NPWP, SKCK, CV, SIAK, Slip Gaji, BPJS, ID Card, dll.\n\n📲 WhatsApp: 0854-3111-1681" },
+                { id: 8, nama: "LAYANAN BPJS", bintang: 5, download: "1.8k+", badge: "🏆 ULTIMATE", gambar: "assets/produk8.png", harga: "JAFRI ADMIN", fitur: "🚀 LAYANAN BPJS KETENAGAKERJAAN 🚀\n\n⚙️ FITUR: Cek Saldo, Siap 3 Lembar, Lacak Sensor, Validasi, Reskun, Reset Bio.\n\n📲 Hubungi Admin" },
+                { id: 9, nama: "LAYANAN NPWP", bintang: 4, download: "331", badge: "🔥 HOT", gambar: "assets/produk9.png", harga: "Rp 50rb", fitur: "💼 LAYANAN NPWP – KJS STORE 💼\n\n✨ LAYANAN: NPWP Badan, Perorangan, Aktivasi, Cetak Ulang.\n\n💰 HARGA: Rp 350rb\n📱 WA: +62 859-4311-1681" }
+            ];
 
-            const products = [{
-                id: 1, nama: "AUTOFORMATTER", bintang: 5, download: "150", badge: "🔥 HOT", gambar: "assets/produk1.png", harga: "Rp 350rb",
-                fitur: "🔥 AUTO FORMATTER VVIP 🔥\n\n✨ FORMAT DATA JADI 1 KLIK LANGSUNG JADI! ✨\nCapek format manual? Ribet & makan waktu?\nSekarang cukup 1 klik semua beres! ⚡\n\n💡 Keunggulan:\n✅ Proses super cepat & otomatis\n✅ Bisa request format sesuai kebutuhan\n✅ Tinggal input → langsung jadi\n✅ Cocok untuk kerja & jualan\n\n📦 FITUR UNGGULAN:\n🔹 V1 Format khusus (disimpan rapi)\n🔹 V2 Format siap share / jual ke grup\n🔹 V3 Penyimpanan hasil dari V1\n🔹 V4 Input 1 data jadi 3 lembar SIAK\n🔹 V5 Akses LASIK VVIP 🔥\n\n💯 Sistem sudah terverifikasi & digunakan banyak user\n\n🔥 KENAPA HARUS PAKAI INI?\n✔ Hemat waktu kerja\n✔ Minim kesalahan\n✔ Praktis & fleksibel\n✔ Bisa untuk kebutuhan pribadi & bisnis\n\n💰 HARGA: Rp 350rb\n\n📲 ORDER SEKARANG!\n💬 Fast respon 24 jam\n⚡ Siap bantu sampai bisa"
-            }, {
-                id: 2, nama: "BASE TEMPLATE", bintang: 4, download: "610", badge: "🔥 HOT", gambar: "assets/produk2.png", harga: "Rp 350rb",
-                fitur: "Kartu Dokumen Digital adalah solusi praktis untuk membuat kartu identitas digital secara cepat, aman, dan profesional. Cocok digunakan untuk tim lapangan atau tim blusukan tanpa perlu melibatkan data SIAK.\n\n🔥 FITUR UTAMA:\n✅ Input data lengkap & manual\n✅ Upload foto sendiri\n✅ Watermark eksklusif\n✅ Export HD kualitas tinggi\n✅ Mobile friendly Android\n✅ Aman & privat\n✅ Support 24/7\n\n📌 Praktis digunakan kapan saja untuk kebutuhan pendataan dan identitas digital peserta.\n\nKJSSTORE"
-            }, {
-                id: 3, nama: "KALKULATOR KPJ", bintang: 5, download: "200", badge: "🔥 HOT", gambar: "assets/produk3.png", harga: "Rp 350rb",
-                fitur: "🚀 OPEN REGISTRASI KPJ GENERATOR PRO V5 🚀\n\n✨ Solusi Cepat & Praktis Generate Data Otomatis! ✨\n\n🔥 FITUR UNGGULAN:\n✔ Generator Anakan (Auto Generate Massal)\n✔ Mode UP & DOWN (Naik / Turun Otomatis)\n✔ Sistem Acak (Random Generator)\n✔ Tracking / Jejak Data\n✔ Generate Indukan & Anakan Sekaligus\n✔ Export ke Excel\n✔ Salin Cepat (Max 9999 Data)\n✔ Save & Hapus Data Instan\n\n💎 KEUNGGULAN:\n⚡ Proses Super Cepat & Ringan (Android Lite)\n⚡ Tampilan Simple & Profesional\n⚡ Support Generate Hingga Puluhan Ribu Data\n⚡ Minim Error & Stabil Digunakan\n⚡ Cocok Untuk Kebutuhan Skala Besar\n\n⚠️ PERINGATAN PENTING:\nGunakan tools ini dengan bijak!\nSegala bentuk penyalahgunaan bukan tanggung jawab developer.\n\n💰 HARGA: Rp 350rb\n\n🔥 OPEN AKSES / REGISTRASI SEKARANG! 🔥\n💼 Slot terbatas — siapa cepat dia dapat!\n📲 Minat? Langsung chat admin sekarang juga!"
-            }, {
-                id: 4, nama: "AUTO REGIS JMO", bintang: 4, download: "331", badge: "🔥 FLASH", gambar: "assets/produk4.png", harga: "Cek Info",
-                fitur: "📢 AUTO REGISTRASI JMO 📢\n-FLASH BY GARUDA PRO-\n\nSemua kebutuhan JMO dalam 1 sistem otomatis ⚡\nCepat • Akurat • Tanpa Ribet\n\n✔ Auto Registrasi Akun\n✔ Cek Status & Data JMO\n✔ Cek Sensor, Email & Lasik\n✔ Kalkulator KPJ & Cek DPT\n\n💰 PILIH PAKET SESUAI KEBUTUHAN\n\n👑 UNLIMITED 1 TAHUN\nRp 5.000.000\nAkses tanpa batas 365 hari + Free cek hingga 50x\n\n🔥 STARTER\nRp 600.000\n7 hari • 2.500 kuota • Free cek 5x\n\n💎 PRO\nRp 2.500.000\n30 hari • 10.000 kuota • Free cek 15x\n\n📌 KEUNGGULAN\n⚡ Proses super cepat\n📊 Data valid & akurat\n🔒 Aman & terpercaya\n🎧 Support 24 jam\n\n📞 MINAT HUB KJSSTORE:\n👑 OWNER : 6285943111681\n💼 ADMIN : 6283830803474"
-            }, {
-                id: 5, nama: "SC TUNNELING", bintang: 4, download: "540", badge: "🚀 TUNNEL", gambar: "assets/produk5.png", harga: "Rp 100rb",
-                fitur: "🚀 OPEN SEWA SC TUNNELING - KJS STORE 🚀\n\n━━━━━━━━━━━━━━━━━━\n💻 SUPPORT SYSTEM\n━━━━━━━━━━━━━━━━━━\n✅ Debian & Ubuntu Server\n⚡ Full Otomatis (Tinggal Pakai)\n🔥 Stabil & Mudah Digunakan\n\n━━━━━━━━━━━━━━━━━━\n⚙️ FITUR UTAMA\n━━━━━━━━━━━━━━━━━━\n✅ SSH / OpenVPN\n✅ XRAY Core\n✅ NGINX & HAProxy\n✅ Bot Telegram\n✅ Backup & Restore\n\n💡 Mudah Digunakan\n💡 Fitur Lengkap\n💡 Stabil 24 Jam\n💡 Support Pemula\n\n━━━━━━━━━━━━━━━━━━\n💰 HARGA SEWA\n━━━━━━━━━━━━━━━━━━\n💸 1 Bulan : 10K\n💸 2 Bulan : 20K\n\n⚡ Server Aktif 24 Jam Nonstop\n\n━━━━━━━━━━━━━━━━━━\n📸 RIVIEW\n━━━━━━━━━━━━━━━━━━\n👉 https://drive.google.com/drive/folders/1nOmO9TIfpFAd_LvQ5gVDQP4uHiOSLN30\n\n━━━━━━━━━━━━━━━━━━\n📩 ORDER SEKARANG\n━━━━━━━━━━━━━━━━━━\n👉 Hubungi Admin\n📲 Via Telegram / WhatsApp\n\n⭐ BY KJS STORE ⭐"
-            }, {
-                id: 6, nama: "BOT WA/TELEGRAM", bintang: 5, download: "2.1k+", badge: "🤖 BOT", gambar: "assets/produk6.png", harga: "Rp 200rb",
-                fitur: "🚀 OPEN BOT STORE - KJS STORE 🚀\n\n━━━━━━━━━━━━━━━━━━\n🤖 LAYANAN BOT\n━━━━━━━━━━━━━━━━━━\n📱 Support WhatsApp & Telegram\n🤖 Sewa Script Bot Siap Pakai\n\n━━━━━━━━━━━━━━━━━━\n🛠️ JASA & DEVELOPMENT\n━━━━━━━━━━━━━━━━━━\n✅ Perbaikan Script Bot Error\n✅ Pasang & Update Fitur Bot\n✅ Pembuatan Website / Project\n✅ Aplikasi & Server Custom\n\n━━━━━━━━━━━━━━━━━━\n🔥 KEUNGGULAN\n━━━━━━━━━━━━━━━━━━\n⚡ Proses Cepat & Profesional\n💻 Support Full Sampai Jalan\n🔒 Aman & Terpercaya\n📈 Cocok untuk Bisnis / Otomasi\n\n━━━━━━━━━━━━━━━━━━\n📩 ORDER SEKARANG\n━━━━━━━━━━━━━━━━━━\n👉 Hubungi Admin\n📲 Via Telegram / WhatsApp\n\n⭐ BY KJS STORE ⭐"
-            }, {
-                id: 7, nama: "JASA DOKUMEN", bintang: 4, download: "788", badge: "🕶️ PRO", gambar: "assets/produk7.png", harga: "JAFRI ADMIN",
-                fitur: "🚀 JASA PEMBUATAN & PENGURUSAN DOKUMEN 🚀\n\n💼 Cepat • Aman • Terpercaya\n\nButuh urus dokumen tapi ribet? Tenang, semua bisa kami bantu! ✅\nProses cepat, tanpa ribet, dan privasi dijamin aman 🔒\n\n━━━━━━━━━━━━━━━━━━\n📌 LAYANAN KAMI\n━━━━━━━━━━━━━━━━━━\n✅ NPWP & Aktivasi NPWP\n✅ Vaksin 1 • 2 • 3\n✅ SKCK\n✅ CV / Daftar Riwayat Hidup\n✅ Surat Sehat / Surat Sakit\n✅ Cek Valid KTP\n✅ Pembuatan Akun BPU\n✅ SIAK\n✅ Slip Gaji\n✅ Lacak KPJ\n✅ Pencairan BPJS\n✅ BPJS Kesehatan\n✅ Gestun All Paylater\n✅ ID Card\n✅ Undangan Pernikahan\n✅ Kartu Kuning / Disnaker\n✅ Ganda Email (1 jadi banyak)\n✅ Nokos All Negara\n\n🎓 Ijazah Tembak OF\n🎓 Ijazah Resmi Paket OF\n📄 Paklaring\n🪪 Edit KTP Buram / Rusak\n💡 Rekening Listrik OF\n\n━━━━━━━━━━━━━━━━━━\n🔥 KEUNGGULAN\n━━━━━━━━━━━━━━━━━━\n⚡ Proses Cepat & Anti Ribet\n🌐 Bisa Online Tanpa Datang\n🔒 Aman & Terpercaya\n📞 Support Sampai Selesai\n\n━━━━━━━━━━━━━━━━━━\n📩 ORDER SEKARANG\n━━━━━━━━━━━━━━━━━━\n📲 WhatsApp: 0854-3111-1681\n💬 Konsultasi GRATIS, tanya-tanya santai boleh!\n\n⭐ BY KJS STORE ⭐"
-            }, {
-                id: 8, nama: "LAYANAN BPJS", bintang: 5, download: "1.8k+", badge: "🏆 ULTIMATE", gambar: "assets/produk8.png", harga: "JAFRI ADMIN",
-                fitur: "🚀 LAYANAN BPJS KETENAGAKERJAAN 🚀\n\n💼 Cepat • Akurat • Terpercaya\n\nButuh cek atau urus data BPJS tanpa ribet? Tenang, semua bisa kami bantu! ⚡\nProses cepat, aman, dan full online 🔒\n\n━━━━━━━━━━━━━━━━━━\n⚙️ FITUR LAYANAN\n━━━━━━━━━━━━━━━━━━\n💰 Cek Saldo BPJS\n📄 Siap 3 Lembar\n✅ Cek Akun Aktif BPJSTK\n📍 Lacak Sensor\n🔍 Lacak Tabel / Valid\n✔️ Validasi Data\n🛡️ Reskun (Restore Akun)\n🔄 Reset Bio\n\n━━━━━━━━━━━━━━━━━━\n🔥 KEUNGGULAN\n━━━━━━━━━━━━━━━━━━\n⚡ Proses Cepat & Real Time\n🔒 Aman & Privasi Terjaga\n📊 Data Akurat & Valid\n💻 Bisa Full Online\n📞 Support Sampai Selesai\n\n━━━━━━━━━━━━━━━━━━\n📌 COCOK UNTUK\n━━━━━━━━━━━━━━━━━━\n✔ Cek Status BPJS\n✔ Persiapan Pencairan\n✔ Validasi Data Kerja\n✔ Kebutuhan Administrasi\n\n━━━━━━━━━━━━━━━━━━\n📩 ORDER SEKARANG\n━━━━━━━━━━━━━━━━━━\n👉 Hubungi Admin\n📲 Via WhatsApp / Telegram\n\n⭐ BY KJS STORE ⭐"
-            }, {
-                id: 9, nama: "LAYANAN NPWP", bintang: 4, download: "331", badge: "🔥 HOT", gambar: "assets/produk9.png", harga: "Rp 50rb",
-                fitur: "💼 LAYANAN NPWP – KJS STORE 💼\n\n📌 Solusi cepat & praktis untuk semua kebutuhan NPWP Anda.\n\n✨ LAYANAN TERSEDIA:\n✅ NPWP Badan\n✅ NPWP Perorangan\n✅ Aktivasi NPWP\n✅ Cetak Ulang NPWP\n\n⚡ KEUNGGULAN:\n✔ Proses cepat & mudah\n✔ Dibantu sampai selesai\n✔ Aman & terpercaya\n✔ Cocok untuk pribadi & usaha\n\n💰 HARGA: Rp 350rb\n\n📞 KONTAK:\n👤 Admin Jafri – KJS STORE\n📱 WA: +62 859-4311-1681\n\n🌐 LINK PRODUK:\n🔗 https://shop.metsstore.my.id\n\n🟢 Status: AKTIF & SIAP DIGUNAKAN\n📩 Hubungi sekarang untuk info & pemesanan!"
-            }];
+            let currentNama = "", currentHarga = "";
+            const stars = r => { let s=''; for(let i=0;i<Math.floor(r);i++) s+='★'; if(r%1) s+='½'; while(s.length<5) s+='☆'; return s; };
+            const fmtDL = c => typeof c==='string'?c:(c>=1000?(c/1000).toFixed(1)+'k':c);
+            const fmtMod = t => `<div style="white-space:normal;">${t.replace(/\n/g,'<br>').replace(/✅/g,'<span style="color:#06b6d4;">✅</span>').replace(/✔/g,'<span style="color:#facc15;">✔</span>').replace(/🔥/g,'<span style="color:#facc15;">🔥</span>').replace(/✨/g,'<span style="color:#facc15;">✨</span>').replace(/🚀/g,'<span style="color:#facc15;">🚀</span>').replace(/💰/g,'<span style="color:#facc15;">💰</span>')}</div>`;
 
-            let currentProductNama = "";
-            let currentProductHarga = "";
-
-            function renderStars(rating) {
-                let full = Math.floor(rating);
-                let half = rating % 1 !== 0;
-                let stars = '';
-                for (let i = 0; i < full; i++) stars += '★';
-                if (half) stars += '½';
-                while (stars.length < 5) stars += '☆';
-                return stars;
+            function lightbox(src) {
+                document.getElementById('lightboxImg').src = src;
+                document.getElementById('lightboxModal').style.display = 'flex';
             }
+            function closeLightbox() { document.getElementById('lightboxModal').style.display = 'none'; }
+            function showToast() { document.getElementById('toastOverlay').style.display='block'; document.getElementById('toastCard').style.display='block'; }
+            function hideToast() { document.getElementById('toastOverlay').style.display='none'; document.getElementById('toastCard').style.display='none'; }
 
-            function formatDownload(count) {
-                if (typeof count === 'string') return count;
-                if (count >= 1000) return (count / 1000).toFixed(1) + 'k';
-                return count;
-            }
-
-            function formatModalText(text) {
-                return `<div style="white-space: normal;">${text
-                    .replace(/\n/g, '<br>')
-                    .replace(/✅/g, '<span style="color:#06b6d4;">✅</span>')
-                    .replace(/✔/g, '<span style="color:#facc15;">✔</span>')
-                    .replace(/⚠️/g, '<span style="color:#f97316;">⚠️</span>')
-                    .replace(/🔥/g, '<span style="color:#facc15;">🔥</span>')
-                    .replace(/✨/g, '<span style="color:#facc15;">✨</span>')
-                    .replace(/🚀/g, '<span style="color:#facc15;">🚀</span>')
-                    .replace(/💎/g, '<span style="color:#06b6d4;">💎</span>')
-                    .replace(/📦/g, '<span style="color:#06b6d4;">📦</span>')
-                    .replace(/🔹/g, '<span style="color:#facc15;">🔹</span>')
-                    .replace(/💰/g, '<span style="color:#facc15;">💰</span>')}</div>`;
-            }
-
-            function openLightbox(imgSrc) {
-                const lightbox = document.getElementById('lightboxModal');
-                const lightboxImg = document.getElementById('lightboxImg');
-                if (lightboxImg && lightbox) {
-                    lightboxImg.src = imgSrc;
-                    lightbox.style.display = 'flex';
-                }
-            }
-
-            function closeLightbox() {
-                const lightbox = document.getElementById('lightboxModal');
-                if (lightbox) lightbox.style.display = 'none';
-            }
-
-            function showToast() {
-                const overlay = document.getElementById('toastOverlay');
-                const card = document.getElementById('toastCard');
-                if (overlay) overlay.style.display = 'block';
-                if (card) card.style.display = 'block';
-            }
-
-            function hideToast() {
-                const overlay = document.getElementById('toastOverlay');
-                const card = document.getElementById('toastCard');
-                if (overlay) overlay.style.display = 'none';
-                if (card) card.style.display = 'none';
-            }
-
-            function renderProducts() {
+            function render() {
                 const grid = document.getElementById('productGrid');
-                const countEl = document.getElementById('productCount');
-                if (!grid) return;
-                grid.innerHTML = '';
-                if (countEl) countEl.textContent = products.length + ' Produk';
+                document.getElementById('productCount').textContent = products.length + ' Produk';
+                grid.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <div class="card-image-area" data-img="${p.gambar}">
+                        <img src="${p.gambar}" alt="${p.nama}" onerror="this.src='https://placehold.co/400x400?text=${encodeURIComponent(p.nama)}'">
+                        <div class="card-badge">${p.badge}</div>
+                        <div class="card-image-indicator"><i class="fas fa-search-plus"></i> Tap</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title" title="${p.nama}">${p.nama}</div>
+                        <div class="card-price"><i class="fas fa-tag"></i><span>${p.harga}</span></div>
+                        <div class="card-meta"><span class="card-stars">${stars(p.bintang)}</span><span class="card-downloads"><i class="fas fa-download"></i> ${fmtDL(p.download)}</span></div>
+                        <div class="card-actions">
+                            <button class="btn-card info-btn" data-id="${p.id}"><i class="fas fa-info-circle"></i> INFO</button>
+                            <button class="btn-card btn-card-wa order-btn" data-nama="${p.nama}" data-harga="${p.harga}"><i class="fab fa-whatsapp"></i> ORDER</button>
+                            <a href="#" class="btn-card btn-card-primary tutorial-btn"><i class="fas fa-play-circle"></i> TUTOR</a>
+                        </div>
+                    </div>
+                </div>`).join('');
 
-                products.forEach(prod => {
-                    const card = document.createElement('div');
-                    card.className = 'product-card';
-                    card.innerHTML = `
-                <div class="card-image-area" data-img="${prod.gambar}">
-                  <img src="${prod.gambar}" alt="${prod.nama}" onerror="this.src='https://placehold.co/400x400?text=${encodeURIComponent(prod.nama)}'">
-                  <div class="card-badge">${prod.badge}</div>
-                  <div class="card-image-indicator"><i class="fas fa-search-plus"></i> Tap</div>
-                </div>
-                <div class="card-body">
-                  <div class="card-title" title="${prod.nama}">${prod.nama}</div>
-                  <div class="card-price"><i class="fas fa-tag"></i> <span>${prod.harga}</span></div>
-                  <div class="card-meta">
-                    <span class="card-stars">${renderStars(prod.bintang)}</span>
-                    <span class="card-downloads"><i class="fas fa-download"></i> ${formatDownload(prod.download)}</span>
-                  </div>
-                  <div class="card-actions">
-                    <button class="btn-card info-btn" data-id="${prod.id}"><i class="fas fa-info-circle"></i> INFO</button>
-                    <button class="btn-card btn-card-wa order-btn" data-nama="${prod.nama}" data-harga="${prod.harga}"><i class="fab fa-whatsapp"></i> ORDER</button>
-                    <a href="#" class="btn-card btn-card-primary tutorial-btn" data-nama="${prod.nama}"><i class="fas fa-play-circle"></i> TUTOR</a>
-                  </div>
-                </div>`;
-                    grid.appendChild(card);
-                });
-
-                document.querySelectorAll('.card-image-area').forEach(wrapper => {
-                    wrapper.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const imgSrc = wrapper.getAttribute('data-img');
-                        if (imgSrc) openLightbox(imgSrc);
-                    });
-                });
-
-                document.querySelectorAll('.info-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const id = parseInt(btn.getAttribute('data-id'));
-                        const product = products.find(p => p.id === id);
-                        if (product) {
-                            currentProductNama = product.nama;
-                            currentProductHarga = product.harga;
-                            document.getElementById('modalTitle').innerHTML = `<i class="fas fa-cube"></i> ${product.nama}`;
-                            document.getElementById('modalBody').innerHTML = formatModalText(product.fitur);
-                            document.getElementById('infoModal').style.display = 'flex';
-                        }
-                    });
-                });
-
-                document.querySelectorAll('.order-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const namaProduk = btn.getAttribute('data-nama');
-                        const hargaProduk = btn.getAttribute('data-harga');
-                        const msg = `Halo Kak, saya ingin ORDER produk *${namaProduk}* dengan harga *${hargaProduk}* dari KJSSTORE. Mohon info ketersediaan dan cara pembayaran. Terima kasih.`;
-                        window.open(`https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
-                    });
-                });
-
-                document.querySelectorAll('.tutorial-btn').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        showToast();
-                    });
-                });
+                grid.querySelectorAll('.card-image-area').forEach(w => w.addEventListener('click', e => { e.stopPropagation(); lightbox(w.dataset.img); }));
+                grid.querySelectorAll('.info-btn').forEach(b => b.addEventListener('click', e => {
+                    e.stopPropagation();
+                    const p = products.find(x => x.id == b.dataset.id);
+                    if(p) { currentNama=p.nama; currentHarga=p.harga; document.getElementById('modalTitle').innerHTML=`<i class="fas fa-cube"></i> ${p.nama}`; document.getElementById('modalBody').innerHTML=fmtMod(p.fitur); document.getElementById('infoModal').style.display='flex'; }
+                }));
+                grid.querySelectorAll('.order-btn').forEach(b => b.addEventListener('click', e => {
+                    e.stopPropagation();
+                    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Halo Kak, saya ingin ORDER produk *${b.dataset.nama}* dengan harga *${b.dataset.harga}* dari KJSSTORE.`)}`, '_blank');
+                }));
+                grid.querySelectorAll('.tutorial-btn').forEach(b => b.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); showToast(); }));
             }
 
             const modal = document.getElementById('infoModal');
-            modal?.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
-            document.getElementById('modalBackBtn')?.addEventListener('click', () => { if (modal) modal.style.display = 'none'; });
-            document.getElementById('modalOrderBtn')?.addEventListener('click', () => {
-                if (currentProductNama) {
-                    const msg = `Halo Kak, saya ingin ORDER produk *${currentProductNama}* dengan harga *${currentProductHarga}* dari KJSSTORE. Mohon info ketersediaan dan cara pembayaran. Terima kasih.`;
-                    window.open(`https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
-                }
+            modal.addEventListener('click', e => { if(e.target===modal) modal.style.display='none'; });
+            document.getElementById('modalBackBtn').addEventListener('click', () => modal.style.display='none');
+            document.getElementById('modalOrderBtn').addEventListener('click', () => {
+                if(currentNama) window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(`Halo Kak, saya ingin ORDER produk *${currentNama}* dengan harga *${currentHarga}* dari KJSSTORE.`)}`, '_blank');
             });
+            document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+            document.getElementById('lightboxModal').addEventListener('click', e => { if(e.target===document.getElementById('lightboxModal')) closeLightbox(); });
+            document.getElementById('closeToast').addEventListener('click', hideToast);
+            document.getElementById('toastOverlay').addEventListener('click', hideToast);
+            document.getElementById('bannerContainer').addEventListener('click', () => window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Halo min, saya tertarik dengan produk premium KJSSTORE.")}`, '_blank'));
 
-            const lightbox = document.getElementById('lightboxModal');
-            document.querySelector('.lightbox-close')?.addEventListener('click', closeLightbox);
-            lightbox?.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+            document.querySelectorAll('.nav-item').forEach(item => item.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                this.classList.add('active');
+                const tab = this.dataset.tab;
+                if(tab==='contact') window.open(`https://wa.me/${ADMIN_WA}?text=${encodeURIComponent("Halo min, saya mau tanya info produk & layanan KJSSTORE.")}`, '_blank');
+                else if(tab==='info') {
+                    currentNama="KJS STORE"; currentHarga="Variatif";
+                    document.getElementById('modalTitle').innerHTML='<i class="fas fa-store"></i> TENTANG KJS STORE';
+                    document.getElementById('modalBody').innerHTML=fmtMod("🏪 KJS STORE - Premium Digital Solutions\n\n✅ Auto Formatter & Tools\n✅ Base Template & Dokumen Digital\n✅ Bot WA & Telegram\n✅ Script Tunneling & Server\n✅ Jasa Dokumen & Administrasi\n✅ Layanan BPJS & NPWP\n\n📞 OWNER: 6285943111681\n💼 ADMIN: 6283830803474");
+                    modal.style.display='flex';
+                } else window.scrollTo({ top:0, behavior:'smooth' });
+            }));
 
-            document.getElementById('closeToast')?.addEventListener('click', hideToast);
-            document.getElementById('toastOverlay')?.addEventListener('click', hideToast);
-
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-                    this.classList.add('active');
-                    const tab = this.getAttribute('data-tab');
-                    if (tab === 'contact') {
-                        window.open(`https://wa.me/${ADMIN_WHATSAPP}?text=${encodeURIComponent("Halo min, saya mau tanya info produk & layanan KJSSTORE.")}`, '_blank');
-                    } else if (tab === 'info') {
-                        currentProductNama = "KJS STORE"; currentProductHarga = "Variatif";
-                        document.getElementById('modalTitle').innerHTML = '<i class="fas fa-store"></i> TENTANG KJS STORE';
-                        document.getElementById('modalBody').innerHTML = formatModalText(
-                            "🏪 KJS STORE - Premium Digital Solutions\n\nKami menyediakan berbagai layanan digital premium:\n\n✅ Auto Formatter & Tools Otomatisasi\n✅ Base Template & Dokumen Digital\n✅ Bot WhatsApp & Telegram\n✅ Script Tunneling & Server\n✅ Jasa Dokumen & Administrasi\n✅ Layanan BPJS & NPWP\n\n📞 CONTACT:\n👑 OWNER : 6285943111681\n💼 ADMIN : 6283830803474\n\n⭐ Support 24/7 • Fast Response • Terpercaya");
-                        modal.style.display = 'flex';
-                    } else {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }
-                });
-            });
-
-            document.getElementById('bannerContainer')?.addEventListener('click', () => {
-                window.open(`https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodeURIComponent("Halo min, saya tertarik dengan produk premium KJSSTORE.")}`, '_blank');
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    if (modal && modal.style.display === 'flex') modal.style.display = 'none';
-                    closeLightbox();
-                    hideToast();
-                }
-            });
-
-            renderProducts();
-            document.getElementById('productCount').textContent = products.length + ' Produk';
+            document.addEventListener('keydown', e => { if(e.key==='Escape') { modal.style.display='none'; closeLightbox(); hideToast(); } });
+            render();
         })();
     </script>
 </body>
