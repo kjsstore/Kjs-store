@@ -338,22 +338,22 @@
             }
         }
 
-        /* ───────── AREA GAMBAR (mengikuti ukuran alami gambar, tidak terpotong) ───────── */
+        /* Area gambar proporsional (lebih tinggi, gambar tidak terpotong) */
         .card-image-area {
             position: relative;
             background: #0a0f1c;
             width: 100%;
+            height: 180px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             overflow: hidden;
-            padding: 16px 12px;
+            padding: 8px;
         }
         .card-image-area img {
-            width: 100%;
-            height: auto;
-            max-height: 200px;
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
             display: block;
             background: transparent;
@@ -448,7 +448,7 @@
             gap: 6px;
             font-size: 0.58rem;
             color: #9ca3af;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             flex-wrap: wrap;
         }
         .card-stars {
@@ -467,21 +467,20 @@
             border: 1px solid var(--border-subtle);
         }
 
-        /* ───────── BUTTON GROUP (RATA & SEJAJAR) ───────── */
+        /* ───────── BUTTON GROUP (VERTICAL STACK) ───────── */
         .card-actions {
             display: flex;
-            flex-wrap: nowrap;
-            justify-content: center;
+            flex-direction: column;
             gap: 5px;
             margin-top: auto;
-            padding-top: 4px;
+            padding-top: 2px;
         }
         .btn-card {
-            flex: 1 1 0;
+            width: 100%;
             text-align: center;
-            padding: 5px 0;
+            padding: 7px 0;
             border-radius: var(--radius-full);
-            font-size: 0.58rem;
+            font-size: 0.6rem;
             font-weight: 600;
             text-decoration: none;
             transition: var(--transition-fast);
@@ -492,27 +491,26 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 3px;
+            gap: 4px;
             white-space: nowrap;
-            min-width: 0;
             user-select: none;
             -webkit-user-select: none;
         }
         .btn-card i {
-            font-size: 0.55rem;
+            font-size: 0.6rem;
         }
         .btn-card:active {
             background: var(--accent);
             color: #0a0f1a;
             border-color: var(--accent);
-            transform: scale(0.94);
+            transform: scale(0.96);
         }
         @media (hover: hover) {
             .btn-card:hover {
                 background: var(--accent);
                 color: #0a0f1a;
                 border-color: var(--accent);
-                transform: scale(0.95);
+                transform: scale(0.96);
             }
         }
         .btn-card-wa {
@@ -524,7 +522,6 @@
         .btn-card-wa:active {
             background: #20b859;
             color: #fff;
-            transform: scale(0.94);
         }
         @media (hover: hover) {
             .btn-card-wa:hover {
@@ -541,7 +538,6 @@
         .btn-card-primary:active {
             background: #ffdf5e;
             color: #000;
-            transform: scale(0.94);
         }
         @media (hover: hover) {
             .btn-card-primary:hover {
@@ -860,14 +856,15 @@
                 grid-template-columns: repeat(3, 1fr);
                 gap: 14px 10px;
             }
+            .card-image-area { height: 160px; }
             .marquee-text { font-size: clamp(0.8rem, 2vw, 1.1rem); }
-            .card-image-area img { max-height: 180px; }
         }
         @media (max-width: 768px) {
             .product-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 12px 8px;
             }
+            .card-image-area { height: 150px; }
             .marquee-text { font-size: 0.8rem; }
             .banner-image { aspect-ratio: 16/8; min-height: 110px; }
             .banner-container { border-radius: var(--radius-md); }
@@ -877,30 +874,26 @@
             .app-rating-pill { font-size: 0.62rem; padding: 4px 9px; }
             .card-title { font-size: 0.66rem; }
             .card-price { font-size: 0.64rem; }
-            .btn-card { font-size: 0.56rem; padding: 4px 0; }
+            .btn-card { font-size: 0.58rem; padding: 6px 0; }
             .section-title { font-size: var(--font-md); }
-            .card-image-area { padding: 14px 10px; }
-            .card-image-area img { max-height: 160px; }
         }
         @media (max-width: 540px) {
             .product-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 10px 7px;
             }
+            .card-image-area { height: 140px; padding: 6px; }
             .marquee-text { font-size: 0.7rem; letter-spacing: 0.5px; }
             .marquee-container { height: 2.2rem; }
-            .card-actions { gap: 3px; }
-            .btn-card { font-size: 0.52rem; padding: 4px 0; }
+            .btn-card { font-size: 0.55rem; padding: 6px 0; }
             .app-store-name { font-size: 1rem; }
             .app-logo { width: 30px; height: 30px; }
             .banner-image { aspect-ratio: 16/9; min-height: 90px; }
             .banner-container { border-radius: var(--radius-sm); margin: 5px 0 12px; }
             .banner-overlay { font-size: 0.5rem; padding: 3px 8px; bottom: 6px; left: 8px; }
-            .card-image-area { padding: 12px 8px; }
-            .card-image-area img { max-height: 140px; }
             .card-title { font-size: 0.62rem; }
             .card-price { font-size: 0.6rem; }
-            .card-meta { font-size: 0.52rem; gap: 3px; margin-bottom: 5px; }
+            .card-meta { font-size: 0.52rem; gap: 3px; margin-bottom: 6px; }
             .card-body { padding: 7px 6px 9px; }
             .card-badge { font-size: 0.5rem; padding: 2px 5px; top: 4px; right: 4px; }
             .modal-sheet { border-radius: var(--radius-lg); max-height: 78vh; }
@@ -917,24 +910,17 @@
             .section-icon { width: 28px; height: 28px; font-size: 0.7rem; }
         }
         @media (max-width: 380px) {
-            .product-grid {
-                gap: 8px 5px;
-            }
-            .btn-card {
-                font-size: 0.48rem;
-                padding: 3px 0;
-                gap: 2px;
-            }
+            .product-grid { gap: 8px 5px; }
+            .card-image-area { height: 120px; }
+            .btn-card { font-size: 0.5rem; padding: 5px 0; }
             .card-title { font-size: 0.56rem; }
             .card-price { font-size: 0.55rem; }
-            .card-image-area { padding: 10px 6px; }
-            .card-image-area img { max-height: 120px; }
         }
     </style>
 </head>
 <body>
 
-    <header class="app-bar" id="appBar">
+    <header class="app-bar">
         <div class="app-bar-left">
             <img src="assets/logokjs.png" alt="KJS Logo" class="app-logo" onerror="this.src='https://placehold.co/200x200?text=KJS'">
             <div class="app-brand">
@@ -951,7 +937,7 @@
         </div>
     </header>
 
-    <main class="main-content" id="mainContent">
+    <main class="main-content">
         <div class="hero-section">
             <div class="marquee-container">
                 <div class="marquee-track">
@@ -978,7 +964,7 @@
         <div class="product-grid" id="productGrid"></div>
     </main>
 
-    <nav class="bottom-nav" id="bottomNav">
+    <nav class="bottom-nav">
         <button class="nav-item active" data-tab="home" aria-label="Beranda"><i class="fas fa-home"></i><span>Beranda</span></button>
         <button class="nav-item has-notif" data-tab="products" aria-label="Produk"><i class="fas fa-th-large"></i><span>Produk</span><span class="nav-badge-dot"></span></button>
         <button class="nav-item" data-tab="contact" aria-label="Kontak"><i class="fas fa-headset"></i><span>Kontak</span></button>
