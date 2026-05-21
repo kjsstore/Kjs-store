@@ -290,7 +290,7 @@
 
         <div class="banner-container" id="bannerContainer">
             <img src="assets/banner.png" alt="Banner KJS" class="banner-image" onerror="this.src='https://placehold.co/1200x500?text=KJS+BANNER'">
-            <div class="banner-overlay"><i class="fas fa-crown"></i> Premium Collection</div>
+            
         </div>
 
         <div class="section-header">
@@ -405,7 +405,7 @@
             document.getElementById('lightboxModal').addEventListener('click', e => { if(e.target===document.getElementById('lightboxModal')) closeLightbox(); });
             document.getElementById('closeToast').addEventListener('click', hideToast);
             document.getElementById('toastOverlay').addEventListener('click', hideToast);
-            document.getElementById('bannerContainer').addEventListener('click', () => window.open(`https://wa.me/${WA}?text=${encodeURIComponent("Halo min, saya tertarik dengan produk premium KJSSTORE.")}`, '_blank'));
+            
 
             document.querySelectorAll('.nav-item').forEach(item => item.addEventListener('click', function() {
                 document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
