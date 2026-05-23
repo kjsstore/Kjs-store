@@ -13,7 +13,6 @@
             --bg-elevated: #1a2338;
             --gold: #facc15;
             --accent: #06b6d4;
-            --accent-soft: #10b981;
             --text-primary: #edf2ff;
             --text-secondary: #cbd5e6;
             --text-muted: #6b7280;
@@ -123,37 +122,6 @@
         .app-badge i {
             font-size: 0.5rem;
             color: var(--gold);
-        }
-        .app-bar-right {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .app-rating-pill {
-            background: var(--bg-elevated);
-            padding: 6px 12px;
-            border-radius: var(--radius-full);
-            font-size: var(--font-sm);
-            font-weight: 500;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            border: 1px solid var(--border-subtle);
-        }
-        .app-rating-pill i {
-            color: var(--gold);
-            font-size: 0.6rem;
-        }
-        .app-status-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #22c55e;
-            box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
-            display: inline-block;
-            margin-right: 2px;
         }
 
         /* ───────── MAIN CONTENT ───────── */
@@ -268,7 +236,7 @@
         /* ───────── MARQUEE BUTTON ───────── */
         .marquee-button-container {
             width: 100%;
-            margin: 8px 0 12px;
+            margin: 8px 0 14px;
             border-radius: var(--radius-full);
             background: linear-gradient(135deg, #b88a0a, #facc15, #eab308);
             border: none;
@@ -300,52 +268,8 @@
             text-shadow: 0 0 6px rgba(250, 204, 21, 0.5);
         }
         @keyframes marqueeScroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        /* ───────── HOME: STATS BAR ───────── */
-        .stats-bar {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin: 6px 0 14px;
-        }
-        .stat-item {
-            background: var(--bg-card);
-            border-radius: var(--radius-md);
-            padding: 14px 10px;
-            text-align: center;
-            border: 1px solid var(--border-subtle);
-            box-shadow: var(--shadow-card);
-            transition: var(--transition-smooth);
-            cursor: default;
-        }
-        .stat-item:active {
-            transform: translateY(-2px);
-            border-color: rgba(250, 204, 21, 0.35);
-        }
-        .stat-icon {
-            font-size: 1.4rem;
-            margin-bottom: 4px;
-            display: block;
-        }
-        .stat-value {
-            font-size: 1rem;
-            font-weight: 800;
-            color: var(--gold);
-            letter-spacing: -0.3px;
-        }
-        .stat-label {
-            font-size: 0.55rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-            margin-top: 2px;
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         /* ───────── HOME: CATEGORY GRID ───────── */
@@ -353,7 +277,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 10px;
-            margin: 0 0 16px;
+            margin: 0 0 18px;
         }
         .category-chip {
             background: var(--bg-card);
@@ -405,7 +329,7 @@
 
         /* ───────── HOME: FEATURED SECTION ───────── */
         .featured-section {
-            margin: 0 0 18px;
+            margin: 0 0 20px;
         }
         .featured-header {
             display: flex;
@@ -437,115 +361,9 @@
         }
         .featured-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-        }
-        .featured-card {
-            background: var(--bg-card);
-            border-radius: var(--radius-lg);
-            border: 1px solid rgba(250, 204, 21, 0.16);
-            overflow: hidden;
-            box-shadow: var(--shadow-card);
-            transition: var(--transition-smooth);
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-        }
-        .featured-card:active {
-            transform: translateY(-4px);
-            border-color: rgba(250, 204, 21, 0.5);
-            box-shadow: var(--shadow-elevated);
-        }
-        @media (hover: hover) {
-            .featured-card:hover {
-                transform: translateY(-5px);
-                border-color: rgba(250, 204, 21, 0.5);
-                box-shadow: 0 22px 38px -10px rgba(0, 0, 0, 0.65);
-            }
-        }
-        .featured-card-img {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            object-fit: contain;
-            background: #0a0f1c;
-            display: block;
-            line-height: 0;
-        }
-        .featured-card-body {
-            padding: 10px 10px 12px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-        .featured-card-name {
-            font-weight: 700;
-            font-size: var(--font-sm);
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-            background: linear-gradient(135deg, #fff, #e2e8f0);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .featured-card-price {
-            font-size: var(--font-xs);
-            font-weight: 700;
-            color: var(--gold);
-        }
-        .featured-card-stars {
-            font-size: 0.55rem;
-            color: var(--gold);
-        }
-
-        /* ───────── HOME: HIGHLIGHT CARDS ───────── */
-        .highlight-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 0 0 20px;
-        }
-        .highlight-card {
-            background: var(--bg-card);
-            border-radius: var(--radius-md);
-            padding: 16px 14px;
-            border: 1px solid var(--border-subtle);
-            box-shadow: var(--shadow-card);
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            transition: var(--transition-smooth);
-            cursor: default;
-        }
-        .highlight-card:active {
-            border-color: rgba(250, 204, 21, 0.3);
-            transform: translateY(-2px);
-        }
-        .highlight-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: var(--radius-sm);
-            background: rgba(250, 204, 21, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            color: var(--gold);
-            flex-shrink: 0;
-        }
-        .highlight-text h4 {
-            font-size: var(--font-sm);
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 2px;
-        }
-        .highlight-text p {
-            font-size: 0.55rem;
-            color: var(--text-muted);
-            line-height: 1.4;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 14px 12px;
+            align-items: start;
         }
 
         /* ───────── PRODUCTS: SECTION HEADER ───────── */
@@ -662,7 +480,15 @@
             pointer-events: none;
             letter-spacing: 0.4px;
             text-transform: uppercase;
+            /* Animasi bergerak (pulse) pada badge HOT */
+            animation: hotPulse 1.2s ease-in-out infinite;
         }
+
+        @keyframes hotPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.12); }
+        }
+
         .card-image-indicator {
             position: absolute;
             bottom: 8px;
@@ -1067,18 +893,6 @@
             .product-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-            .featured-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .highlight-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .stats-bar {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            .category-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
         }
         @media (max-width: 768px) {
             .product-grid {
@@ -1086,20 +900,8 @@
                 gap: 12px 8px;
             }
             .featured-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px 8px;
-            }
-            .highlight-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
-            }
-            .stats-bar {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 6px;
-            }
-            .category-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 7px;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px 8px;
             }
             .app-bar {
                 padding: 8px 12px;
@@ -1122,15 +924,6 @@
                 line-height: 36px;
                 font-size: 0.6rem;
             }
-            .stat-value {
-                font-size: 0.85rem;
-            }
-            .stat-icon {
-                font-size: 1.1rem;
-            }
-            .stat-label {
-                font-size: 0.5rem;
-            }
             .category-chip i {
                 font-size: 1.2rem;
             }
@@ -1144,20 +937,8 @@
                 gap: 10px 7px;
             }
             .featured-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 8px 6px;
-            }
-            .highlight-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 7px;
-            }
-            .stats-bar {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 7px;
-            }
-            .category-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 8px;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 10px 7px;
             }
             .btn-card {
                 font-size: 0.55rem;
@@ -1188,15 +969,6 @@
                 line-height: 32px;
                 font-size: 0.55rem;
             }
-            .stat-value {
-                font-size: 0.75rem;
-            }
-            .stat-icon {
-                font-size: 0.95rem;
-            }
-            .stat-item {
-                padding: 10px 6px;
-            }
             .category-chip {
                 padding: 10px 6px;
             }
@@ -1206,43 +978,16 @@
             .category-chip span {
                 font-size: 0.5rem;
             }
-            .highlight-card {
-                padding: 10px 8px;
-                gap: 6px;
-            }
-            .highlight-icon {
-                width: 30px;
-                height: 30px;
-                font-size: 0.85rem;
-            }
-            .highlight-text h4 {
-                font-size: 0.6rem;
-            }
-            .highlight-text p {
-                font-size: 0.48rem;
-            }
         }
         @media (max-width: 380px) {
             .product-grid {
                 gap: 8px 5px;
             }
             .featured-grid {
-                gap: 7px 5px;
+                gap: 8px 5px;
             }
             .btn-card {
                 font-size: 0.5rem;
-            }
-            .stats-bar {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 5px;
-            }
-            .category-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 5px;
-            }
-            .highlight-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 5px;
             }
         }
     </style>
@@ -1256,13 +1001,6 @@
             <div class="app-brand">
                 <span class="app-store-name">❒ RUANG KJS</span>
                 <div class="app-badge"><i class="fas fa-shield-alt"></i> KING OWNER</div>
-            </div>
-        </div>
-        <div class="app-bar-right">
-            <div class="app-rating-pill">
-                <span class="app-status-dot"></span>
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                <span>4.8 • 1.2k+</span>
             </div>
         </div>
     </header>
@@ -1288,32 +1026,8 @@
             <!-- MARQUEE BUTTON -->
             <div class="marquee-button-container">
                 <div class="marquee-button-track">
-                    <span class="marquee-button-text"> PRODUK UNGGULAN: AUTOFORMATTER · BASE TEMPLATE · KALKULATOR KPJ · AUTO REGIS JMO · SC TUNNELING · BOT WA/TELEGRAM · JASA DOKUMEN · LAYANAN BPJS · LAYANAN NPWP · PREMIUM DIGITAL SOLUTIONS &nbsp;&nbsp;&nbsp;</span>
-                    <span class="marquee-button-text"> PRODUK UNGGULAN: AUTOFORMATTER · BASE TEMPLATE · KALKULATOR KPJ · AUTO REGIS JMO · SC TUNNELING · BOT WA/TELEGRAM · JASA DOKUMEN · LAYANAN BPJS · LAYANAN NPWP · PREMIUM DIGITAL SOLUTIONS &nbsp;&nbsp;&nbsp;</span>
-                </div>
-            </div>
-
-            <!-- STATS BAR -->
-            <div class="stats-bar">
-                <div class="stat-item">
-                    <span class="stat-icon">📦</span>
-                    <span class="stat-value">9+</span>
-                    <span class="stat-label">Produk</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-icon">👥</span>
-                    <span class="stat-value">6.8k+</span>
-                    <span class="stat-label">Pelanggan</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-icon">⭐</span>
-                    <span class="stat-value">4.8</span>
-                    <span class="stat-label">Rating</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-icon">💬</span>
-                    <span class="stat-value">24/7</span>
-                    <span class="stat-label">Support</span>
+                    <span class="marquee-button-text">🔥 PRODUK UNGGULAN: AUTOFORMATTER · BASE TEMPLATE · KALKULATOR KPJ · AUTO REGIS JMO · SC TUNNELING · BOT WA/TELEGRAM · JASA DOKUMEN · LAYANAN BPJS · LAYANAN NPWP · PREMIUM DIGITAL SOLUTIONS 🔥&nbsp;&nbsp;&nbsp;</span>
+                    <span class="marquee-button-text">🔥 PRODUK UNGGULAN: AUTOFORMATTER · BASE TEMPLATE · KALKULATOR KPJ · AUTO REGIS JMO · SC TUNNELING · BOT WA/TELEGRAM · JASA DOKUMEN · LAYANAN BPJS · LAYANAN NPWP · PREMIUM DIGITAL SOLUTIONS 🔥&nbsp;&nbsp;&nbsp;</span>
                 </div>
             </div>
 
@@ -1341,38 +1055,13 @@
                 </div>
             </div>
 
-            <!-- PRODUK UNGGULAN -->
+            <!-- PRODUK UNGGULAN (AUTOFORMATTER & BASE TEMPLATE) -->
             <div class="featured-section">
                 <div class="featured-header">
                     <span class="featured-title"><i class="fas fa-star"></i> Produk Unggulan</span>
                     <span class="featured-badge">🔥 BEST SELLER</span>
                 </div>
-                <div class="featured-grid" id="featuredGrid"></div>
-            </div>
-
-            <!-- HIGHLIGHT / KENAPA KJS STORE -->
-            <div class="highlight-grid">
-                <div class="highlight-card">
-                    <div class="highlight-icon"><i class="fas fa-bolt"></i></div>
-                    <div class="highlight-text">
-                        <h4>Proses Cepat</h4>
-                        <p>Transaksi instan & produk langsung dikirim setelah pembayaran.</p>
-                    </div>
-                </div>
-                <div class="highlight-card">
-                    <div class="highlight-icon"><i class="fas fa-shield-haltered"></i></div>
-                    <div class="highlight-text">
-                        <h4>Terpercaya</h4>
-                        <p>Rating 4.8 dengan ribuan pelanggan.</p>
-                    </div>
-                </div>
-                <div class="highlight-card">
-                    <div class="highlight-icon"><i class="fas fa-headset"></i></div>
-                    <div class="highlight-text">
-                        <h4>Support 24/7</h4>
-                        <p>Bantuan kapan saja via WhatsApp, siap melayani Anda.</p>
-                    </div>
-                </div>
+                <div class="product-grid featured-grid" id="featuredGrid"></div>
             </div>
         </section>
 
@@ -1532,11 +1221,8 @@
             function hideToast() { document.getElementById('toastOverlay').style.display = 'none';
                 document.getElementById('toastCard').style.display = 'none'; }
 
-            // ─── RENDER PRODUK (halaman produk) ───
-            function renderProductGrid() {
-                const grid = document.getElementById('productGrid');
-                document.getElementById('productCount').textContent = products.length + ' Produk';
-                grid.innerHTML = products.map(p => `
+            function generateProductCard(p) {
+                return `
                 <div class="product-card">
                     <div class="card-image-area" data-img="${p.gambar}">
                         <img src="${p.gambar}" alt="${p.nama}" onerror="this.src='https://placehold.co/400x400?text=${encodeURIComponent(p.nama)}'">
@@ -1553,13 +1239,14 @@
                             <a href="#" class="btn-card btn-card-primary tutorial-btn"><i class="fas fa-play-circle"></i> TUTOR</a>
                         </div>
                     </div>
-                </div>`).join('');
+                </div>`;
+            }
 
-                // Event listeners untuk product grid
-                grid.querySelectorAll('.card-image-area').forEach(w => w.addEventListener('click', e => { e
+            function attachCardEvents(container) {
+                container.querySelectorAll('.card-image-area').forEach(w => w.addEventListener('click', e => { e
                     .stopPropagation();
                     lightbox(w.dataset.img); }));
-                grid.querySelectorAll('.info-btn').forEach(b => b.addEventListener('click', e => {
+                container.querySelectorAll('.info-btn').forEach(b => b.addEventListener('click', e => {
                     e.stopPropagation();
                     const p = products.find(x => x.id == b.dataset.id);
                     if (p) { curNama = p.nama;
@@ -1569,60 +1256,39 @@
                         document.getElementById('modalBody').innerHTML = fmtMod(p.fitur);
                         document.getElementById('infoModal').style.display = 'flex'; }
                 }));
-                grid.querySelectorAll('.order-btn').forEach(b => b.addEventListener('click', e => {
+                container.querySelectorAll('.order-btn').forEach(b => b.addEventListener('click', e => {
                     e.stopPropagation();
                     window.open(
-                        `https://wa.me/${WA}?text=${encodeURIComponent(`Halo Kak, saya ingin ORDER produk *${b.dataset.nama}* dengan harga *${b.dataset.harga}* dari KJSSTORE.`)}`,
+                        `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(`Halo Kak, saya ingin ORDER produk *${b.dataset.nama}* dengan harga *${b.dataset.harga}* dari KJSSTORE.`)}`,
                         '_blank');
                 }));
-                grid.querySelectorAll('.tutorial-btn').forEach(b => b.addEventListener('click', e => { e
+                container.querySelectorAll('.tutorial-btn').forEach(b => b.addEventListener('click', e => { e
                     .preventDefault();
                     e.stopPropagation();
                     showToast(); }));
             }
 
-            // ─── RENDER FEATURED PRODUCTS (beranda) ───
-            function renderFeatured() {
-                const featuredGrid = document.getElementById('featuredGrid');
-                // Tampilkan 4 produk unggulan (id 1,3,6,8)
-                const featuredIds = [1, 3, 6, 8];
-                const featuredProducts = products.filter(p => featuredIds.includes(p.id));
-                featuredGrid.innerHTML = featuredProducts.map(p => `
-                <div class="featured-card" data-id="${p.id}">
-                    <img src="${p.gambar}" alt="${p.nama}" class="featured-card-img" onerror="this.src='https://placehold.co/400x400?text=${encodeURIComponent(p.nama)}'">
-                    <div class="featured-card-body">
-                        <span class="featured-card-name">${p.nama}</span>
-                        <span class="featured-card-price">${p.harga}</span>
-                        <span class="featured-card-stars">${stars(p.bintang)}</span>
-                    </div>
-                </div>`).join('');
-
-                featuredGrid.querySelectorAll('.featured-card').forEach(card => {
-                    card.addEventListener('click', () => {
-                        const p = products.find(x => x.id == card.dataset.id);
-                        if (p) {
-                            curNama = p.nama;
-                            curHarga = p.harga;
-                            document.getElementById('modalTitle').innerHTML =
-                                `<i class="fas fa-cube"></i> ${p.nama}`;
-                            document.getElementById('modalBody').innerHTML = fmtMod(p.fitur);
-                            document.getElementById('infoModal').style.display = 'flex';
-                        }
-                    });
-                });
+            function renderProductGrid() {
+                const grid = document.getElementById('productGrid');
+                document.getElementById('productCount').textContent = products.length + ' Produk';
+                grid.innerHTML = products.map(p => generateProductCard(p)).join('');
+                attachCardEvents(grid);
             }
 
-            // ─── NAVIGASI TAB ───
+            function renderFeatured() {
+                const featuredGrid = document.getElementById('featuredGrid');
+                const featuredProducts = products.filter(p => p.id === 1 || p.id === 2);
+                featuredGrid.innerHTML = featuredProducts.map(p => generateProductCard(p)).join('');
+                attachCardEvents(featuredGrid);
+            }
+
             function switchTab(tabName) {
-                // Sembunyikan semua section
                 document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-                // Tampilkan section yang sesuai
                 if (tabName === 'home') {
                     document.getElementById('homeSection').classList.add('active');
                 } else if (tabName === 'products') {
                     document.getElementById('productsSection').classList.add('active');
                 }
-                // Update active state nav
                 document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
                 const activeNav = document.querySelector(`.nav-item[data-tab="${tabName}"]`);
                 if (activeNav) activeNav.classList.add('active');
@@ -1681,20 +1347,17 @@
             document.getElementById('modalBackBtn').addEventListener('click', () => modal.style.display = 'none');
             document.getElementById('modalOrderBtn').addEventListener('click', () => {
                 if (curNama) window.open(
-                    `https://wa.me/${WA}?text=${encodeURIComponent(`Halo Kak, saya ingin ORDER produk *${curNama}* dengan harga *${curHarga}* dari KJSSTORE.`)}`,
+                    `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${encodeURIComponent(`Halo Kak, saya ingin ORDER produk *${curNama}* dengan harga *${curHarga}* dari KJSSTORE.`)}`,
                     '_blank');
             });
 
-            // ───────── LIGHTBOX ─────────
             document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
             document.getElementById('lightboxModal').addEventListener('click', e => { if (e.target === document
                     .getElementById('lightboxModal')) closeLightbox(); });
 
-            // ───────── TOAST ─────────
             document.getElementById('closeToast').addEventListener('click', hideToast);
             document.getElementById('toastOverlay').addEventListener('click', hideToast);
 
-            // ───────── BOTTOM NAV ─────────
             document.querySelectorAll('.nav-item').forEach(item => item.addEventListener('click', function() {
                 const tab = this.dataset.tab;
                 if (tab === 'home') {
@@ -1705,12 +1368,10 @@
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else if (tab === 'contact') {
                     window.open(
-                        `https://wa.me/${ADMIN}?text=${encodeURIComponent("Halo min, saya mau tanya info produk & layanan KJSSTORE.")}`,
+                        `https://wa.me/${ADMIN_WHATSAPP}?text=${encodeURIComponent("Assalamualaikum.")}`,
                         '_blank');
-                    // Kembalikan active ke tab sebelumnya
                     const currentActive = document.querySelector('.page-section.active');
-                    const activeTab = currentActive && currentActive.id === 'homeSection' ? 'home' :
-                        'products';
+                    const activeTab = currentActive && currentActive.id === 'homeSection' ? 'home' : 'products';
                     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
                     const navToActivate = document.querySelector(`.nav-item[data-tab="${activeTab}"]`);
                     if (navToActivate) navToActivate.classList.add('active');
@@ -1723,35 +1384,28 @@
                         "🏪 KJS STORE - Premium Digital Solutions\n\n✅ Auto Formatter & Tools\n✅ Base Template & Dokumen Digital\n✅ Bot WA & Telegram\n✅ Script Tunneling & Server\n✅ Jasa Dokumen & Administrasi\n✅ Layanan BPJS & NPWP\n\n📞 OWNER: 6285943111681\n💼 ADMIN: 6283830803474"
                         );
                     modal.style.display = 'flex';
-                    // Kembalikan active ke tab sebelumnya
                     const currentActive2 = document.querySelector('.page-section.active');
-                    const activeTab2 = currentActive2 && currentActive2.id === 'homeSection' ? 'home' :
-                        'products';
+                    const activeTab2 = currentActive2 && currentActive2.id === 'homeSection' ? 'home' : 'products';
                     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
                     const navToActivate2 = document.querySelector(`.nav-item[data-tab="${activeTab2}"]`);
                     if (navToActivate2) navToActivate2.classList.add('active');
                 }
             }));
 
-            // ───────── KATEGORI CHIPS (BERANDA) ─────────
             document.querySelectorAll('.category-chip').forEach(chip => {
                 chip.addEventListener('click', () => {
-                    // Pindah ke halaman produk
                     switchTab('products');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             });
 
-            // ───────── KEYBOARD ESCAPE ─────────
             document.addEventListener('keydown', e => { if (e.key === 'Escape') { modal.style.display =
                     'none';
                     closeLightbox();
                     hideToast(); } });
 
-            // ───────── INITIAL RENDER ─────────
             renderProductGrid();
             renderFeatured();
-            // Default: beranda aktif
             switchTab('home');
         })();
     </script>
