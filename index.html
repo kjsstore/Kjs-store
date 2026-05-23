@@ -13,6 +13,7 @@
             --bg-elevated: #1a2338;
             --gold: #facc15;
             --accent: #06b6d4;
+            --accent-soft: #10b981;
             --text-primary: #edf2ff;
             --text-secondary: #cbd5e6;
             --text-muted: #6b7280;
@@ -164,7 +165,26 @@
             width: 100%;
         }
 
-        /* ───────── BANNER SLIDER FULL WIDTH (TANPA GARIS) ───────── */
+        /* ───────── PAGE SECTIONS ───────── */
+        .page-section {
+            display: none;
+            animation: fadeSlideIn 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.05);
+        }
+        .page-section.active {
+            display: block;
+        }
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ───────── BANNER SLIDER ───────── */
         .banner-slider {
             width: 100%;
             position: relative;
@@ -173,7 +193,6 @@
             overflow: hidden;
             box-shadow: var(--shadow-elevated), 0 0 20px rgba(250, 204, 21, 0.1);
             background: #0f172a;
-            /* border dihapus total */
             border: none;
         }
         .banner-track {
@@ -246,10 +265,10 @@
             box-shadow: 0 0 8px var(--gold);
         }
 
-        /* ───────── MARQUEE BUTTON (BERWARNA EMAS) ───────── */
+        /* ───────── MARQUEE BUTTON ───────── */
         .marquee-button-container {
             width: 100%;
-            margin: 8px 0 6px;
+            margin: 8px 0 12px;
             border-radius: var(--radius-full);
             background: linear-gradient(135deg, #b88a0a, #facc15, #eab308);
             border: none;
@@ -289,7 +308,247 @@
             }
         }
 
-        /* ───────── SECTION HEADER ───────── */
+        /* ───────── HOME: STATS BAR ───────── */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 6px 0 14px;
+        }
+        .stat-item {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 14px 10px;
+            text-align: center;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition-smooth);
+            cursor: default;
+        }
+        .stat-item:active {
+            transform: translateY(-2px);
+            border-color: rgba(250, 204, 21, 0.35);
+        }
+        .stat-icon {
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+            display: block;
+        }
+        .stat-value {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: -0.3px;
+        }
+        .stat-label {
+            font-size: 0.55rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            margin-top: 2px;
+        }
+
+        /* ───────── HOME: CATEGORY GRID ───────── */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 0 0 16px;
+        }
+        .category-chip {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 14px 8px;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid var(--border-subtle);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            box-shadow: var(--shadow-card);
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .category-chip:active {
+            transform: scale(0.94);
+            border-color: var(--gold);
+            background: var(--bg-elevated);
+            box-shadow: 0 0 22px rgba(250, 204, 21, 0.18);
+        }
+        @media (hover: hover) {
+            .category-chip:hover {
+                border-color: rgba(250, 204, 21, 0.45);
+                transform: translateY(-3px);
+                box-shadow: var(--shadow-elevated);
+            }
+        }
+        .category-chip i {
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+        .category-chip span {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+        .category-chip .cat-count {
+            font-size: 0.5rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.04);
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+
+        /* ───────── HOME: FEATURED SECTION ───────── */
+        .featured-section {
+            margin: 0 0 18px;
+        }
+        .featured-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .featured-title {
+            font-size: var(--font-lg);
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .featured-title i {
+            color: var(--gold);
+            font-size: 0.85rem;
+        }
+        .featured-badge {
+            font-size: 0.55rem;
+            background: rgba(250, 204, 21, 0.12);
+            color: var(--gold);
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            border: 1px solid rgba(250, 204, 21, 0.2);
+        }
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .featured-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(250, 204, 21, 0.16);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        .featured-card:active {
+            transform: translateY(-4px);
+            border-color: rgba(250, 204, 21, 0.5);
+            box-shadow: var(--shadow-elevated);
+        }
+        @media (hover: hover) {
+            .featured-card:hover {
+                transform: translateY(-5px);
+                border-color: rgba(250, 204, 21, 0.5);
+                box-shadow: 0 22px 38px -10px rgba(0, 0, 0, 0.65);
+            }
+        }
+        .featured-card-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+            background: #0a0f1c;
+            display: block;
+            line-height: 0;
+        }
+        .featured-card-body {
+            padding: 10px 10px 12px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .featured-card-name {
+            font-weight: 700;
+            font-size: var(--font-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            background: linear-gradient(135deg, #fff, #e2e8f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .featured-card-price {
+            font-size: var(--font-xs);
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .featured-card-stars {
+            font-size: 0.55rem;
+            color: var(--gold);
+        }
+
+        /* ───────── HOME: HIGHLIGHT CARDS ───────── */
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 0 0 20px;
+        }
+        .highlight-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 16px 14px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-card);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            transition: var(--transition-smooth);
+            cursor: default;
+        }
+        .highlight-card:active {
+            border-color: rgba(250, 204, 21, 0.3);
+            transform: translateY(-2px);
+        }
+        .highlight-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            background: rgba(250, 204, 21, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+        .highlight-text h4 {
+            font-size: var(--font-sm);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+        .highlight-text p {
+            font-size: 0.55rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* ───────── PRODUCTS: SECTION HEADER ───────── */
         .section-header {
             display: flex;
             align-items: center;
@@ -808,11 +1067,39 @@
             .product-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
+            .featured-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .highlight-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .stats-bar {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .category-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
         @media (max-width: 768px) {
             .product-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 12px 8px;
+            }
+            .featured-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px 8px;
+            }
+            .highlight-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .stats-bar {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 6px;
+            }
+            .category-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 7px;
             }
             .app-bar {
                 padding: 8px 12px;
@@ -835,11 +1122,42 @@
                 line-height: 36px;
                 font-size: 0.6rem;
             }
+            .stat-value {
+                font-size: 0.85rem;
+            }
+            .stat-icon {
+                font-size: 1.1rem;
+            }
+            .stat-label {
+                font-size: 0.5rem;
+            }
+            .category-chip i {
+                font-size: 1.2rem;
+            }
+            .category-chip span {
+                font-size: 0.55rem;
+            }
         }
         @media (max-width: 540px) {
             .product-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 10px 7px;
+            }
+            .featured-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px 6px;
+            }
+            .highlight-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 7px;
+            }
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 7px;
+            }
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
             }
             .btn-card {
                 font-size: 0.55rem;
@@ -870,13 +1188,61 @@
                 line-height: 32px;
                 font-size: 0.55rem;
             }
+            .stat-value {
+                font-size: 0.75rem;
+            }
+            .stat-icon {
+                font-size: 0.95rem;
+            }
+            .stat-item {
+                padding: 10px 6px;
+            }
+            .category-chip {
+                padding: 10px 6px;
+            }
+            .category-chip i {
+                font-size: 1rem;
+            }
+            .category-chip span {
+                font-size: 0.5rem;
+            }
+            .highlight-card {
+                padding: 10px 8px;
+                gap: 6px;
+            }
+            .highlight-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 0.85rem;
+            }
+            .highlight-text h4 {
+                font-size: 0.6rem;
+            }
+            .highlight-text p {
+                font-size: 0.48rem;
+            }
         }
         @media (max-width: 380px) {
             .product-grid {
                 gap: 8px 5px;
             }
+            .featured-grid {
+                gap: 7px 5px;
+            }
             .btn-card {
                 font-size: 0.5rem;
+            }
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 5px;
+            }
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 5px;
+            }
+            .highlight-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 5px;
             }
         }
     </style>
@@ -901,37 +1267,127 @@
         </div>
     </header>
 
-    <!-- ═══════════ BANNER SLIDER (TANPA GARIS) ═══════════ -->
-    <div class="banner-slider" id="bannerSlider">
-        <div class="banner-track" id="bannerTrack">
-            <div class="banner-slide"><img src="assets/banner1.png" alt="Banner 1" onerror="this.src='https://placehold.co/1200x500?text=BANNER+1'"></div>
-            <div class="banner-slide"><img src="assets/banner2.png" alt="Banner 2" onerror="this.src='https://placehold.co/1200x500?text=BANNER+2'"></div>
-            <div class="banner-slide"><img src="assets/banner3.png" alt="Banner 3" onerror="this.src='https://placehold.co/1200x500?text=BANNER+3'"></div>
-        </div>
-        <div class="banner-arrow banner-arrow-left" id="bannerPrev"><i class="fas fa-chevron-left"></i></div>
-        <div class="banner-arrow banner-arrow-right" id="bannerNext"><i class="fas fa-chevron-right"></i></div>
-        <div class="banner-dots" id="bannerDots"></div>
-    </div>
-
-    <!-- ═══════════ MARQUEE BUTTON (WARNA EMAS) ═══════════ -->
-    <div class="marquee-button-container">
-        <div class="marquee-button-track">
-            <span class="marquee-button-text">🔥 PRODUK UNGGULAN: AUTOFORMATTER · BASE TEMPLATE · KALKULATOR KPJ · AUTO REGIS JMO · SC TUNNELING · BOT WA/TELEGRAM · JASA DOKUMEN · LAYANAN BPJS · LAYANAN NPWP · PREMIUM DIGITAL SOLUTIONS 🔥&nbsp;&nbsp;&nbsp;</span>
-            <span class="marquee-button-text">🔥 PRODUK UNGGULAN: AUTOFORMATTER · BASE TEMPLATE · KALKULATOR KPJ · AUTO REGIS JMO · SC TUNNELING · BOT WA/TELEGRAM · JASA DOKUMEN · LAYANAN BPJS · LAYANAN NPWP · PREMIUM DIGITAL SOLUTIONS 🔥&nbsp;&nbsp;&nbsp;</span>
-        </div>
-    </div>
-
     <!-- ═══════════ MAIN CONTENT ═══════════ -->
     <main class="main-content">
-        <div class="section-header">
-            <div class="section-title-group">
-                <div class="section-icon"><i class="fas fa-cube"></i></div>
-                <span class="section-title">Semua Produk</span>
-            </div>
-            <span class="section-count" id="productCount">9 Produk</span>
-        </div>
 
-        <div class="product-grid" id="productGrid"></div>
+        <!-- ═══════════ BERANDA (HOME) ═══════════ -->
+        <section id="homeSection" class="page-section active">
+
+            <!-- BANNER SLIDER -->
+            <div class="banner-slider" id="bannerSlider">
+                <div class="banner-track" id="bannerTrack">
+                    <div class="banner-slide"><img src="assets/banner1.png" alt="Banner 1" onerror="this.src='https://placehold.co/1200x500?text=BANNER+1'"></div>
+                    <div class="banner-slide"><img src="assets/banner2.png" alt="Banner 2" onerror="this.src='https://placehold.co/1200x500?text=BANNER+2'"></div>
+                    <div class="banner-slide"><img src="assets/banner3.png" alt="Banner 3" onerror="this.src='https://placehold.co/1200x500?text=BANNER+3'"></div>
+                </div>
+                <div class="banner-arrow banner-arrow-left" id="bannerPrev"><i class="fas fa-chevron-left"></i></div>
+                <div class="banner-arrow banner-arrow-right" id="bannerNext"><i class="fas fa-chevron-right"></i></div>
+                <div class="banner-dots" id="bannerDots"></div>
+            </div>
+
+            <!-- MARQUEE BUTTON -->
+            <div class="marquee-button-container">
+                <div class="marquee-button-track">
+                    <span class="marquee-button-text"> PRODUK UNGGULAN: AUTOFORMATTER · BASE TEMPLATE · KALKULATOR KPJ · AUTO REGIS JMO · SC TUNNELING · BOT WA/TELEGRAM · JASA DOKUMEN · LAYANAN BPJS · LAYANAN NPWP · PREMIUM DIGITAL SOLUTIONS &nbsp;&nbsp;&nbsp;</span>
+                    <span class="marquee-button-text"> PRODUK UNGGULAN: AUTOFORMATTER · BASE TEMPLATE · KALKULATOR KPJ · AUTO REGIS JMO · SC TUNNELING · BOT WA/TELEGRAM · JASA DOKUMEN · LAYANAN BPJS · LAYANAN NPWP · PREMIUM DIGITAL SOLUTIONS &nbsp;&nbsp;&nbsp;</span>
+                </div>
+            </div>
+
+            <!-- STATS BAR -->
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-icon">📦</span>
+                    <span class="stat-value">9+</span>
+                    <span class="stat-label">Produk</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">👥</span>
+                    <span class="stat-value">6.8k+</span>
+                    <span class="stat-label">Pelanggan</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">⭐</span>
+                    <span class="stat-value">4.8</span>
+                    <span class="stat-label">Rating</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">💬</span>
+                    <span class="stat-value">24/7</span>
+                    <span class="stat-label">Support</span>
+                </div>
+            </div>
+
+            <!-- KATEGORI -->
+            <div class="category-grid" id="categoryGrid">
+                <div class="category-chip" data-cat="tools">
+                    <i class="fas fa-tools"></i>
+                    <span>Tools</span>
+                    <span class="cat-count">3 produk</span>
+                </div>
+                <div class="category-chip" data-cat="template">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Template</span>
+                    <span class="cat-count">1 produk</span>
+                </div>
+                <div class="category-chip" data-cat="bot">
+                    <i class="fas fa-robot"></i>
+                    <span>Bot</span>
+                    <span class="cat-count">1 produk</span>
+                </div>
+                <div class="category-chip" data-cat="layanan">
+                    <i class="fas fa-concierge-bell"></i>
+                    <span>Layanan</span>
+                    <span class="cat-count">4 produk</span>
+                </div>
+            </div>
+
+            <!-- PRODUK UNGGULAN -->
+            <div class="featured-section">
+                <div class="featured-header">
+                    <span class="featured-title"><i class="fas fa-star"></i> Produk Unggulan</span>
+                    <span class="featured-badge">🔥 BEST SELLER</span>
+                </div>
+                <div class="featured-grid" id="featuredGrid"></div>
+            </div>
+
+            <!-- HIGHLIGHT / KENAPA KJS STORE -->
+            <div class="highlight-grid">
+                <div class="highlight-card">
+                    <div class="highlight-icon"><i class="fas fa-bolt"></i></div>
+                    <div class="highlight-text">
+                        <h4>Proses Cepat</h4>
+                        <p>Transaksi instan & produk langsung dikirim setelah pembayaran.</p>
+                    </div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon"><i class="fas fa-shield-haltered"></i></div>
+                    <div class="highlight-text">
+                        <h4>Terpercaya</h4>
+                        <p>Rating 4.8 dengan ribuan pelanggan.</p>
+                    </div>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon"><i class="fas fa-headset"></i></div>
+                    <div class="highlight-text">
+                        <h4>Support 24/7</h4>
+                        <p>Bantuan kapan saja via WhatsApp, siap melayani Anda.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ HALAMAN PRODUK ═══════════ -->
+        <section id="productsSection" class="page-section">
+            <div class="section-header">
+                <div class="section-title-group">
+                    <div class="section-icon"><i class="fas fa-cube"></i></div>
+                    <span class="section-title">Semua Produk</span>
+                </div>
+                <span class="section-count" id="productCount">9 Produk</span>
+            </div>
+            <div class="product-grid" id="productGrid"></div>
+        </section>
+
     </main>
 
     <!-- ═══════════ BOTTOM NAV ═══════════ -->
@@ -972,29 +1428,112 @@
 
     <script>
         (function() {
-            const WA = "6283830803474", ADMIN = "6285943111681";
-            const products = [
-                { id:1, nama:"AUTOFORMATTER", bintang:5, download:"150", badge:"🔥 HOT", gambar:"assets/produk1.png", harga:"Rp 350rb", fitur:"🔥 AUTO FORMATTER VVIP 🔥\n\n✨ FORMAT DATA 1 KLIK JADI! ✨\n\n✅ Proses super cepat\n✅ Bisa request format\n✅ Tinggal input → jadi\n\n📦 FITUR UNGGULAN:\n🔹 V1 Format khusus\n🔹 V2 Format siap share\n🔹 V3 Penyimpanan hasil\n🔹 V4 Input 1 data jadi 3 lembar SIAK\n🔹 V5 Akses LASIK VVIP\n\n💰 HARGA: Rp 350rb" },
-                { id:2, nama:"BASE TEMPLATE", bintang:4, download:"610", badge:"🔥 HOT", gambar:"assets/produk2.png", harga:"Rp 350rb", fitur:"Kartu Dokumen Digital praktis.\n\n🔥 FITUR:\n✅ Input data lengkap\n✅ Upload foto\n✅ Watermark\n✅ Export HD\n✅ Mobile friendly\n✅ Support 24/7" },
-                { id:3, nama:"KALKULATOR KPJ", bintang:5, download:"200", badge:"🔥 HOT", gambar:"assets/produk3.png", harga:"Rp 350rb", fitur:"🚀 KPJ GENERATOR PRO V5 🚀\n\n🔥 FITUR:\n✔ Generator Massal\n✔ Mode UP/DOWN\n✔ Sistem Acak\n✔ Tracking\n✔ Export Excel\n✔ Salin 9999 Data\n💰 Rp 350rb" },
-                { id:4, nama:"AUTO REGIS JMO", bintang:4, download:"331", badge:"🔥 FLASH", gambar:"assets/produk4.png", harga:"Cek Info", fitur:"📢 AUTO REGISTRASI JMO\n\n✔ Auto Registrasi\n✔ Cek Status JMO\n✔ Cek Sensor, Email\n✔ Kalkulator KPJ\n\n💰 PAKET:\n👑 UNLIMITED 1Th: 5jt\n🔥 STARTER 7hr: 600rb\n💎 PRO 30hr: 2.5jt" },
-                { id:5, nama:"SC TUNNELING", bintang:4, download:"540", badge:"🚀 TUNNEL", gambar:"assets/produk5.png", harga:"Rp 100rb", fitur:"🚀 SEWA SC TUNNELING\n\n💻 Debian/Ubuntu\n⚙️ SSH, XRAY, NGINX, Bot\n💰 10K/bln, 20K/2bln" },
-                { id:6, nama:"BOT WA/TELEGRAM", bintang:5, download:"2.1k+", badge:"🤖 BOT", gambar:"assets/produk6.png", harga:"Rp 200rb", fitur:"🚀 BOT STORE\n\n🤖 Sewa Script Bot\n🛠️ Jasa Development\n✅ Website, Server\n💰 Rp 200rb" },
-                { id:7, nama:"JASA DOKUMEN", bintang:4, download:"788", badge:"🕶️ PRO", gambar:"assets/produk7.png", harga:"JAFRI ADMIN", fitur:"🚀 JASA DOKUMEN\n\n📌 NPWP, SKCK, CV, SIAK, Slip Gaji, BPJS, ID Card, dll.\n📲 0854-3111-1681" },
-                { id:8, nama:"LAYANAN BPJS", bintang:5, download:"1.8k+", badge:"🏆 ULTIMATE", gambar:"assets/produk8.png", harga:"JAFRI ADMIN", fitur:"🚀 LAYANAN BPJS KETENAGAKERJAAN\n\n⚙️ Cek Saldo, Siap 3 Lembar, Lacak Sensor, Validasi, Reskun, Reset Bio." },
-                { id:9, nama:"LAYANAN NPWP", bintang:4, download:"331", badge:"🔥 HOT", gambar:"assets/produk9.png", harga:"Rp 50rb", fitur:"💼 LAYANAN NPWP\n\n✨ NPWP Badan, Perorangan, Aktivasi, Cetak Ulang.\n💰 Rp 350rb\n📱 WA: +62 859-4311-1681" }
-            ];
-            let curNama="", curHarga="";
-            const stars = r => { let s=''; for(let i=0;i<Math.floor(r);i++) s+='★'; if(r%1) s+='½'; while(s.length<5) s+='☆'; return s; };
-            const fmtDL = c => typeof c==='string'?c:(c>=1000?(c/1000).toFixed(1)+'k':c);
-            const fmtMod = t => `<div style="white-space:normal;">${t.replace(/\n/g,'<br>').replace(/✅/g,'<span style="color:#06b6d4;">✅</span>').replace(/✔/g,'<span style="color:#facc15;">✔</span>').replace(/🔥/g,'<span style="color:#facc15;">🔥</span>').replace(/✨/g,'<span style="color:#facc15;">✨</span>').replace(/🚀/g,'<span style="color:#facc15;">🚀</span>').replace(/💰/g,'<span style="color:#facc15;">💰</span>')}</div>`;
+            const YOUR_WHATSAPP_NUMBER = "6283830803474";
+            const ADMIN_WHATSAPP = "6285943111681";
 
-            function lightbox(src) { document.getElementById('lightboxImg').src=src; document.getElementById('lightboxModal').style.display='flex'; }
-            function closeLightbox() { document.getElementById('lightboxModal').style.display='none'; }
-            function showToast() { document.getElementById('toastOverlay').style.display='block'; document.getElementById('toastCard').style.display='block'; }
-            function hideToast() { document.getElementById('toastOverlay').style.display='none'; document.getElementById('toastCard').style.display='none'; }
+            const products = [{
+                id: 1,
+                nama: "AUTOFORMATTER",
+                bintang: 5,
+                download: "150",
+                badge: "🔥 HOT",
+                gambar: "assets/produk1.png",
+                harga: "Rp 350rb",
+                fitur: "🔥 AUTO FORMATTER VVIP 🔥\n\n✨ FORMAT DATA JADI 1 KLIK LANGSUNG JADI! ✨\nCapek format manual? Ribet & makan waktu?\nSekarang cukup 1 klik semua beres! ⚡\n\n💡 Keunggulan:\n✅ Proses super cepat & otomatis\n✅ Bisa request format sesuai kebutuhan\n✅ Tinggal input → langsung jadi\n✅ Cocok untuk kerja & jualan\n\n📦 FITUR UNGGULAN:\n🔹 V1 Format khusus (disimpan rapi)\n🔹 V2 Format siap share / jual ke grup\n🔹 V3 Penyimpanan hasil dari V1\n🔹 V4 Input 1 data jadi 3 lembar SIAK\n🔹 V5 Akses LASIK VVIP 🔥\n\n💯 Sistem sudah terverifikasi & digunakan banyak user\n\n🔥 KENAPA HARUS PAKAI INI?\n✔ Hemat waktu kerja\n✔ Minim kesalahan\n✔ Praktis & fleksibel\n✔ Bisa untuk kebutuhan pribadi & bisnis\n\n💰 HARGA: Rp 350rb\n\n📲 ORDER SEKARANG!\n💬 Fast respon 24 jam\n⚡ Siap bantu sampai bisa"
+            }, {
+                id: 2,
+                nama: "BASE TEMPLATE",
+                bintang: 4,
+                download: "610",
+                badge: "🔥 HOT",
+                gambar: "assets/produk2.png",
+                harga: "Rp 350rb",
+                fitur: "Kartu Dokumen Digital adalah solusi praktis untuk membuat kartu identitas digital secara cepat, aman, dan profesional. Cocok digunakan untuk tim lapangan atau tim blusukan tanpa perlu melibatkan data SIAK.\n\n🔥 FITUR UTAMA:\n✅ Input data lengkap & manual\n✅ Upload foto sendiri\n✅ Watermark eksklusif\n✅ Export HD kualitas tinggi\n✅ Mobile friendly Android\n✅ Aman & privat\n✅ Support 24/7\n\n📌 Praktis digunakan kapan saja untuk kebutuhan pendataan dan identitas digital peserta.\n\nKJSSTORE"
+            }, {
+                id: 3,
+                nama: "KALKULATOR KPJ",
+                bintang: 5,
+                download: "200",
+                badge: "🔥 HOT",
+                gambar: "assets/produk3.png",
+                harga: "Rp 350rb",
+                fitur: "🚀 OPEN REGISTRASI KPJ GENERATOR PRO V5 🚀\n\n✨ Solusi Cepat & Praktis Generate Data Otomatis! ✨\n\n🔥 FITUR UNGGULAN:\n✔ Generator Anakan (Auto Generate Massal)\n✔ Mode UP & DOWN (Naik / Turun Otomatis)\n✔ Sistem Acak (Random Generator)\n✔ Tracking / Jejak Data\n✔ Generate Indukan & Anakan Sekaligus\n✔ Export ke Excel\n✔ Salin Cepat (Max 9999 Data)\n✔ Save & Hapus Data Instan\n\n💎 KEUNGGULAN:\n⚡ Proses Super Cepat & Ringan (Android Lite)\n⚡ Tampilan Simple & Profesional\n⚡ Support Generate Hingga Puluhan Ribu Data\n⚡ Minim Error & Stabil Digunakan\n⚡ Cocok Untuk Kebutuhan Skala Besar\n\n⚠️ PERINGATAN PENTING:\nGunakan tools ini dengan bijak!\nSegala bentuk penyalahgunaan bukan tanggung jawab developer.\n\n💰 HARGA: Rp 350rb\n\n🔥 OPEN AKSES / REGISTRASI SEKARANG! 🔥\n💼 Slot terbatas — siapa cepat dia dapat!\n📲 Minat? Langsung chat admin sekarang juga!"
+            }, {
+                id: 4,
+                nama: "AUTO REGIS JMO",
+                bintang: 4,
+                download: "331",
+                badge: "🔥 FLASH",
+                gambar: "assets/produk4.png",
+                harga: "Cek Info",
+                fitur: "📢 AUTO REGISTRASI JMO 📢\n-FLASH BY GARUDA PRO-\n\nSemua kebutuhan JMO dalam 1 sistem otomatis ⚡\nCepat • Akurat • Tanpa Ribet\n\n✔ Auto Registrasi Akun\n✔ Cek Status & Data JMO\n✔ Cek Sensor, Email & Lasik\n✔ Kalkulator KPJ & Cek DPT\n\n💰 PILIH PAKET SESUAI KEBUTUHAN\n\n👑 UNLIMITED 1 TAHUN\nRp 5.000.000\nAkses tanpa batas 365 hari + Free cek hingga 50x\n\n🔥 STARTER\nRp 600.000\n7 hari • 2.500 kuota • Free cek 5x\n\n💎 PRO\nRp 2.500.000\n30 hari • 10.000 kuota • Free cek 15x\n\n📌 KEUNGGULAN\n⚡ Proses super cepat\n📊 Data valid & akurat\n🔒 Aman & terpercaya\n🎧 Support 24 jam\n\n📞 MINAT HUB KJSSTORE:\n👑 OWNER : 6285943111681\n💼 ADMIN : 6283830803474"
+            }, {
+                id: 5,
+                nama: "SC TUNNELING",
+                bintang: 4,
+                download: "540",
+                badge: "🚀 TUNNEL",
+                gambar: "assets/produk5.png",
+                harga: "Rp 100rb",
+                fitur: "🚀 OPEN SEWA SC TUNNELING - KJS STORE 🚀\n\n━━━━━━━━━━━━━━━━━━\n💻 SUPPORT SYSTEM\n━━━━━━━━━━━━━━━━━━\n✅ Debian & Ubuntu Server\n⚡ Full Otomatis (Tinggal Pakai)\n🔥 Stabil & Mudah Digunakan\n\n━━━━━━━━━━━━━━━━━━\n⚙️ FITUR UTAMA\n━━━━━━━━━━━━━━━━━━\n✅ SSH / OpenVPN\n✅ XRAY Core\n✅ NGINX & HAProxy\n✅ Bot Telegram\n✅ Backup & Restore\n\n💡 Mudah Digunakan\n💡 Fitur Lengkap\n💡 Stabil 24 Jam\n💡 Support Pemula\n\n━━━━━━━━━━━━━━━━━━\n💰 HARGA SEWA\n━━━━━━━━━━━━━━━━━━\n💸 1 Bulan : 10K\n💸 2 Bulan : 20K\n\n⚡ Server Aktif 24 Jam Nonstop\n\n━━━━━━━━━━━━━━━━━━\n📸 RIVIEW\n━━━━━━━━━━━━━━━━━━\n👉 https://drive.google.com/drive/folders/1nOmO9TIfpFAd_LvQ5gVDQP4uHiOSLN30\n\n━━━━━━━━━━━━━━━━━━\n📩 ORDER SEKARANG\n━━━━━━━━━━━━━━━━━━\n👉 Hubungi Admin\n📲 Via Telegram / WhatsApp\n\n⭐ BY KJS STORE ⭐"
+            }, {
+                id: 6,
+                nama: "BOT WA/TELEGRAM",
+                bintang: 5,
+                download: "2.1k+",
+                badge: "🤖 BOT",
+                gambar: "assets/produk6.png",
+                harga: "Rp 200rb",
+                fitur: "🚀 OPEN BOT STORE - KJS STORE 🚀\n\n━━━━━━━━━━━━━━━━━━\n🤖 LAYANAN BOT\n━━━━━━━━━━━━━━━━━━\n📱 Support WhatsApp & Telegram\n🤖 Sewa Script Bot Siap Pakai\n\n━━━━━━━━━━━━━━━━━━\n🛠️ JASA & DEVELOPMENT\n━━━━━━━━━━━━━━━━━━\n✅ Perbaikan Script Bot Error\n✅ Pasang & Update Fitur Bot\n✅ Pembuatan Website / Project\n✅ Aplikasi & Server Custom\n\n━━━━━━━━━━━━━━━━━━\n🔥 KEUNGGULAN\n━━━━━━━━━━━━━━━━━━\n⚡ Proses Cepat & Profesional\n💻 Support Full Sampai Jalan\n🔒 Aman & Terpercaya\n📈 Cocok untuk Bisnis / Otomasi\n\n━━━━━━━━━━━━━━━━━━\n📩 ORDER SEKARANG\n━━━━━━━━━━━━━━━━━━\n👉 Hubungi Admin\n📲 Via Telegram / WhatsApp\n\n⭐ BY KJS STORE ⭐"
+            }, {
+                id: 7,
+                nama: "JASA DOKUMEN",
+                bintang: 4,
+                download: "788",
+                badge: "🕶️ PRO",
+                gambar: "assets/produk7.png",
+                harga: "JAFRI ADMIN",
+                fitur: "🚀 JASA PEMBUATAN & PENGURUSAN DOKUMEN 🚀\n\n💼 Cepat • Aman • Terpercaya\n\nButuh urus dokumen tapi ribet? Tenang, semua bisa kami bantu! ✅\nProses cepat, tanpa ribet, dan privasi dijamin aman 🔒\n\n━━━━━━━━━━━━━━━━━━\n📌 LAYANAN KAMI\n━━━━━━━━━━━━━━━━━━\n✅ NPWP & Aktivasi NPWP\n✅ Vaksin 1 • 2 • 3\n✅ SKCK\n✅ CV / Daftar Riwayat Hidup\n✅ Surat Sehat / Surat Sakit\n✅ Cek Valid KTP\n✅ Pembuatan Akun BPU\n✅ SIAK\n✅ Slip Gaji\n✅ Lacak KPJ\n✅ Pencairan BPJS\n✅ BPJS Kesehatan\n✅ Gestun All Paylater\n✅ ID Card\n✅ Undangan Pernikahan\n✅ Kartu Kuning / Disnaker\n✅ Ganda Email (1 jadi banyak)\n✅ Nokos All Negara\n\n🎓 Ijazah Tembak OF\n🎓 Ijazah Resmi Paket OF\n📄 Paklaring\n🪪 Edit KTP Buram / Rusak\n💡 Rekening Listrik OF\n\n━━━━━━━━━━━━━━━━━━\n🔥 KEUNGGULAN\n━━━━━━━━━━━━━━━━━━\n⚡ Proses Cepat & Anti Ribet\n🌐 Bisa Online Tanpa Datang\n🔒 Aman & Terpercaya\n📞 Support Sampai Selesai\n\n━━━━━━━━━━━━━━━━━━\n📩 ORDER SEKARANG\n━━━━━━━━━━━━━━━━━━\n📲 WhatsApp: 0854-3111-1681\n💬 Konsultasi GRATIS, tanya-tanya santai boleh!\n\n⭐ BY KJS STORE ⭐"
+            }, {
+                id: 8,
+                nama: "LAYANAN BPJS",
+                bintang: 5,
+                download: "1.8k+",
+                badge: "🏆 ULTIMATE",
+                gambar: "assets/produk8.png",
+                harga: "JAFRI ADMIN",
+                fitur: "🚀 LAYANAN BPJS KETENAGAKERJAAN 🚀\n\n💼 Cepat • Akurat • Terpercaya\n\nButuh cek atau urus data BPJS tanpa ribet? Tenang, semua bisa kami bantu! ⚡\nProses cepat, aman, dan full online 🔒\n\n━━━━━━━━━━━━━━━━━━\n⚙️ FITUR LAYANAN\n━━━━━━━━━━━━━━━━━━\n💰 Cek Saldo BPJS\n📄 Siap 3 Lembar\n✅ Cek Akun Aktif BPJSTK\n📍 Lacak Sensor\n🔍 Lacak Tabel / Valid\n✔️ Validasi Data\n🛡️ Reskun (Restore Akun)\n🔄 Reset Bio\n\n━━━━━━━━━━━━━━━━━━\n🔥 KEUNGGULAN\n━━━━━━━━━━━━━━━━━━\n⚡ Proses Cepat & Real Time\n🔒 Aman & Privasi Terjaga\n📊 Data Akurat & Valid\n💻 Bisa Full Online\n📞 Support Sampai Selesai\n\n━━━━━━━━━━━━━━━━━━\n📌 COCOK UNTUK\n━━━━━━━━━━━━━━━━━━\n✔ Cek Status BPJS\n✔ Persiapan Pencairan\n✔ Validasi Data Kerja\n✔ Kebutuhan Administrasi\n\n━━━━━━━━━━━━━━━━━━\n📩 ORDER SEKARANG\n━━━━━━━━━━━━━━━━━━\n👉 Hubungi Admin\n📲 Via WhatsApp / Telegram\n\n⭐ BY KJS STORE ⭐"
+            }, {
+                id: 9,
+                nama: "LAYANAN NPWP",
+                bintang: 4,
+                download: "331",
+                badge: "🔥 HOT",
+                gambar: "assets/produk9.png",
+                harga: "Rp 50rb",
+                fitur: "💼 LAYANAN NPWP – KJS STORE 💼\n\n📌 Solusi cepat & praktis untuk semua kebutuhan NPWP Anda.\n\n✨ LAYANAN TERSEDIA:\n✅ NPWP Badan\n✅ NPWP Perorangan\n✅ Aktivasi NPWP\n✅ Cetak Ulang NPWP\n\n⚡ KEUNGGULAN:\n✔ Proses cepat & mudah\n✔ Dibantu sampai selesai\n✔ Aman & terpercaya\n✔ Cocok untuk pribadi & usaha\n\n💰 HARGA: Rp 350rb\n\n📞 KONTAK:\n👤 Admin Jafri – KJS STORE\n📱 WA: +62 859-4311-1681\n\n🌐 LINK PRODUK:\n🔗 https://shop.metsstore.my.id\n\n🟢 Status: AKTIF & SIAP DIGUNAKAN\n📩 Hubungi sekarang untuk info & pemesanan!"
+            }];
+            let curNama = "",
+                curHarga = "";
+            const stars = r => { let s = ''; for (let i = 0; i < Math.floor(r); i++) s += '★'; if (r % 1) s +=
+                    '½'; while (s.length < 5) s += '☆'; return s; };
+            const fmtDL = c => typeof c === 'string' ? c : (c >= 1000 ? (c / 1000).toFixed(1) + 'k' : c);
+            const fmtMod = t =>
+                `<div style="white-space:normal;">${t.replace(/\n/g,'<br>').replace(/✅/g,'<span style="color:#06b6d4;">✅</span>').replace(/✔/g,'<span style="color:#facc15;">✔</span>').replace(/🔥/g,'<span style="color:#facc15;">🔥</span>').replace(/✨/g,'<span style="color:#facc15;">✨</span>').replace(/🚀/g,'<span style="color:#facc15;">🚀</span>').replace(/💰/g,'<span style="color:#facc15;">💰</span>')}</div>`;
 
-            function render() {
+            function lightbox(src) { document.getElementById('lightboxImg').src = src;
+                document.getElementById('lightboxModal').style.display = 'flex'; }
+
+            function closeLightbox() { document.getElementById('lightboxModal').style.display = 'none'; }
+
+            function showToast() { document.getElementById('toastOverlay').style.display = 'block';
+                document.getElementById('toastCard').style.display = 'block'; }
+
+            function hideToast() { document.getElementById('toastOverlay').style.display = 'none';
+                document.getElementById('toastCard').style.display = 'none'; }
+
+            // ─── RENDER PRODUK (halaman produk) ───
+            function renderProductGrid() {
                 const grid = document.getElementById('productGrid');
                 document.getElementById('productCount').textContent = products.length + ' Produk';
                 grid.innerHTML = products.map(p => `
@@ -1016,20 +1555,80 @@
                     </div>
                 </div>`).join('');
 
-                grid.querySelectorAll('.card-image-area').forEach(w => w.addEventListener('click', e => { e.stopPropagation(); lightbox(w.dataset.img); }));
+                // Event listeners untuk product grid
+                grid.querySelectorAll('.card-image-area').forEach(w => w.addEventListener('click', e => { e
+                    .stopPropagation();
+                    lightbox(w.dataset.img); }));
                 grid.querySelectorAll('.info-btn').forEach(b => b.addEventListener('click', e => {
                     e.stopPropagation();
                     const p = products.find(x => x.id == b.dataset.id);
-                    if(p) { curNama=p.nama; curHarga=p.harga; document.getElementById('modalTitle').innerHTML=`<i class="fas fa-cube"></i> ${p.nama}`; document.getElementById('modalBody').innerHTML=fmtMod(p.fitur); document.getElementById('infoModal').style.display='flex'; }
+                    if (p) { curNama = p.nama;
+                        curHarga = p.harga;
+                        document.getElementById('modalTitle').innerHTML =
+                            `<i class="fas fa-cube"></i> ${p.nama}`;
+                        document.getElementById('modalBody').innerHTML = fmtMod(p.fitur);
+                        document.getElementById('infoModal').style.display = 'flex'; }
                 }));
                 grid.querySelectorAll('.order-btn').forEach(b => b.addEventListener('click', e => {
                     e.stopPropagation();
-                    window.open(`https://wa.me/${WA}?text=${encodeURIComponent(`Halo Kak, saya ingin ORDER produk *${b.dataset.nama}* dengan harga *${b.dataset.harga}* dari KJSSTORE.`)}`, '_blank');
+                    window.open(
+                        `https://wa.me/${WA}?text=${encodeURIComponent(`Halo Kak, saya ingin ORDER produk *${b.dataset.nama}* dengan harga *${b.dataset.harga}* dari KJSSTORE.`)}`,
+                        '_blank');
                 }));
-                grid.querySelectorAll('.tutorial-btn').forEach(b => b.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); showToast(); }));
+                grid.querySelectorAll('.tutorial-btn').forEach(b => b.addEventListener('click', e => { e
+                    .preventDefault();
+                    e.stopPropagation();
+                    showToast(); }));
             }
 
-            // Banner slider
+            // ─── RENDER FEATURED PRODUCTS (beranda) ───
+            function renderFeatured() {
+                const featuredGrid = document.getElementById('featuredGrid');
+                // Tampilkan 4 produk unggulan (id 1,3,6,8)
+                const featuredIds = [1, 3, 6, 8];
+                const featuredProducts = products.filter(p => featuredIds.includes(p.id));
+                featuredGrid.innerHTML = featuredProducts.map(p => `
+                <div class="featured-card" data-id="${p.id}">
+                    <img src="${p.gambar}" alt="${p.nama}" class="featured-card-img" onerror="this.src='https://placehold.co/400x400?text=${encodeURIComponent(p.nama)}'">
+                    <div class="featured-card-body">
+                        <span class="featured-card-name">${p.nama}</span>
+                        <span class="featured-card-price">${p.harga}</span>
+                        <span class="featured-card-stars">${stars(p.bintang)}</span>
+                    </div>
+                </div>`).join('');
+
+                featuredGrid.querySelectorAll('.featured-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        const p = products.find(x => x.id == card.dataset.id);
+                        if (p) {
+                            curNama = p.nama;
+                            curHarga = p.harga;
+                            document.getElementById('modalTitle').innerHTML =
+                                `<i class="fas fa-cube"></i> ${p.nama}`;
+                            document.getElementById('modalBody').innerHTML = fmtMod(p.fitur);
+                            document.getElementById('infoModal').style.display = 'flex';
+                        }
+                    });
+                });
+            }
+
+            // ─── NAVIGASI TAB ───
+            function switchTab(tabName) {
+                // Sembunyikan semua section
+                document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+                // Tampilkan section yang sesuai
+                if (tabName === 'home') {
+                    document.getElementById('homeSection').classList.add('active');
+                } else if (tabName === 'products') {
+                    document.getElementById('productsSection').classList.add('active');
+                }
+                // Update active state nav
+                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                const activeNav = document.querySelector(`.nav-item[data-tab="${tabName}"]`);
+                if (activeNav) activeNav.classList.add('active');
+            }
+
+            // ───────── BANNER SLIDER ─────────
             const track = document.getElementById('bannerTrack');
             const slides = document.querySelectorAll('.banner-slide');
             const prevBtn = document.getElementById('bannerPrev');
@@ -1044,9 +1643,15 @@
                     dot.classList.toggle('active', i === index);
                 });
             }
-            function goToSlide(index) { currentIndex = index; updateSlider(currentIndex); }
-            function nextSlide() { currentIndex = (currentIndex + 1) % totalSlides; updateSlider(currentIndex); }
-            function prevSlide() { currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; updateSlider(currentIndex); }
+
+            function goToSlide(index) { currentIndex = index;
+                updateSlider(currentIndex); }
+
+            function nextSlide() { currentIndex = (currentIndex + 1) % totalSlides;
+                updateSlider(currentIndex); }
+
+            function prevSlide() { currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateSlider(currentIndex); }
 
             slides.forEach((_, i) => {
                 const dot = document.createElement('div');
@@ -1061,7 +1666,8 @@
             const sliderEl = document.getElementById('bannerSlider');
             sliderEl.addEventListener('mouseenter', () => clearInterval(autoSlide));
             sliderEl.addEventListener('mouseleave', () => { autoSlide = setInterval(nextSlide, 4000); });
-            let touchStartX=0, touchEndX=0;
+            let touchStartX = 0,
+                touchEndX = 0;
             sliderEl.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
             sliderEl.addEventListener('touchend', e => {
                 touchEndX = e.changedTouches[0].screenX;
@@ -1069,32 +1675,84 @@
                 if (touchEndX > touchStartX + 40) prevSlide();
             });
 
+            // ───────── MODAL ─────────
             const modal = document.getElementById('infoModal');
-            modal.addEventListener('click', e => { if(e.target===modal) modal.style.display='none'; });
-            document.getElementById('modalBackBtn').addEventListener('click', () => modal.style.display='none');
+            modal.addEventListener('click', e => { if (e.target === modal) modal.style.display = 'none'; });
+            document.getElementById('modalBackBtn').addEventListener('click', () => modal.style.display = 'none');
             document.getElementById('modalOrderBtn').addEventListener('click', () => {
-                if(curNama) window.open(`https://wa.me/${WA}?text=${encodeURIComponent(`Halo Kak, saya ingin ORDER produk *${curNama}* dengan harga *${curHarga}* dari KJSSTORE.`)}`, '_blank');
+                if (curNama) window.open(
+                    `https://wa.me/${WA}?text=${encodeURIComponent(`Halo Kak, saya ingin ORDER produk *${curNama}* dengan harga *${curHarga}* dari KJSSTORE.`)}`,
+                    '_blank');
             });
+
+            // ───────── LIGHTBOX ─────────
             document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
-            document.getElementById('lightboxModal').addEventListener('click', e => { if(e.target===document.getElementById('lightboxModal')) closeLightbox(); });
+            document.getElementById('lightboxModal').addEventListener('click', e => { if (e.target === document
+                    .getElementById('lightboxModal')) closeLightbox(); });
+
+            // ───────── TOAST ─────────
             document.getElementById('closeToast').addEventListener('click', hideToast);
             document.getElementById('toastOverlay').addEventListener('click', hideToast);
 
+            // ───────── BOTTOM NAV ─────────
             document.querySelectorAll('.nav-item').forEach(item => item.addEventListener('click', function() {
-                document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-                this.classList.add('active');
                 const tab = this.dataset.tab;
-                if(tab==='contact') window.open(`https://wa.me/${ADMIN}?text=${encodeURIComponent("Halo min, saya mau tanya info produk & layanan KJSSTORE.")}`, '_blank');
-                else if(tab==='info') {
-                    curNama="KJS STORE"; curHarga="Variatif";
-                    document.getElementById('modalTitle').innerHTML='<i class="fas fa-store"></i> TENTANG KJS STORE';
-                    document.getElementById('modalBody').innerHTML=fmtMod("🏪 KJS STORE - Premium Digital Solutions\n\n✅ Auto Formatter & Tools\n✅ Base Template & Dokumen Digital\n✅ Bot WA & Telegram\n✅ Script Tunneling & Server\n✅ Jasa Dokumen & Administrasi\n✅ Layanan BPJS & NPWP\n\n📞 OWNER: 6285943111681\n💼 ADMIN: 6283830803474");
-                    modal.style.display='flex';
-                } else window.scrollTo({ top:0, behavior:'smooth' });
+                if (tab === 'home') {
+                    switchTab('home');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else if (tab === 'products') {
+                    switchTab('products');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else if (tab === 'contact') {
+                    window.open(
+                        `https://wa.me/${ADMIN}?text=${encodeURIComponent("Halo min, saya mau tanya info produk & layanan KJSSTORE.")}`,
+                        '_blank');
+                    // Kembalikan active ke tab sebelumnya
+                    const currentActive = document.querySelector('.page-section.active');
+                    const activeTab = currentActive && currentActive.id === 'homeSection' ? 'home' :
+                        'products';
+                    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                    const navToActivate = document.querySelector(`.nav-item[data-tab="${activeTab}"]`);
+                    if (navToActivate) navToActivate.classList.add('active');
+                } else if (tab === 'info') {
+                    curNama = "KJS STORE";
+                    curHarga = "Variatif";
+                    document.getElementById('modalTitle').innerHTML =
+                        '<i class="fas fa-store"></i> TENTANG KJS STORE';
+                    document.getElementById('modalBody').innerHTML = fmtMod(
+                        "🏪 KJS STORE - Premium Digital Solutions\n\n✅ Auto Formatter & Tools\n✅ Base Template & Dokumen Digital\n✅ Bot WA & Telegram\n✅ Script Tunneling & Server\n✅ Jasa Dokumen & Administrasi\n✅ Layanan BPJS & NPWP\n\n📞 OWNER: 6285943111681\n💼 ADMIN: 6283830803474"
+                        );
+                    modal.style.display = 'flex';
+                    // Kembalikan active ke tab sebelumnya
+                    const currentActive2 = document.querySelector('.page-section.active');
+                    const activeTab2 = currentActive2 && currentActive2.id === 'homeSection' ? 'home' :
+                        'products';
+                    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+                    const navToActivate2 = document.querySelector(`.nav-item[data-tab="${activeTab2}"]`);
+                    if (navToActivate2) navToActivate2.classList.add('active');
+                }
             }));
 
-            document.addEventListener('keydown', e => { if(e.key==='Escape') { modal.style.display='none'; closeLightbox(); hideToast(); } });
-            render();
+            // ───────── KATEGORI CHIPS (BERANDA) ─────────
+            document.querySelectorAll('.category-chip').forEach(chip => {
+                chip.addEventListener('click', () => {
+                    // Pindah ke halaman produk
+                    switchTab('products');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+
+            // ───────── KEYBOARD ESCAPE ─────────
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') { modal.style.display =
+                    'none';
+                    closeLightbox();
+                    hideToast(); } });
+
+            // ───────── INITIAL RENDER ─────────
+            renderProductGrid();
+            renderFeatured();
+            // Default: beranda aktif
+            switchTab('home');
         })();
     </script>
 </body>
