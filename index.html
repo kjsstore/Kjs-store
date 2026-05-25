@@ -990,6 +990,135 @@
                 font-size: 0.5rem;
             }
         }
+        /* ═══════════ ANIMASI KATEGORI ═══════════ */
+
+.category-chip{
+    position: relative;
+    overflow: hidden;
+
+    animation: floating 3s ease-in-out infinite;
+
+    background: linear-gradient(
+        145deg,
+        rgba(22,30,48,0.95),
+        rgba(15,23,42,0.95)
+    );
+
+    border: 1px solid rgba(250, 204, 21, 0.12);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+/* Delay biar ga gerak bareng */
+.category-chip:nth-child(1){
+    animation-delay: 0s;
+}
+.category-chip:nth-child(2){
+    animation-delay: .5s;
+}
+.category-chip:nth-child(3){
+    animation-delay: 1s;
+}
+.category-chip:nth-child(4){
+    animation-delay: 1.5s;
+}
+
+/* Glow hover */
+.category-chip:hover{
+    transform: translateY(-6px) scale(1.03);
+
+    border-color: rgba(250,204,21,.45);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.5),
+        0 0 20px rgba(250,204,21,.18),
+        0 0 35px rgba(6,182,212,.12);
+}
+
+/* Efek tekan */
+.category-chip:active{
+    transform: scale(.95);
+}
+
+/* Shine bergerak */
+.category-chip::before{
+    content: '';
+
+    position: absolute;
+    top: -120%;
+    left: -120%;
+
+    width: 220%;
+    height: 220%;
+
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.08),
+        transparent
+    );
+
+    transform: rotate(25deg);
+
+    animation: shineMove 5s linear infinite;
+}
+
+/* Icon nyala */
+.category-chip i{
+    animation: iconPulse 2s ease-in-out infinite;
+
+    text-shadow:
+        0 0 10px rgba(250,204,21,.4),
+        0 0 18px rgba(250,204,21,.2);
+}
+
+/* Badge jumlah produk */
+.category-chip .cat-count{
+    background: rgba(250,204,21,.08);
+
+    border: 1px solid rgba(250,204,21,.1);
+
+    backdrop-filter: blur(6px);
+}
+
+/* FLOATING */
+@keyframes floating{
+    0%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(-7px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
+
+/* ICON PULSE */
+@keyframes iconPulse{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.12);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+/* SHINE */
+@keyframes shineMove{
+    0%{
+        transform: translateX(-100%) rotate(25deg);
+    }
+    100%{
+        transform: translateX(100%) rotate(25deg);
+    }
+}
     </style>
 </head>
 <body>
@@ -1018,8 +1147,6 @@
                     <div class="banner-slide"><img src="assets/banner2.png" alt="Banner 2" onerror="this.src='https://placehold.co/1200x500?text=BANNER+2'"></div>
                     <div class="banner-slide"><img src="assets/banner3.png" alt="Banner 3" onerror="this.src='https://placehold.co/1200x500?text=BANNER+3'"></div>
                 </div>
-                <div class="banner-arrow banner-arrow-left" id="bannerPrev"><i class="fas fa-chevron-left"></i></div>
-                <div class="banner-arrow banner-arrow-right" id="bannerNext"><i class="fas fa-chevron-right"></i></div>
                 <div class="banner-dots" id="bannerDots"></div>
             </div>
 
@@ -1306,8 +1433,6 @@ fitur: "🚀 CEK SENSOR PREMIUM 🚀\n\nAplikasi cek sensor modern dengan akses 
             // ───────── BANNER SLIDER ─────────
             const track = document.getElementById('bannerTrack');
             const slides = document.querySelectorAll('.banner-slide');
-            const prevBtn = document.getElementById('bannerPrev');
-            const nextBtn = document.getElementById('bannerNext');
             const dotsContainer = document.getElementById('bannerDots');
             let currentIndex = 0;
             const totalSlides = slides.length;
@@ -1335,8 +1460,8 @@ fitur: "🚀 CEK SENSOR PREMIUM 🚀\n\nAplikasi cek sensor modern dengan akses 
                 dotsContainer.appendChild(dot);
             });
 
-            prevBtn.addEventListener('click', prevSlide);
-            nextBtn.addEventListener('click', nextSlide);
+            
+            
             let autoSlide = setInterval(nextSlide, 4000);
             const sliderEl = document.getElementById('bannerSlider');
             sliderEl.addEventListener('mouseenter', () => clearInterval(autoSlide));
